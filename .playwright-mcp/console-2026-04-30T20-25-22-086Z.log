@@ -1,1 +1,55 @@
 [     223ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[   54852ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[   57507ms] [WARNING] Alpine Expression Error: $wire is not defined
+
+Expression: "$wire.deleteConversation(confirmDeleteId); confirmDeleteId = null;"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-DDfZjZy-.js:8
+[   57515ms] ReferenceError: $wire is not defined
+    at [Alpine] $wire.deleteConversation(confirmDeleteId); confirmDeleteId = null; (eval at <anonymous> (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:739), <anonymous>:3:32)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-DDfZjZy-.js:9:10586)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:39564
+    at a (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:28334)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:29218
+    at HTMLButtonElement.<anonymous> (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:28356)
+[   60289ms] [WARNING] Alpine Expression Error: $wire is not defined
+
+Expression: "$wire.deleteConversation(confirmDeleteId); confirmDeleteId = null;"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-DDfZjZy-.js:8
+[   60290ms] ReferenceError: $wire is not defined
+    at [Alpine] $wire.deleteConversation(confirmDeleteId); confirmDeleteId = null; (eval at <anonymous> (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:739), <anonymous>:3:32)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-DDfZjZy-.js:9:10586)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:39564
+    at a (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:28334)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:29218
+    at HTMLButtonElement.<anonymous> (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:28356)
+[   61857ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[   64355ms] [WARNING] Alpine Expression Error: $wire is not defined
+
+Expression: "$wire.deleteConversation(confirmDeleteId); confirmDeleteId = null;"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-DDfZjZy-.js:8
+[   64359ms] ReferenceError: $wire is not defined
+    at [Alpine] $wire.deleteConversation(confirmDeleteId); confirmDeleteId = null; (eval at <anonymous> (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:739), <anonymous>:3:32)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-DDfZjZy-.js:9:10586)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:39564
+    at a (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:28334)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:29218
+    at HTMLButtonElement.<anonymous> (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:28356)
+[   67772ms] [WARNING] Alpine Expression Error: $wire is not defined
+
+Expression: "$wire.deleteConversation(confirmDeleteId); confirmDeleteId = null;"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-DDfZjZy-.js:8
+[   67774ms] ReferenceError: $wire is not defined
+    at [Alpine] $wire.deleteConversation(confirmDeleteId); confirmDeleteId = null; (eval at <anonymous> (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:739), <anonymous>:3:32)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-DDfZjZy-.js:9:10586)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:39564
+    at a (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:28334)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:29218
+    at HTMLButtonElement.<anonymous> (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:28356)

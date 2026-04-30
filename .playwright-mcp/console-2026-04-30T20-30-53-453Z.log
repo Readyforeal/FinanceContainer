@@ -1,0 +1,14 @@
+[     196ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[   35565ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'deleteConversation')
+
+Expression: "wire.deleteConversation(confirmDeleteId); confirmDeleteId = null;"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-DDfZjZy-.js:8
+[   35580ms] TypeError: Cannot read properties of undefined (reading 'deleteConversation')
+    at [Alpine] wire.deleteConversation(confirmDeleteId); confirmDeleteId = null; (eval at <anonymous> (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:739), <anonymous>:3:37)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-DDfZjZy-.js:9:10586)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:39564
+    at a (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:28334)
+    at http://localhost:8080/build/assets/app-DDfZjZy-.js:13:29218
+    at HTMLButtonElement.<anonymous> (http://localhost:8080/build/assets/app-DDfZjZy-.js:13:28356)

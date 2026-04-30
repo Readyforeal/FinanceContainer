@@ -8,6 +8,7 @@ use Livewire\Component;
 
 new class extends Component {
     public ?int $activeConversationId = null;
+    public ?int $confirmingDeleteId = null;
     public string $messageText = '';
     public string $streamingResponse = '';
     public bool $isStreaming = false;
@@ -40,25 +41,39 @@ new class extends Component {
         $this->activeConversationId = $id;
     }
 
-    public function deleteConversation(int $id): void
+    public function confirmDelete(int $id): void
     {
-        $conversation = ChatConversation::where('id', $id)
-            ->where('user_id', auth()->id())
-            ->first();
+        $this->confirmingDeleteId = $id;
+    }
 
-        if (! $conversation) {
+    public function cancelDelete(): void
+    {
+        $this->confirmingDeleteId = null;
+    }
+
+    public function deleteConversation(): void
+    {
+        if (! $this->confirmingDeleteId) {
             return;
         }
 
-        $conversation->messages()->delete();
-        $conversation->delete();
+        $conversation = ChatConversation::where('id', $this->confirmingDeleteId)
+            ->where('user_id', auth()->id())
+            ->first();
 
-        if ($this->activeConversationId === $id) {
-            $next = ChatConversation::where('user_id', auth()->id())
-                ->latest()
-                ->first();
-            $this->activeConversationId = $next?->id;
+        if ($conversation) {
+            $conversation->messages()->delete();
+            $conversation->delete();
+
+            if ($this->activeConversationId === $this->confirmingDeleteId) {
+                $next = ChatConversation::where('user_id', auth()->id())
+                    ->latest()
+                    ->first();
+                $this->activeConversationId = $next?->id;
+            }
         }
+
+        $this->confirmingDeleteId = null;
     }
 
     public function sendMessage(): void
@@ -157,7 +172,7 @@ new class extends Component {
             </button>
         </div>
 
-        <div class="flex-1 overflow-y-auto" x-data="{ confirmDeleteId: null }">
+        <div class="flex-1 overflow-y-auto">
             @forelse ($conversations as $conversation)
                 <div
                     @class([
@@ -178,7 +193,7 @@ new class extends Component {
                         </p>
                     </button>
                     <button
-                        @click.stop="confirmDeleteId = {{ $conversation->id }}"
+                        wire:click.stop="confirmDelete({{ $conversation->id }})"
                         class="px-3 py-3 text-zinc-300 dark:text-zinc-600 hover:text-red-500 dark:hover:text-red-400 transition-colors flex-shrink-0"
                     >
                         <x-lucide-trash-2 class="w-3.5 h-3.5" />
@@ -190,61 +205,6 @@ new class extends Component {
                 </div>
             @endforelse
 
-            {{-- Delete confirmation modal --}}
-            <template x-teleport="body">
-                <div
-                    x-show="confirmDeleteId !== null"
-                    x-transition:enter="transition ease-out duration-150"
-                    x-transition:enter-start="opacity-0"
-                    x-transition:enter-end="opacity-100"
-                    x-transition:leave="transition ease-in duration-100"
-                    x-transition:leave-start="opacity-100"
-                    x-transition:leave-end="opacity-0"
-                    class="fixed inset-0 z-50 flex items-center justify-center"
-                    @keydown.escape.window="confirmDeleteId = null"
-                    x-cloak
-                >
-                    {{-- Backdrop --}}
-                    <div class="absolute inset-0 bg-black/30 dark:bg-black/50 backdrop-blur-sm" @click="confirmDeleteId = null"></div>
-
-                    {{-- Modal --}}
-                    <div
-                        x-show="confirmDeleteId !== null"
-                        x-transition:enter="transition ease-out duration-150"
-                        x-transition:enter-start="opacity-0 scale-95"
-                        x-transition:enter-end="opacity-100 scale-100"
-                        x-transition:leave="transition ease-in duration-100"
-                        x-transition:leave-start="opacity-100 scale-100"
-                        x-transition:leave-end="opacity-0 scale-95"
-                        class="relative bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-2xl shadow-xl p-6 w-full max-w-sm mx-4"
-                    >
-                        <div class="flex items-start gap-4">
-                            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/30 flex-shrink-0">
-                                <x-lucide-trash-2 class="w-5 h-5 text-red-600 dark:text-red-400" />
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Delete conversation</h3>
-                                <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">This will permanently delete this conversation and all its messages.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex justify-end gap-3 mt-6">
-                            <button
-                                @click="confirmDeleteId = null"
-                                class="px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                @click="$wire.deleteConversation(confirmDeleteId); confirmDeleteId = null;"
-                                class="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-500 rounded-lg transition-colors"
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </template>
         </div>
     </div>
 
@@ -326,4 +286,40 @@ new class extends Component {
             </div>
         @endif
     </div>
+
+    {{-- Delete confirmation modal --}}
+    @if ($confirmingDeleteId)
+        <div class="fixed inset-0 z-[100] flex items-center justify-center" wire:keydown.escape="cancelDelete">
+            <div class="absolute inset-0 bg-black/30 dark:bg-black/50 backdrop-blur-sm" wire:click="cancelDelete"></div>
+
+            <div class="relative bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-2xl shadow-xl p-6 w-full max-w-sm mx-4">
+                <div class="flex items-start gap-4">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/30 flex-shrink-0">
+                        <x-lucide-trash-2 class="w-5 h-5 text-red-600 dark:text-red-400" />
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Delete conversation</h3>
+                        <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">This will permanently delete this conversation and all its messages.</p>
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-3 mt-6">
+                    <button
+                        wire:click="cancelDelete"
+                        class="px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors"
+                        type="button"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        wire:click="deleteConversation"
+                        class="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-500 rounded-lg transition-colors"
+                        type="button"
+                    >
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
