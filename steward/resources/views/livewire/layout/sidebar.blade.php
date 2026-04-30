@@ -73,6 +73,16 @@ new class extends Component {};
                 </button>
             </div>
 
+            <a href="/profile" wire:navigate
+                :class="path === '/profile'
+                    ?
+                    'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100' :
+                    'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800/50'"
+                class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-150">
+                <x-lucide-user class="w-5 h-5 flex-shrink-0" />
+                <span>Profile</span>
+            </a>
+
             <a href="/settings" wire:navigate
                 :class="path === '/settings'
                     ?
