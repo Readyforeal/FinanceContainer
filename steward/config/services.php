@@ -41,4 +41,9 @@ return [
         'env' => env('PLAID_ENV', 'sandbox'),
     ],
 
+    'ollama' => [
+        'host' => env('OLLAMA_HOST', 'http://ollama:11434'),
+        'model' => env('OLLAMA_MODEL', 'llama3.1:70b-instruct-q4_K_M'),
+    ],
+
 ];
