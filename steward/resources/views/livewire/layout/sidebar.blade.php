@@ -26,6 +26,7 @@ new class extends Component {};
                     ['path' => '/categories', 'label' => 'Categories', 'icon' => 'tags'],
                     ['path' => '/accounts', 'label' => 'Accounts', 'icon' => 'landmark'],
                     ['path' => '/summaries', 'label' => 'Summaries', 'icon' => 'file-text'],
+                    ['path' => '/goals', 'label' => 'Goals', 'icon' => 'target'],
                     ['path' => '/chat', 'label' => 'Chat', 'icon' => 'message-square'],
                 ];
             @endphp
