@@ -121,14 +121,14 @@ new class extends Component {
 };
 ?>
 
-<div class="flex h-[calc(100vh-8rem)] border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden">
+<div class="flex h-[calc(100vh-8rem)]">
 
-    {{-- Left panel: conversation list --}}
-    <div class="w-72 flex flex-col border-r border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
+    {{-- Left panel: conversation history (in container) --}}
+    <div class="w-64 flex-shrink-0 flex flex-col rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden">
         <div class="p-3 border-b border-zinc-200 dark:border-zinc-800">
             <button
                 wire:click="newConversation"
-                class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors"
+                class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium transition-colors"
             >
                 <x-lucide-plus class="w-4 h-4" />
                 New Conversation
@@ -139,25 +139,29 @@ new class extends Component {
             @forelse ($conversations as $conversation)
                 <button
                     wire:click="selectConversation({{ $conversation->id }})"
-                    class="w-full text-left px-3 py-3 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors border-b border-zinc-100 dark:border-zinc-800/50 {{ $activeConversationId === $conversation->id ? 'bg-zinc-100 dark:bg-zinc-800' : '' }}"
+                    @class([
+                        'w-full text-left px-4 py-3 transition-colors border-b border-zinc-100 dark:border-zinc-800/50',
+                        'bg-zinc-100 dark:bg-zinc-800' => $activeConversationId === $conversation->id,
+                        'hover:bg-zinc-50 dark:hover:bg-zinc-800/50' => $activeConversationId !== $conversation->id,
+                    ])
                 >
                     <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100 truncate">
                         {{ $conversation->title }}
                     </p>
-                    <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+                    <p class="text-xs text-zinc-400 dark:text-zinc-500 mt-0.5">
                         {{ $conversation->updated_at->diffForHumans() }}
                     </p>
                 </button>
             @empty
-                <div class="px-3 py-6 text-center">
-                    <p class="text-sm text-zinc-400 dark:text-zinc-600">No conversations yet.</p>
+                <div class="px-4 py-8 text-center">
+                    <p class="text-sm text-zinc-400 dark:text-zinc-500">No conversations yet.</p>
                 </div>
             @endforelse
         </div>
     </div>
 
-    {{-- Right panel: message area --}}
-    <div class="flex-1 flex flex-col bg-white dark:bg-zinc-900">
+    {{-- Right area: open chat (no container) --}}
+    <div class="flex-1 flex flex-col relative">
         @if ($activeConversationId === null)
             {{-- Empty state --}}
             <div class="flex-1 flex flex-col items-center justify-center gap-4">
@@ -166,66 +170,70 @@ new class extends Component {
                     <p class="text-zinc-500 dark:text-zinc-400 mb-3">Start a conversation with your financial advisor.</p>
                     <button
                         wire:click="newConversation"
-                        class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors"
+                        class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium transition-colors"
                     >
                         New Conversation
                     </button>
                 </div>
             </div>
         @else
-            {{-- Messages --}}
-            <div class="flex-1 overflow-y-auto p-4 space-y-4">
-                @forelse ($messages as $message)
-                    @if ($message->role === 'user')
-                        <div class="flex justify-end">
-                            <div class="max-w-[75%] rounded-2xl rounded-tr-sm px-4 py-2.5 bg-blue-600 text-white text-sm">
-                                {{ $message->content }}
+            {{-- Messages (floating in body, padded at bottom for input dock) --}}
+            <div class="flex-1 overflow-y-auto px-8 pt-4 pb-28">
+                <div class="max-w-2xl mx-auto space-y-4">
+                    @forelse ($messages as $message)
+                        @if ($message->role === 'user')
+                            <div class="flex justify-end">
+                                <div class="max-w-[75%] rounded-2xl rounded-tr-sm px-4 py-2.5 bg-blue-600 text-white text-sm leading-relaxed">
+                                    {{ $message->content }}
+                                </div>
                             </div>
+                        @else
+                            <div class="flex justify-start">
+                                <div class="max-w-[75%] rounded-2xl rounded-tl-sm px-4 py-2.5 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm leading-relaxed">
+                                    {!! nl2br(e($message->content)) !!}
+                                </div>
+                            </div>
+                        @endif
+                    @empty
+                        <div class="flex items-center justify-center h-full min-h-[40vh]">
+                            <p class="text-sm text-zinc-400 dark:text-zinc-500">Send a message to start the conversation.</p>
                         </div>
-                    @else
+                    @endforelse
+
+                    {{-- Streaming indicator --}}
+                    @if ($isStreaming)
                         <div class="flex justify-start">
-                            <div class="max-w-[75%] rounded-2xl rounded-tl-sm px-4 py-2.5 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm">
-                                {{ $message->content }}
+                            <div class="max-w-[75%] rounded-2xl rounded-tl-sm px-4 py-2.5 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm leading-relaxed">
+                                {!! nl2br(e($streamingResponse)) !!}<span class="inline-block w-1.5 h-4 bg-zinc-400 dark:bg-zinc-500 animate-pulse ml-0.5 align-middle"></span>
                             </div>
                         </div>
                     @endif
-                @empty
-                    <div class="flex items-center justify-center h-full">
-                        <p class="text-sm text-zinc-400 dark:text-zinc-600">Send a message to start the conversation.</p>
-                    </div>
-                @endforelse
-
-                {{-- Streaming indicator --}}
-                @if ($isStreaming)
-                    <div class="flex justify-start">
-                        <div class="max-w-[75%] rounded-2xl rounded-tl-sm px-4 py-2.5 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm">
-                            {{ $streamingResponse }}<span class="inline-block w-1.5 h-4 bg-zinc-500 dark:bg-zinc-400 animate-pulse ml-0.5 align-middle"></span>
-                        </div>
-                    </div>
-                @endif
+                </div>
             </div>
 
-            {{-- Input area --}}
-            <div class="border-t border-zinc-200 dark:border-zinc-800 p-4">
-                <form wire:submit="sendMessage" class="flex gap-3">
-                    <input
-                        wire:model="messageText"
-                        type="text"
-                        placeholder="Ask your financial advisor..."
-                        class="flex-1 px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50"
-                        {{ $isStreaming ? 'disabled' : '' }}
-                    />
-                    <button
-                        type="submit"
-                        class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium transition-colors"
-                        {{ $isStreaming ? 'disabled' : '' }}
-                    >
-                        @if ($isStreaming)
-                            <x-lucide-loader-2 class="w-4 h-4 animate-spin" />
-                        @else
-                            <x-lucide-send class="w-4 h-4" />
-                        @endif
-                    </button>
+            {{-- Docked input at bottom center --}}
+            <div class="absolute bottom-0 left-0 right-0 px-8 pb-6 pt-4 bg-gradient-to-t from-zinc-100 via-zinc-100 dark:from-zinc-900 dark:via-zinc-900 to-transparent">
+                <form wire:submit="sendMessage" class="max-w-2xl mx-auto">
+                    <div class="flex gap-3 items-center rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-4 py-2.5 shadow-lg shadow-zinc-200/50 dark:shadow-zinc-950/50">
+                        <input
+                            wire:model="messageText"
+                            type="text"
+                            placeholder="Ask your financial advisor..."
+                            class="flex-1 bg-transparent text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm focus:outline-none disabled:opacity-50 border-0 focus:ring-0 p-0"
+                            @disabled($isStreaming)
+                        />
+                        <button
+                            type="submit"
+                            class="flex items-center justify-center w-8 h-8 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed text-white transition-colors flex-shrink-0"
+                            @disabled($isStreaming)
+                        >
+                            @if ($isStreaming)
+                                <x-lucide-loader-2 class="w-4 h-4 animate-spin" />
+                            @else
+                                <x-lucide-arrow-up class="w-4 h-4" />
+                            @endif
+                        </button>
+                    </div>
                 </form>
             </div>
         @endif
