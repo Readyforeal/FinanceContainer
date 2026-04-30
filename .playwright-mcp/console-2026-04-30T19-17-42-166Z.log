@@ -1,0 +1,1835 @@
+[     734ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[    2969ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[    3758ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[    4501ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[    5211ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[    5913ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[    6602ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[    7428ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[    8225ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  182593ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  210395ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  210397ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  210397ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  210397ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  210431ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  210431ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  210431ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  212874ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  212874ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  212874ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  212874ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  212877ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  212877ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  212877ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  213821ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  213821ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  213821ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  213821ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  213846ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  213846ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  213846ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  217449ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  217449ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  217449ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  217449ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  217451ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  217451ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  217451ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  218659ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  218659ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  218659ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  218659ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  218680ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  218681ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  218681ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  219354ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  219354ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  219354ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  219354ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  219358ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  219359ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  219359ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  220027ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  220028ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  220028ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  220028ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  220032ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  220032ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  220032ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  221156ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  221156ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  221156ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  221156ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  221160ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  221160ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  221160ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  222650ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  222650ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  222650ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  222650ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  222652ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  222652ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  222652ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  223730ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  223731ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  223731ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  223731ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  223735ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  223735ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  223735ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  225095ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  225095ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  225095ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  225095ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  225118ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  225119ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  225119ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  226179ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  226179ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  226179ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  226179ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  226181ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  226181ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  226181ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  226911ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  226911ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  226911ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  226911ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  226934ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  226934ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  226934ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  229408ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  229408ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  229408ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  229409ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  229410ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  229410ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  229410ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  230276ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  230276ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  230276ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  230277ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  230299ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  230299ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  230299ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  237255ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  237255ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  237255ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  237256ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  237283ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  237284ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  237284ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  239321ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  239321ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  239321ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  239321ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  239325ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  239325ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  239325ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  242015ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  242015ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  242015ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  242015ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  242017ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  242017ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  242017ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  249724ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  249724ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  249724ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  249724ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  249728ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  249729ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  249729ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  279408ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  279408ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  279408ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  279408ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  279411ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  279411ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  279411ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  282110ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  282110ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  282110ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  282110ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  282114ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  282114ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  282114ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  283262ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  283262ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  283262ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  283262ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  283282ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  283282ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  283283ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  286130ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  286130ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  286130ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  286130ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  286133ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  286133ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  286134ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  287075ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  287075ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  287075ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  287075ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  287077ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  287077ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  287077ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  288187ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  288187ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  288187ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  288187ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  288192ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  288192ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  288192ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  289646ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  289646ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  289646ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  289646ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  289650ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  289650ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  289650ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  290509ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  290509ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  290510ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  290510ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  290512ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  290512ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  290512ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  291824ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  291825ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  291825ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  291825ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  291827ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  291827ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  291827ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  292471ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  292471ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  292471ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  292471ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  292494ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  292495ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  292495ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  307710ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  307711ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  307711ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  307711ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  307716ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  307716ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  307716ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  308359ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  308359ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  308360ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  308360ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  308384ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  308384ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  308385ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  309088ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  309088ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  309088ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  309088ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  309092ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  309093ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  309093ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  310099ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  310099ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  310099ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  310099ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  310103ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  310103ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  310103ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  322759ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  322759ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  322759ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  322759ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  322761ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  322761ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  322761ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  324760ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  324760ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  324760ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  324760ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  324783ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  324783ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  324783ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  329510ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  329510ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  329510ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'mode')
+
+Expression: "$store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  329511ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  329536ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'light' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  329536ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'system' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  329536ms] TypeError: Cannot read properties of undefined (reading 'mode')
+    at [Alpine] $store.theme.mode === 'dark' ? 'bg-white dark:bg-zinc-700 shadow-sm text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300' (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:34835
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:18906)
+    at Object._o [as effect] (http://localhost:8080/build/assets/app-xiza4609.js:13:18701)
+    at Pn (http://localhost:8080/build/assets/app-xiza4609.js:9:5765)
+    at http://localhost:8080/build/assets/app-xiza4609.js:9:5879
+    at qs (http://localhost:8080/build/assets/app-xiza4609.js:13:34829)
+    at n (http://localhost:8080/build/assets/app-xiza4609.js:13:3071)
+[  331362ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'set')
+
+Expression: "$store.theme.set('dark')"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  331364ms] TypeError: Cannot read properties of undefined (reading 'set')
+    at [Alpine] $store.theme.set('dark') (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:39564
+    at a (http://localhost:8080/build/assets/app-xiza4609.js:13:28334)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:29218
+    at HTMLButtonElement.<anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:28356)
+[  332778ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'set')
+
+Expression: "$store.theme.set('system')"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  332779ms] TypeError: Cannot read properties of undefined (reading 'set')
+    at [Alpine] $store.theme.set('system') (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:39564
+    at a (http://localhost:8080/build/assets/app-xiza4609.js:13:28334)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:29218
+    at HTMLButtonElement.<anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:28356)
+[  333444ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'set')
+
+Expression: "$store.theme.set('light')"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  333444ms] TypeError: Cannot read properties of undefined (reading 'set')
+    at [Alpine] $store.theme.set('light') (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:39564
+    at a (http://localhost:8080/build/assets/app-xiza4609.js:13:28334)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:29218
+    at HTMLButtonElement.<anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:28356)
+[  334294ms] [WARNING] Alpine Expression Error: Cannot read properties of undefined (reading 'set')
+
+Expression: "$store.theme.set('dark')"
+
+ JSHandle@node @ http://localhost:8080/build/assets/app-xiza4609.js:8
+[  334295ms] TypeError: Cannot read properties of undefined (reading 'set')
+    at [Alpine] $store.theme.set('dark') (eval at <anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:739), <anonymous>:3:45)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:1155
+    at Tr (http://localhost:8080/build/assets/app-xiza4609.js:9:10586)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:39564
+    at a (http://localhost:8080/build/assets/app-xiza4609.js:13:28334)
+    at http://localhost:8080/build/assets/app-xiza4609.js:13:29218
+    at HTMLButtonElement.<anonymous> (http://localhost:8080/build/assets/app-xiza4609.js:13:28356)
+[  335251ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  337595ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  340742ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  342796ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  343823ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  344741ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  346831ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  348661ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  350559ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738

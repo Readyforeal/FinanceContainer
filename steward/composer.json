@@ -9,7 +9,7 @@
         "php": "^8.3",
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
-        "livewire/livewire": "^3.0",
+        "livewire/livewire": "^4.0",
         "mallardduck/blade-lucide-icons": "^1.26",
         "tomorrow-ideas/plaid-sdk-php": "^1.0"
     },

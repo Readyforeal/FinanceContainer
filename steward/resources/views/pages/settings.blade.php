@@ -1,4 +1,17 @@
-<x-layouts.app title="Settings">
+<?php
+
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
+use Livewire\Component;
+
+new
+#[Layout('components.layouts.app')]
+#[Title('Settings')]
+class extends Component {
+};
+?>
+
+<div>
     <div class="mb-6">
         <h1 class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">Settings</h1>
         <p class="text-zinc-500 dark:text-zinc-400 mt-1">Configure your StewardAI preferences.</p>
@@ -13,4 +26,4 @@
             <livewire:settings.sync-schedule />
         </div>
     </div>
-</x-layouts.app>
+</div>

@@ -5,11 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title ?? 'StewardAI' }}</title>
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'system';
+            const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            document.documentElement.classList.toggle('dark', isDark);
+        })();
+    </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-900 text-gray-100 antialiased">
+<body class="bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100 antialiased">
     <div class="flex min-h-screen">
-        <livewire:layout.sidebar />
+        @persist('sidebar')
+            <livewire:layout.sidebar />
+        @endpersist
         <main class="flex-1 p-8 overflow-auto">
             {{ $slot }}
         </main>

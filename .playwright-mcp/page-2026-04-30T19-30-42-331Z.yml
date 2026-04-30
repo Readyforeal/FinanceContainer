@@ -1,0 +1,135 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e6]: StewardAI
+    - navigation [ref=e7]:
+      - link "Dashboard" [ref=e8] [cursor=pointer]:
+        - /url: /dashboard
+        - img [ref=e9]
+        - generic [ref=e14]: Dashboard
+      - link "Transactions" [ref=e15] [cursor=pointer]:
+        - /url: /transactions
+        - img [ref=e16]
+        - generic [ref=e19]: Transactions
+      - link "Budgets" [ref=e20] [cursor=pointer]:
+        - /url: /budgets
+        - img [ref=e21]
+        - generic [ref=e24]: Budgets
+      - link "Categories" [ref=e25] [cursor=pointer]:
+        - /url: /categories
+        - img [ref=e26]
+        - generic [ref=e30]: Categories
+      - link "Accounts" [ref=e31] [cursor=pointer]:
+        - /url: /accounts
+        - img [ref=e32]
+        - generic [ref=e34]: Accounts
+      - link "Summaries" [ref=e35] [cursor=pointer]:
+        - /url: /summaries
+        - img [ref=e36]
+        - generic [ref=e39]: Summaries
+      - link "Chat" [ref=e40] [cursor=pointer]:
+        - /url: /chat
+        - img [ref=e41]
+        - generic [ref=e43]: Chat
+    - generic [ref=e44]:
+      - generic [ref=e45]:
+        - button [ref=e46] [cursor=pointer]:
+          - img [ref=e47]
+        - button [ref=e53] [cursor=pointer]:
+          - img [ref=e54]
+        - button [ref=e56] [cursor=pointer]:
+          - img [ref=e57]
+      - link "Settings" [ref=e59] [cursor=pointer]:
+        - /url: /settings
+        - img [ref=e60]
+        - generic [ref=e63]: Settings
+      - button "Sign Out" [ref=e65] [cursor=pointer]:
+        - img [ref=e66]
+        - generic [ref=e69]: Sign Out
+  - main [ref=e70]:
+    - generic [ref=e71]:
+      - generic [ref=e72]:
+        - heading "Settings" [level=1] [ref=e73]
+        - paragraph [ref=e74]: Configure your StewardAI preferences.
+      - generic [ref=e75]:
+        - generic [ref=e77]:
+          - heading "Income Sources" [level=2] [ref=e79]
+          - generic [ref=e80]:
+            - img [ref=e81]
+            - paragraph [ref=e84]: No income sources added yet.
+          - generic [ref=e85]:
+            - heading "Add Income Source" [level=3] [ref=e86]
+            - generic [ref=e87]:
+              - generic [ref=e88]:
+                - generic [ref=e89]:
+                  - generic [ref=e90]: Name
+                  - textbox "e.g. Main Job" [ref=e91]
+                - generic [ref=e92]:
+                  - generic [ref=e93]: Amount
+                  - spinbutton [ref=e94]
+                - generic [ref=e95]:
+                  - generic [ref=e96]: Frequency
+                  - combobox [ref=e97]:
+                    - option "Weekly"
+                    - option "Biweekly"
+                    - option "Monthly" [selected]
+                - generic [ref=e98]:
+                  - generic [ref=e99]: Next Pay Date
+                  - textbox [ref=e100]
+              - button "Add Source" [ref=e102] [cursor=pointer]
+        - generic [ref=e104]:
+          - heading "Sync Schedule" [level=2] [ref=e105]
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - generic [ref=e108]:
+                - img [ref=e109]
+                - heading "Daily Sync Time" [level=3] [ref=e112]
+              - paragraph [ref=e113]: Transactions will be automatically synced at this time each day.
+              - generic [ref=e114]:
+                - generic [ref=e115]:
+                  - generic [ref=e116]: Hour
+                  - combobox [ref=e117]:
+                    - option "00"
+                    - option "01"
+                    - option "02" [selected]
+                    - option "03"
+                    - option "04"
+                    - option "05"
+                    - option "06"
+                    - option "07"
+                    - option "08"
+                    - option "09"
+                    - option "10"
+                    - option "11"
+                    - option "12"
+                    - option "13"
+                    - option "14"
+                    - option "15"
+                    - option "16"
+                    - option "17"
+                    - option "18"
+                    - option "19"
+                    - option "20"
+                    - option "21"
+                    - option "22"
+                    - option "23"
+                - generic [ref=e118]: ":"
+                - generic [ref=e119]:
+                  - generic [ref=e120]: Minute
+                  - combobox [ref=e121]:
+                    - option "00" [selected]
+                    - option "15"
+                    - option "30"
+                    - option "45"
+                - generic [ref=e122]: (02:00 UTC)
+            - generic [ref=e123]:
+              - generic [ref=e124]:
+                - img [ref=e125]
+                - heading "Categorization Confidence Threshold" [level=3] [ref=e126]
+              - paragraph [ref=e127]: Transactions with confidence below this threshold will be flagged for manual review.
+              - generic [ref=e128]:
+                - generic [ref=e129]:
+                  - generic [ref=e130]: 50%
+                  - generic [ref=e131]: 90%
+                  - generic [ref=e132]: 100%
+                - slider [ref=e133] [cursor=pointer]: "0.9"
+            - button "Save Settings" [ref=e135] [cursor=pointer]
