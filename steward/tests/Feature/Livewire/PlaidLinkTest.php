@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Livewire;
 
-use App\Livewire\Plaid\PlaidLink;
 use App\Models\User;
 use App\Services\PlaidService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -24,7 +23,7 @@ class PlaidLinkTest extends TestCase
             ->andReturn(['link_token' => 'link-sandbox-test-token-123']);
 
         Livewire::actingAs($user)
-            ->test(PlaidLink::class)
+            ->test('plaid.plaid-link')
             ->call('createLinkToken')
             ->assertSet('linkToken', 'link-sandbox-test-token-123')
             ->assertSet('connecting', true);
@@ -68,7 +67,7 @@ class PlaidLinkTest extends TestCase
             ]);
 
         Livewire::actingAs($user)
-            ->test(PlaidLink::class)
+            ->test('plaid.plaid-link')
             ->call('onSuccess', 'public-sandbox-token', [
                 'institution' => ['name' => 'Chase'],
             ]);

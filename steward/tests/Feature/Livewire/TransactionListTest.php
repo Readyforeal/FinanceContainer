@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Livewire;
 
-use App\Livewire\Transactions\TransactionList;
 use App\Models\Account;
 use App\Models\Category;
 use App\Models\PlaidConnection;
@@ -28,7 +27,7 @@ class TransactionListTest extends TestCase
         ]);
 
         Livewire::actingAs($user)
-            ->test(TransactionList::class)
+            ->test('transactions.transaction-list')
             ->assertSee('Whole Foods')
             ->assertSee('45.67');
     }
@@ -44,7 +43,7 @@ class TransactionListTest extends TestCase
         Transaction::factory()->create(['account_id' => $account2->id, 'merchant_name' => 'Netflix']);
 
         Livewire::actingAs($user)
-            ->test(TransactionList::class)
+            ->test('transactions.transaction-list')
             ->set('accountFilter', $account1->id)
             ->assertSee('Amazon')
             ->assertDontSee('Netflix');
@@ -68,7 +67,7 @@ class TransactionListTest extends TestCase
         ]);
 
         Livewire::actingAs($user)
-            ->test(TransactionList::class)
+            ->test('transactions.transaction-list')
             ->set('reviewFilter', true)
             ->assertSee('Flagged Merchant')
             ->assertDontSee('Normal Merchant');
@@ -87,7 +86,7 @@ class TransactionListTest extends TestCase
         $category = Category::factory()->create(['name' => 'Groceries']);
 
         Livewire::actingAs($user)
-            ->test(TransactionList::class)
+            ->test('transactions.transaction-list')
             ->call('assignCategory', $transaction->id, $category->id);
 
         $transaction->refresh();

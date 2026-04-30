@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Livewire;
 
-use App\Livewire\Settings\IncomeSources;
 use App\Models\IncomeSource;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -19,7 +18,7 @@ class IncomeSourcesTest extends TestCase
         IncomeSource::factory()->create(['name' => 'Main Job', 'amount' => 3000, 'frequency' => 'monthly']);
 
         Livewire::actingAs($user)
-            ->test(IncomeSources::class)
+            ->test('settings.income-sources')
             ->assertSee('Main Job');
     }
 
@@ -28,7 +27,7 @@ class IncomeSourcesTest extends TestCase
         $user = User::factory()->create();
 
         Livewire::actingAs($user)
-            ->test(IncomeSources::class)
+            ->test('settings.income-sources')
             ->set('name', 'Freelance Work')
             ->set('amount', 1500)
             ->set('frequency', 'monthly')
@@ -47,7 +46,7 @@ class IncomeSourcesTest extends TestCase
         $source = IncomeSource::factory()->create(['name' => 'Side Gig']);
 
         Livewire::actingAs($user)
-            ->test(IncomeSources::class)
+            ->test('settings.income-sources')
             ->call('delete', $source->id);
 
         $this->assertDatabaseMissing('income_sources', ['id' => $source->id]);
@@ -64,7 +63,7 @@ class IncomeSourcesTest extends TestCase
         // Total: $5200 + $1516.67 = $6716.67
 
         Livewire::actingAs($user)
-            ->test(IncomeSources::class)
+            ->test('settings.income-sources')
             ->assertSee('6,716.67');
     }
 }

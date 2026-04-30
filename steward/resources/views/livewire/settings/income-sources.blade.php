@@ -1,3 +1,99 @@
+<?php
+
+use App\Models\IncomeSource;
+use Livewire\Attributes\Validate;
+use Livewire\Component;
+
+new class extends Component {
+    #[Validate('required|string|max:255')]
+    public string $name = '';
+
+    #[Validate('required|numeric|min:0')]
+    public string $amount = '';
+
+    #[Validate('required|in:weekly,biweekly,monthly')]
+    public string $frequency = 'monthly';
+
+    #[Validate('nullable|date')]
+    public string $nextPayDate = '';
+
+    public ?int $editingId = null;
+    public ?int $confirmDeleteId = null;
+
+    public function save(): void
+    {
+        $this->validate();
+
+        $data = [
+            'name' => $this->name,
+            'amount' => $this->amount,
+            'frequency' => $this->frequency,
+            'next_pay_date' => $this->nextPayDate ?: null,
+            'is_active' => true,
+        ];
+
+        if ($this->editingId) {
+            IncomeSource::findOrFail($this->editingId)->update($data);
+        } else {
+            IncomeSource::create($data);
+        }
+
+        $this->resetForm();
+    }
+
+    public function edit(int $id): void
+    {
+        $source = IncomeSource::findOrFail($id);
+        $this->editingId = $id;
+        $this->name = $source->name;
+        $this->amount = (string) $source->amount;
+        $this->frequency = $source->frequency;
+        $this->nextPayDate = $source->next_pay_date?->format('Y-m-d') ?? '';
+    }
+
+    public function delete(int $id): void
+    {
+        IncomeSource::findOrFail($id)->delete();
+        $this->confirmDeleteId = null;
+    }
+
+    public function confirmDelete(int $id): void
+    {
+        $this->confirmDeleteId = $id;
+    }
+
+    public function cancelDelete(): void
+    {
+        $this->confirmDeleteId = null;
+    }
+
+    public function cancelEdit(): void
+    {
+        $this->resetForm();
+    }
+
+    private function resetForm(): void
+    {
+        $this->editingId = null;
+        $this->name = '';
+        $this->amount = '';
+        $this->frequency = 'monthly';
+        $this->nextPayDate = '';
+        $this->resetValidation();
+    }
+
+    public function with(): array
+    {
+        $sources = IncomeSource::orderBy('name')->get();
+
+        return [
+            'sources' => $sources,
+            'totalMonthly' => $sources->sum(fn ($s) => $s->monthlyAmount()),
+        ];
+    }
+};
+?>
+
 <div>
     <div class="flex items-center justify-between mb-4">
         <h2 class="text-lg font-semibold text-gray-100">Income Sources</h2>

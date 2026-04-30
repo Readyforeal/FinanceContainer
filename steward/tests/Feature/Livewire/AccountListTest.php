@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Livewire;
 
-use App\Livewire\Accounts\AccountList;
 use App\Models\Account;
 use App\Models\PlaidConnection;
 use App\Models\User;
@@ -25,7 +24,7 @@ class AccountListTest extends TestCase
         ]);
 
         Livewire::actingAs($user)
-            ->test(AccountList::class)
+            ->test('accounts.account-list')
             ->assertSee('My Checking')
             ->assertSee('1,234.56');
     }
@@ -35,7 +34,7 @@ class AccountListTest extends TestCase
         $user = User::factory()->create();
 
         Livewire::actingAs($user)
-            ->test(AccountList::class)
+            ->test('accounts.account-list')
             ->assertSeeLivewire('plaid.plaid-link');
     }
 
@@ -44,7 +43,7 @@ class AccountListTest extends TestCase
         $user = User::factory()->create();
 
         $component = Livewire::actingAs($user)
-            ->test(AccountList::class);
+            ->test('accounts.account-list');
 
         // No connections initially
         $component->assertSeeLivewire('plaid.plaid-link');

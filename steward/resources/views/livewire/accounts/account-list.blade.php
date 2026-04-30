@@ -1,3 +1,27 @@
+<?php
+
+use App\Models\Account;
+use App\Models\PlaidConnection;
+use Livewire\Attributes\On;
+use Livewire\Component;
+
+new class extends Component {
+    #[On('plaid-connected')]
+    public function refresh(): void
+    {
+        // Triggers re-render
+    }
+
+    public function with(): array
+    {
+        return [
+            'connections' => PlaidConnection::with('accounts')->get(),
+            'accounts' => Account::all(),
+        ];
+    }
+};
+?>
+
 <div>
     @if ($connections->isEmpty())
         <div class="text-center py-16">

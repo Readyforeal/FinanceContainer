@@ -1,3 +1,11 @@
+<?php
+
+use Livewire\Component;
+
+new class extends Component {
+};
+?>
+
 <div class="flex flex-shrink-0">
 <div class="fixed left-0 top-0 flex h-screen w-64 flex-col bg-gray-950 border-r border-gray-800">
 

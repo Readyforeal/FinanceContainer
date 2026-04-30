@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Livewire;
 
-use App\Livewire\Settings\SyncSchedule;
 use App\Models\AppSetting;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -19,7 +18,7 @@ class SyncScheduleTest extends TestCase
         AppSetting::setValue('sync_schedule', ['hour' => 3, 'minute' => 30]);
 
         Livewire::actingAs($user)
-            ->test(SyncSchedule::class)
+            ->test('settings.sync-schedule')
             ->assertSet('hour', 3)
             ->assertSet('minute', 30);
     }
@@ -29,7 +28,7 @@ class SyncScheduleTest extends TestCase
         $user = User::factory()->create();
 
         Livewire::actingAs($user)
-            ->test(SyncSchedule::class)
+            ->test('settings.sync-schedule')
             ->set('hour', 6)
             ->set('minute', 0)
             ->call('save');
@@ -45,7 +44,7 @@ class SyncScheduleTest extends TestCase
         AppSetting::setValue('categorization_confidence_threshold', 0.85);
 
         Livewire::actingAs($user)
-            ->test(SyncSchedule::class)
+            ->test('settings.sync-schedule')
             ->assertSet('confidenceThreshold', 0.85);
     }
 
@@ -54,7 +53,7 @@ class SyncScheduleTest extends TestCase
         $user = User::factory()->create();
 
         Livewire::actingAs($user)
-            ->test(SyncSchedule::class)
+            ->test('settings.sync-schedule')
             ->set('confidenceThreshold', 0.75)
             ->call('save');
 
