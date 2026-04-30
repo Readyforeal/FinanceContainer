@@ -91,12 +91,12 @@ new class extends Component {
             wire:model.live.debounce.300ms="search"
             type="text"
             placeholder="Search transactions..."
-            class="bg-gray-800 border border-gray-700 text-gray-100 text-sm rounded-lg px-3 py-2 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-500"
+            class="bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg px-3 py-2 focus:ring-indigo-500 focus:border-indigo-500 placeholder-zinc-400 dark:placeholder-zinc-500"
         />
 
         <select
             wire:model.live="accountFilter"
-            class="bg-gray-800 border border-gray-700 text-gray-100 text-sm rounded-lg px-3 py-2 focus:ring-indigo-500 focus:border-indigo-500"
+            class="bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg px-3 py-2 focus:ring-indigo-500 focus:border-indigo-500"
         >
             <option value="">All Accounts</option>
             @foreach ($accounts as $account)
@@ -106,7 +106,7 @@ new class extends Component {
 
         <select
             wire:model.live="categoryFilter"
-            class="bg-gray-800 border border-gray-700 text-gray-100 text-sm rounded-lg px-3 py-2 focus:ring-indigo-500 focus:border-indigo-500"
+            class="bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg px-3 py-2 focus:ring-indigo-500 focus:border-indigo-500"
         >
             <option value="">All Categories</option>
             @foreach ($categories as $category)
@@ -114,24 +114,24 @@ new class extends Component {
             @endforeach
         </select>
 
-        <label class="flex items-center gap-2 text-sm text-gray-400 cursor-pointer">
+        <label class="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 cursor-pointer">
             <input
                 wire:model.live="reviewFilter"
                 type="checkbox"
                 value="1"
-                class="rounded border-gray-600 bg-gray-800 text-indigo-500"
+                class="rounded border-zinc-400 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-indigo-500"
             />
             Needs Review
         </label>
     </div>
 
     {{-- Table --}}
-    <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
+    <div class="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-300 dark:border-zinc-700 overflow-hidden">
         <table class="w-full text-sm">
             <thead>
-                <tr class="border-b border-gray-700 text-gray-400 text-xs uppercase tracking-wide">
+                <tr class="border-b border-zinc-300 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 text-xs uppercase tracking-wide">
                     <th class="text-left px-4 py-3">
-                        <button wire:click="sortBy('date')" class="flex items-center gap-1 hover:text-gray-200">
+                        <button wire:click="sortBy('date')" class="flex items-center gap-1 hover:text-zinc-800 dark:hover:text-zinc-200">
                             Date
                             @if ($sortField === 'date')
                                 <x-lucide-chevron-{{ $sortDirection === 'asc' ? 'up' : 'down' }} class="w-3 h-3" />
@@ -139,7 +139,7 @@ new class extends Component {
                         </button>
                     </th>
                     <th class="text-left px-4 py-3">
-                        <button wire:click="sortBy('merchant_name')" class="flex items-center gap-1 hover:text-gray-200">
+                        <button wire:click="sortBy('merchant_name')" class="flex items-center gap-1 hover:text-zinc-800 dark:hover:text-zinc-200">
                             Merchant
                             @if ($sortField === 'merchant_name')
                                 <x-lucide-chevron-{{ $sortDirection === 'asc' ? 'up' : 'down' }} class="w-3 h-3" />
@@ -149,7 +149,7 @@ new class extends Component {
                     <th class="text-left px-4 py-3">Account</th>
                     <th class="text-left px-4 py-3">Category</th>
                     <th class="text-right px-4 py-3">
-                        <button wire:click="sortBy('amount')" class="flex items-center gap-1 hover:text-gray-200 ml-auto">
+                        <button wire:click="sortBy('amount')" class="flex items-center gap-1 hover:text-zinc-800 dark:hover:text-zinc-200 ml-auto">
                             Amount
                             @if ($sortField === 'amount')
                                 <x-lucide-chevron-{{ $sortDirection === 'asc' ? 'up' : 'down' }} class="w-3 h-3" />
@@ -159,23 +159,23 @@ new class extends Component {
                     <th class="text-center px-4 py-3">Status</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-700">
+            <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
                 @forelse ($transactions as $transaction)
-                    <tr class="hover:bg-gray-750 transition-colors {{ $transaction->needs_review ? 'bg-yellow-950/20' : '' }}">
-                        <td class="px-4 py-3 text-gray-400 whitespace-nowrap">
+                    <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/30 transition-colors {{ $transaction->needs_review ? 'bg-yellow-50 dark:bg-yellow-950/20' : '' }}">
+                        <td class="px-4 py-3 text-zinc-500 dark:text-zinc-400 whitespace-nowrap">
                             {{ $transaction->date->format('M j, Y') }}
                         </td>
-                        <td class="px-4 py-3 text-gray-100">
+                        <td class="px-4 py-3 text-zinc-900 dark:text-zinc-100">
                             {{ $transaction->merchant_name ?? $transaction->description ?? 'Unknown' }}
                         </td>
-                        <td class="px-4 py-3 text-gray-400">
+                        <td class="px-4 py-3 text-zinc-500 dark:text-zinc-400">
                             {{ $transaction->account?->name ?? '-' }}
                         </td>
                         <td class="px-4 py-3">
                             @if ($transaction->needs_review)
                                 <select
                                     wire:change="assignCategory({{ $transaction->id }}, $event.target.value)"
-                                    class="bg-gray-700 border border-yellow-600 text-gray-100 text-xs rounded px-2 py-1"
+                                    class="bg-zinc-200 dark:bg-zinc-700 border border-yellow-600 text-zinc-900 dark:text-zinc-100 text-xs rounded px-2 py-1"
                                 >
                                     <option value="">-- Assign Category --</option>
                                     @foreach ($categories as $category)
@@ -185,11 +185,11 @@ new class extends Component {
                                     @endforeach
                                 </select>
                             @else
-                                <span class="text-gray-400">{{ $transaction->category?->name ?? '-' }}</span>
+                                <span class="text-zinc-500 dark:text-zinc-400">{{ $transaction->category?->name ?? '-' }}</span>
                             @endif
                         </td>
                         <td class="px-4 py-3 text-right font-mono">
-                            <span class="{{ $transaction->amount < 0 ? 'text-green-400' : 'text-gray-100' }}">
+                            <span class="{{ $transaction->amount < 0 ? 'text-green-400' : 'text-zinc-900 dark:text-zinc-100' }}">
                                 {{ $transaction->amount < 0 ? '-' : '' }}${{ number_format(abs($transaction->amount), 2) }}
                             </span>
                         </td>
@@ -209,7 +209,7 @@ new class extends Component {
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" class="px-4 py-12 text-center text-gray-500">
+                        <td colspan="6" class="px-4 py-12 text-center text-zinc-400 dark:text-zinc-500">
                             No transactions found.
                         </td>
                     </tr>

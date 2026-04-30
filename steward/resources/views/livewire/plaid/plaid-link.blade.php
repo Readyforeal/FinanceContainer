@@ -101,7 +101,7 @@ new class extends Component {
             <span wire:loading>Connecting...</span>
         </button>
     @else
-        <div class="text-sm text-gray-400">Launching Plaid...</div>
+        <div class="text-sm text-zinc-500 dark:text-zinc-400">Launching Plaid...</div>
     @endif
 
     @if ($linkToken)
