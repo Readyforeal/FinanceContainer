@@ -1,4 +1,4 @@
-FROM php:8.3-fpm-alpine
+FROM php:8.4-fpm-alpine
 
 RUN apk add --no-cache \
     postgresql-dev \
@@ -10,7 +10,7 @@ RUN apk add --no-cache \
     git \
     && docker-php-ext-install pdo pdo_pgsql zip pcntl
 
-COPY --from=composer:2 /usr/local/bin/composer /usr/local/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 WORKDIR /var/www/html
 
