@@ -39,6 +39,19 @@ services:
       redis:
         condition: service_healthy
 
+  scheduler:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    command: ["php", "/var/www/html/artisan", "schedule:work"]
+    volumes:
+      - ./steward:/var/www/html
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
   postgres:
     image: postgres:16-alpine
     ports:

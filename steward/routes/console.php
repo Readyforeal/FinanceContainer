@@ -1,8 +1,15 @@
 <?php
+use App\Jobs\PlaidSyncJob;
+use App\Models\AppSetting;
+use App\Models\PlaidConnection;
+use Illuminate\Support\Facades\Schedule;
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
+Schedule::call(function () {
+    $connections = PlaidConnection::where('status', 'active')->get();
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+    foreach ($connections as $connection) {
+        PlaidSyncJob::dispatch($connection);
+    }
+})->cron(AppSetting::getValue('sync_schedule', '0 4 * * *'))
+  ->name('plaid-sync')
+  ->withoutOverlapping();
