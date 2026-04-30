@@ -80,10 +80,14 @@ new class extends Component {
 
         $fullResponse = '';
 
-        $ollama = app(OllamaService::class);
-        $ollama->streamChat($systemPrompt, $history, function (string $token) use (&$fullResponse): void {
-            $fullResponse .= $token;
-        });
+        try {
+            $ollama = app(OllamaService::class);
+            $ollama->streamChat($systemPrompt, $history, function (string $token) use (&$fullResponse): void {
+                $fullResponse .= $token;
+            });
+        } catch (\Throwable $e) {
+            $fullResponse = "I'm unable to connect to the AI service right now. Please try again later.\n\nError: " . $e->getMessage();
+        }
 
         $this->isStreaming = false;
         $this->streamingResponse = '';

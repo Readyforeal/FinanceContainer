@@ -1,0 +1,2 @@
+[     217ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[   69023ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:8080/livewire-e1f4650a/update:0
