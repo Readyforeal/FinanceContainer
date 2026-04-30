@@ -16,6 +16,9 @@ new class extends Component {
     public string $sortField = 'date';
     public string $sortDirection = 'desc';
 
+    public array $selectedIds = [];
+    public ?int $bulkCategoryId = null;
+
     public function updatedSearch(): void
     {
         $this->resetPage();
@@ -45,6 +48,59 @@ new class extends Component {
             $this->sortDirection = 'asc';
         }
         $this->resetPage();
+    }
+
+    public function toggleSelect(int $id): void
+    {
+        if (in_array($id, $this->selectedIds)) {
+            $this->selectedIds = array_values(array_filter($this->selectedIds, fn ($i) => $i !== $id));
+        } else {
+            $this->selectedIds[] = $id;
+        }
+    }
+
+    public function selectAllVisible(): void
+    {
+        $query = Transaction::with(['account', 'category'])
+            ->when($this->accountFilter, fn ($q) => $q->where('account_id', $this->accountFilter))
+            ->when($this->categoryFilter, fn ($q) => $q->where('category_id', $this->categoryFilter))
+            ->when($this->reviewFilter !== null, fn ($q) => $q->where('needs_review', $this->reviewFilter))
+            ->when($this->search, function ($q) {
+                $search = '%' . $this->search . '%';
+                $q->where(function ($q2) use ($search) {
+                    $q2->where('merchant_name', 'ilike', $search)
+                        ->orWhere('description', 'ilike', $search);
+                });
+            })
+            ->orderBy($this->sortField, $this->sortDirection);
+
+        $this->selectedIds = $query->paginate(25)->pluck('id')->toArray();
+    }
+
+    public function deselectAll(): void
+    {
+        $this->selectedIds = [];
+    }
+
+    public function bulkCategorize(): void
+    {
+        if (! $this->bulkCategoryId) {
+            $this->addError('bulkCategory', 'Please select a category.');
+            return;
+        }
+
+        $category = Category::findOrFail($this->bulkCategoryId);
+
+        Transaction::whereIn('id', $this->selectedIds)->update([
+            'category_id' => $category->id,
+            'budget_bucket' => $category->default_bucket,
+            'needs_review' => false,
+            'categorization_confidence' => 1.0,
+        ]);
+
+        $this->selectedIds = [];
+        $this->bulkCategoryId = null;
+        $this->resetValidation('bulkCategory');
     }
 
     public function assignCategory(int $transactionId, int $categoryId): void
@@ -125,11 +181,55 @@ new class extends Component {
         </label>
     </div>
 
+    {{-- Bulk action bar --}}
+    @if (count($selectedIds) > 0)
+        <div class="flex flex-wrap items-center gap-3 mb-4 px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
+            <span class="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                {{ count($selectedIds) }} selected
+            </span>
+
+            <select
+                wire:model="bulkCategoryId"
+                class="bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg px-3 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"
+            >
+                <option value="">Select category...</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+
+            @error('bulkCategory')
+                <span class="text-red-400 text-xs">{{ $message }}</span>
+            @enderror
+
+            <button
+                wire:click="bulkCategorize"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-3 py-1.5 rounded-lg transition-colors"
+            >
+                Categorize
+            </button>
+
+            <button
+                wire:click="deselectAll"
+                class="bg-zinc-200 dark:bg-zinc-700 hover:bg-zinc-300 dark:hover:bg-zinc-600 text-zinc-700 dark:text-zinc-300 text-sm px-3 py-1.5 rounded-lg transition-colors"
+            >
+                Clear
+            </button>
+        </div>
+    @endif
+
     {{-- Table --}}
     <div class="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-300 dark:border-zinc-700 overflow-hidden">
         <table class="w-full text-sm">
             <thead>
                 <tr class="border-b border-zinc-300 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 text-xs uppercase tracking-wide">
+                    <th class="px-4 py-3 w-8">
+                        <input
+                            type="checkbox"
+                            wire:click="selectAllVisible"
+                            class="rounded border-zinc-400 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-indigo-500"
+                        />
+                    </th>
                     <th class="text-left px-4 py-3">
                         <button wire:click="sortBy('date')" class="flex items-center gap-1 hover:text-zinc-800 dark:hover:text-zinc-200">
                             Date
@@ -162,6 +262,14 @@ new class extends Component {
             <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
                 @forelse ($transactions as $transaction)
                     <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/30 transition-colors {{ $transaction->needs_review ? 'bg-yellow-50 dark:bg-yellow-950/20' : '' }}">
+                        <td class="px-4 py-3 w-8">
+                            <input
+                                type="checkbox"
+                                wire:click="toggleSelect({{ $transaction->id }})"
+                                @checked(in_array($transaction->id, $selectedIds))
+                                class="rounded border-zinc-400 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-indigo-500"
+                            />
+                        </td>
                         <td class="px-4 py-3 text-zinc-500 dark:text-zinc-400 whitespace-nowrap">
                             {{ $transaction->date->format('M j, Y') }}
                         </td>
@@ -209,7 +317,7 @@ new class extends Component {
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" class="px-4 py-12 text-center text-zinc-400 dark:text-zinc-500">
+                        <td colspan="7" class="px-4 py-12 text-center text-zinc-400 dark:text-zinc-500">
                             No transactions found.
                         </td>
                     </tr>
