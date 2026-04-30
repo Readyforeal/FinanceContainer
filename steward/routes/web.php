@@ -1,20 +1,17 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', fn () => redirect()->route('dashboard'));
+    Route::get('/dashboard', fn () => view('pages.dashboard'))->name('dashboard');
+    Route::get('/transactions', fn () => view('pages.transactions'))->name('transactions');
+    Route::get('/budgets', fn () => view('pages.budgets'))->name('budgets');
+    Route::get('/categories', fn () => view('pages.categories'))->name('categories');
+    Route::get('/accounts', fn () => view('pages.accounts'))->name('accounts');
+    Route::get('/summaries', fn () => view('pages.summaries'))->name('summaries');
+    Route::get('/chat', fn () => view('pages.chat'))->name('chat');
+    Route::get('/settings', fn () => view('pages.settings'))->name('settings');
 });
 
 require __DIR__.'/auth.php';
