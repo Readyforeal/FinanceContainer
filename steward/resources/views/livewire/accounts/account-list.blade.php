@@ -2,8 +2,10 @@
 
 use App\Models\Account;
 use App\Models\PlaidConnection;
+use App\Models\Transaction;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Illuminate\Support\Carbon;
 
 new class extends Component {
     #[On('plaid-connected')]
@@ -14,9 +16,40 @@ new class extends Component {
 
     public function with(): array
     {
+        $connections = PlaidConnection::with('accounts')->get();
+        $accounts = Account::all();
+
+        // Build sparkline chart data: last 30 days of daily spending per account
+        $accountChartData = [];
+        $today = Carbon::today();
+        $start = $today->copy()->subDays(29);
+
+        // Pre-index dates for quick lookup
+        $dateRange = [];
+        for ($i = 0; $i < 30; $i++) {
+            $dateRange[] = $start->copy()->addDays($i)->toDateString();
+        }
+
+        foreach ($accounts as $account) {
+            // Sum transaction amounts per day for this account in the last 30 days
+            $dailyTotals = Transaction::where('account_id', $account->id)
+                ->where('amount', '>', 0)
+                ->whereBetween('date', [$start->toDateString(), $today->toDateString()])
+                ->selectRaw('date::date as day, SUM(amount) as total')
+                ->groupBy('day')
+                ->pluck('total', 'day')
+                ->toArray();
+
+            $accountChartData[$account->id] = array_map(
+                fn ($date) => round((float) ($dailyTotals[$date] ?? 0), 2),
+                $dateRange
+            );
+        }
+
         return [
-            'connections' => PlaidConnection::with('accounts')->get(),
-            'accounts' => Account::all(),
+            'connections' => $connections,
+            'accounts' => $accounts,
+            'accountChartData' => $accountChartData,
         ];
     }
 };
@@ -89,6 +122,20 @@ new class extends Component {
                                         <span class="text-zinc-500 dark:text-zinc-400">{{ $account->last_synced_at->diffForHumans() }}</span>
                                     </div>
                                 @endif
+                            </div>
+
+                            {{-- Sparkline chart: 30-day spending --}}
+                            <div wire:key="spark-{{ $account->id }}" x-data x-init="
+                                new ApexCharts($refs['spark{{ $account->id }}'], {
+                                    chart: { type: 'area', height: 60, sparkline: { enabled: true } },
+                                    series: [{ data: @js($accountChartData[$account->id] ?? []) }],
+                                    stroke: { width: 2, curve: 'smooth' },
+                                    colors: ['{{ $account->type->value === 'checking' ? '#3b82f6' : '#6366f1' }}'],
+                                    fill: { type: 'gradient', gradient: { opacityFrom: 0.3, opacityTo: 0 } },
+                                    tooltip: { enabled: false },
+                                }).render()
+                            " class="mt-3">
+                                <div x-ref="spark{{ $account->id }}"></div>
                             </div>
                         </div>
                     @endforeach
