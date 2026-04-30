@@ -25,5 +25,13 @@ class extends Component {
         <div>
             <livewire:settings.sync-schedule />
         </div>
+
+        <div>
+            <livewire:settings.budget-ratios />
+        </div>
+
+        <div>
+            <livewire:settings.email-recipients />
+        </div>
     </div>
 </div>
