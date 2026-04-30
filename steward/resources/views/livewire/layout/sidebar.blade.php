@@ -5,7 +5,7 @@ use Livewire\Component;
 new class extends Component {};
 ?>
 
-<div class="flex flex-shrink-0" x-data="{ path: window.location.pathname }" @popstate.window="path = window.location.pathname"
+<div class="hidden lg:flex flex-shrink-0" x-data="{ path: window.location.pathname }" @popstate.window="path = window.location.pathname"
     x-init="document.addEventListener('livewire:navigated', () => { path = window.location.pathname })">
     <div
         class="fixed left-3 top-3 bottom-3 flex w-60 flex-col rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 shadow-sm dark:shadow-none">

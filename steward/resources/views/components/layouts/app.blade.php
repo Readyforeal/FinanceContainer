@@ -19,9 +19,13 @@
         @persist('sidebar')
             <livewire:layout.sidebar />
         @endpersist
-        <main class="flex-1 p-8 overflow-auto">
+        <main class="flex-1 p-4 pb-24 lg:p-8 lg:pb-8 overflow-auto">
             {{ $slot }}
         </main>
     </div>
+
+    @persist('mobile-dock')
+        <livewire:layout.mobile-dock />
+    @endpersist
 </body>
 </html>

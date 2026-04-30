@@ -160,11 +160,11 @@ new class extends Component {
 };
 ?>
 
-{{-- Fixed full-screen chat layout, offset for nav sidebar (w-60 + ml-3 spacer = 15.75rem) --}}
-<div class="fixed inset-0 flex gap-3 p-3" style="left: 15.75rem;">
+{{-- Fixed full-screen chat layout — mobile: full width with bottom dock padding, desktop: offset for sidebar --}}
+<div class="fixed inset-0 left-0 lg:left-[15.75rem] flex flex-col lg:flex-row gap-2 lg:gap-3 p-2 pb-20 lg:p-3 lg:pb-3">
 
-    {{-- Left panel: conversation history (in container) --}}
-    <div class="w-64 flex-shrink-0 flex flex-col rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden">
+    {{-- Left panel: conversation history --}}
+    <div class="w-full max-h-36 lg:max-h-none lg:w-64 flex-shrink-0 flex flex-col rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden">
         <div class="p-3 border-b border-zinc-200 dark:border-zinc-800">
             <button
                 wire:click="newConversation"

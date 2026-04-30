@@ -1,0 +1,128 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e6]: Better With 90
+    - navigation [ref=e7]:
+      - link "Dashboard" [ref=e8] [cursor=pointer]:
+        - /url: /dashboard
+        - img [ref=e9]
+        - generic [ref=e14]: Dashboard
+      - link "Transactions" [ref=e15] [cursor=pointer]:
+        - /url: /transactions
+        - img [ref=e16]
+        - generic [ref=e19]: Transactions
+      - link "Budgets" [ref=e20] [cursor=pointer]:
+        - /url: /budgets
+        - img [ref=e21]
+        - generic [ref=e24]: Budgets
+      - link "Categories" [ref=e25] [cursor=pointer]:
+        - /url: /categories
+        - img [ref=e26]
+        - generic [ref=e30]: Categories
+      - link "Accounts" [ref=e31] [cursor=pointer]:
+        - /url: /accounts
+        - img [ref=e32]
+        - generic [ref=e34]: Accounts
+      - link "Summaries" [ref=e35] [cursor=pointer]:
+        - /url: /summaries
+        - img [ref=e36]
+        - generic [ref=e39]: Summaries
+      - link "Goals" [ref=e40] [cursor=pointer]:
+        - /url: /goals
+        - img [ref=e41]
+        - generic [ref=e45]: Goals
+      - link "Chat" [ref=e46] [cursor=pointer]:
+        - /url: /chat
+        - img [ref=e47]
+        - generic [ref=e49]: Chat
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - button [ref=e52] [cursor=pointer]:
+          - img [ref=e53]
+        - button [ref=e59] [cursor=pointer]:
+          - img [ref=e60]
+        - button [ref=e62] [cursor=pointer]:
+          - img [ref=e63]
+      - link "Profile" [ref=e65] [cursor=pointer]:
+        - /url: /profile
+        - img [ref=e66]
+        - generic [ref=e69]: Profile
+      - link "Settings" [ref=e70] [cursor=pointer]:
+        - /url: /settings
+        - img [ref=e71]
+        - generic [ref=e74]: Settings
+      - button "Sign Out" [ref=e76] [cursor=pointer]:
+        - img [ref=e77]
+        - generic [ref=e80]: Sign Out
+  - main [ref=e81]:
+    - generic [ref=e82]:
+      - generic [ref=e83]:
+        - heading "Financial Profile" [level=1] [ref=e84]
+        - paragraph [ref=e85]: Your complete financial picture.
+      - generic [ref=e87]:
+        - generic [ref=e88]:
+          - generic [ref=e89]:
+            - img [ref=e90]
+            - heading "Income & Accounts" [level=2] [ref=e93]
+          - generic [ref=e94]:
+            - paragraph [ref=e95]: Income Sources
+            - paragraph [ref=e96]: No income sources configured
+            - generic [ref=e97]:
+              - generic [ref=e98]: Total Monthly
+              - generic [ref=e99]: $0.00
+            - generic [ref=e100]:
+              - generic [ref=e101]: Annual Income
+              - generic [ref=e102]: $0.00
+          - generic [ref=e103]:
+            - paragraph [ref=e104]: Account Balances
+            - paragraph [ref=e105]: No accounts connected
+        - generic [ref=e106]:
+          - generic [ref=e107]:
+            - img [ref=e108]
+            - heading "Monthly Budget" [level=2] [ref=e111]
+          - generic [ref=e112]:
+            - generic [ref=e114]:
+              - generic [ref=e115]: Needs (50%)
+              - generic [ref=e116]: $0.00 / $0.00
+            - generic [ref=e119]:
+              - generic [ref=e120]: Wants (30%)
+              - generic [ref=e121]: $0.00 / $0.00
+            - generic [ref=e124]:
+              - generic [ref=e125]: Savings (20%)
+              - generic [ref=e126]: $0.00 / $0.00
+          - generic [ref=e128]:
+            - generic [ref=e129]:
+              - generic [ref=e130]: Monthly Net Position
+              - generic [ref=e131]: +$0.00
+            - paragraph [ref=e132]: Surplus vs average monthly spending
+        - generic [ref=e133]:
+          - generic [ref=e134]:
+            - generic [ref=e135]:
+              - img [ref=e136]
+              - heading "Goals Progress" [level=2] [ref=e140]
+            - link "View all" [ref=e141] [cursor=pointer]:
+              - /url: /goals
+          - paragraph [ref=e142]: No active goals
+        - generic [ref=e143]:
+          - generic [ref=e144]:
+            - img [ref=e145]
+            - heading "Annual Outlook" [level=2] [ref=e148]
+          - generic [ref=e149]:
+            - generic [ref=e150]:
+              - generic [ref=e151]: Annual Income
+              - generic [ref=e152]: $0.00
+            - generic [ref=e153]:
+              - generic [ref=e154]: Projected Annual Savings
+              - generic [ref=e155]: +$0.00
+          - generic [ref=e156]:
+            - paragraph [ref=e157]: Projected Annual Breakdown (50/30/20 target)
+            - generic [ref=e158]:
+              - generic [ref=e159]:
+                - generic [ref=e160]: Needs (50%)
+                - generic [ref=e161]: $0.00
+              - generic [ref=e162]:
+                - generic [ref=e163]: Wants (30%)
+                - generic [ref=e164]: $0.00
+              - generic [ref=e165]:
+                - generic [ref=e166]: Savings (20%)
+                - generic [ref=e167]: $0.00
+          - paragraph [ref=e169]: At this rate, you are on track to save $0.00 this year.

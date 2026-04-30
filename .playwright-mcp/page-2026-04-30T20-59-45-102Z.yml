@@ -1,0 +1,549 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e6]: Better With 90
+    - navigation [ref=e7]:
+      - link "Dashboard" [ref=e8] [cursor=pointer]:
+        - /url: /dashboard
+        - img [ref=e9]
+        - generic [ref=e14]: Dashboard
+      - link "Transactions" [ref=e15] [cursor=pointer]:
+        - /url: /transactions
+        - img [ref=e16]
+        - generic [ref=e19]: Transactions
+      - link "Budgets" [ref=e20] [cursor=pointer]:
+        - /url: /budgets
+        - img [ref=e21]
+        - generic [ref=e24]: Budgets
+      - link "Categories" [ref=e25] [cursor=pointer]:
+        - /url: /categories
+        - img [ref=e26]
+        - generic [ref=e30]: Categories
+      - link "Accounts" [ref=e31] [cursor=pointer]:
+        - /url: /accounts
+        - img [ref=e32]
+        - generic [ref=e34]: Accounts
+      - link "Summaries" [ref=e35] [cursor=pointer]:
+        - /url: /summaries
+        - img [ref=e36]
+        - generic [ref=e39]: Summaries
+      - link "Chat" [ref=e40] [cursor=pointer]:
+        - /url: /chat
+        - img [ref=e41]
+        - generic [ref=e43]: Chat
+    - generic [ref=e44]:
+      - generic [ref=e45]:
+        - button [ref=e46] [cursor=pointer]:
+          - img [ref=e47]
+        - button [ref=e53] [cursor=pointer]:
+          - img [ref=e54]
+        - button [ref=e56] [cursor=pointer]:
+          - img [ref=e57]
+      - link "Settings" [ref=e59] [cursor=pointer]:
+        - /url: /settings
+        - img [ref=e60]
+        - generic [ref=e63]: Settings
+      - button "Sign Out" [ref=e65] [cursor=pointer]:
+        - img [ref=e66]
+        - generic [ref=e69]: Sign Out
+  - main [ref=e70]:
+    - generic [ref=e72]:
+      - generic [ref=e73]:
+        - generic [ref=e74]:
+          - heading "Categories" [level=1] [ref=e75]
+          - paragraph [ref=e76]: Manage spending categories and track average spend.
+        - generic [ref=e77]:
+          - button "3mo" [ref=e78] [cursor=pointer]
+          - button "6mo" [ref=e79] [cursor=pointer]
+          - button "12mo" [ref=e80] [cursor=pointer]
+      - table [ref=e82]:
+        - rowgroup [ref=e83]:
+          - row "Icon Name Bucket Essential Avg/mo Trend Actions" [ref=e84]:
+            - columnheader "Icon" [ref=e85]
+            - columnheader "Name" [ref=e86]
+            - columnheader "Bucket" [ref=e87]
+            - columnheader "Essential" [ref=e88]
+            - columnheader "Avg/mo" [ref=e89]
+            - columnheader "Trend" [ref=e90]
+            - columnheader "Actions" [ref=e91]
+        - rowgroup [ref=e92]:
+          - row "Car Fund system savings — $0.00" [ref=e93]:
+            - cell [ref=e94]:
+              - img [ref=e95]
+            - cell "Car Fund system" [ref=e99]:
+              - text: Car Fund
+              - generic [ref=e100]: system
+            - cell "savings" [ref=e101]:
+              - generic [ref=e102]: savings
+            - cell "—" [ref=e103]
+            - cell "$0.00" [ref=e104]
+            - cell [ref=e105]:
+              - img [ref=e106]
+            - cell [ref=e107]:
+              - button "Edit" [ref=e109] [cursor=pointer]:
+                - img [ref=e110]
+          - row "Car Insurance system needs essential $0.00" [ref=e113]:
+            - cell [ref=e114]:
+              - img [ref=e115]
+            - cell "Car Insurance system" [ref=e117]:
+              - text: Car Insurance
+              - generic [ref=e118]: system
+            - cell "needs" [ref=e119]:
+              - generic [ref=e120]: needs
+            - cell "essential" [ref=e121]:
+              - generic [ref=e122]: essential
+            - cell "$0.00" [ref=e123]
+            - cell [ref=e124]:
+              - img [ref=e125]
+            - cell [ref=e126]:
+              - button "Edit" [ref=e128] [cursor=pointer]:
+                - img [ref=e129]
+          - row "Car Maintenance system needs essential $0.00" [ref=e132]:
+            - cell [ref=e133]:
+              - img [ref=e134]
+            - cell "Car Maintenance system" [ref=e136]:
+              - text: Car Maintenance
+              - generic [ref=e137]: system
+            - cell "needs" [ref=e138]:
+              - generic [ref=e139]: needs
+            - cell "essential" [ref=e140]:
+              - generic [ref=e141]: essential
+            - cell "$0.00" [ref=e142]
+            - cell [ref=e143]:
+              - img [ref=e144]
+            - cell [ref=e145]:
+              - button "Edit" [ref=e147] [cursor=pointer]:
+                - img [ref=e148]
+          - row "Childcare system needs essential $0.00" [ref=e151]:
+            - cell [ref=e152]:
+              - img [ref=e153]
+            - cell "Childcare system" [ref=e156]:
+              - text: Childcare
+              - generic [ref=e157]: system
+            - cell "needs" [ref=e158]:
+              - generic [ref=e159]: needs
+            - cell "essential" [ref=e160]:
+              - generic [ref=e161]: essential
+            - cell "$0.00" [ref=e162]
+            - cell [ref=e163]:
+              - img [ref=e164]
+            - cell [ref=e165]:
+              - button "Edit" [ref=e167] [cursor=pointer]:
+                - img [ref=e168]
+          - row "Clothing system wants — $0.00" [ref=e171]:
+            - cell [ref=e172]:
+              - img [ref=e173]
+            - cell "Clothing system" [ref=e175]:
+              - text: Clothing
+              - generic [ref=e176]: system
+            - cell "wants" [ref=e177]:
+              - generic [ref=e178]: wants
+            - cell "—" [ref=e179]
+            - cell "$0.00" [ref=e180]
+            - cell [ref=e181]:
+              - img [ref=e182]
+            - cell [ref=e183]:
+              - button "Edit" [ref=e185] [cursor=pointer]:
+                - img [ref=e186]
+          - row "Coffee system wants — $0.00" [ref=e189]:
+            - cell [ref=e190]:
+              - img [ref=e191]
+            - cell "Coffee system" [ref=e193]:
+              - text: Coffee
+              - generic [ref=e194]: system
+            - cell "wants" [ref=e195]:
+              - generic [ref=e196]: wants
+            - cell "—" [ref=e197]
+            - cell "$0.00" [ref=e198]
+            - cell [ref=e199]:
+              - img [ref=e200]
+            - cell [ref=e201]:
+              - button "Edit" [ref=e203] [cursor=pointer]:
+                - img [ref=e204]
+          - row "Dining Out system wants — $0.00" [ref=e207]:
+            - cell [ref=e208]:
+              - img [ref=e209]
+            - cell "Dining Out system" [ref=e212]:
+              - text: Dining Out
+              - generic [ref=e213]: system
+            - cell "wants" [ref=e214]:
+              - generic [ref=e215]: wants
+            - cell "—" [ref=e216]
+            - cell "$0.00" [ref=e217]
+            - cell [ref=e218]:
+              - img [ref=e219]
+            - cell [ref=e220]:
+              - button "Edit" [ref=e222] [cursor=pointer]:
+                - img [ref=e223]
+          - row "Electric system needs essential $0.00" [ref=e226]:
+            - cell [ref=e227]:
+              - img [ref=e228]
+            - cell "Electric system" [ref=e230]:
+              - text: Electric
+              - generic [ref=e231]: system
+            - cell "needs" [ref=e232]:
+              - generic [ref=e233]: needs
+            - cell "essential" [ref=e234]:
+              - generic [ref=e235]: essential
+            - cell "$0.00" [ref=e236]
+            - cell [ref=e237]:
+              - img [ref=e238]
+            - cell [ref=e239]:
+              - button "Edit" [ref=e241] [cursor=pointer]:
+                - img [ref=e242]
+          - row "Emergency Fund system savings — $0.00" [ref=e245]:
+            - cell [ref=e246]:
+              - img [ref=e247]
+            - cell "Emergency Fund system" [ref=e250]:
+              - text: Emergency Fund
+              - generic [ref=e251]: system
+            - cell "savings" [ref=e252]:
+              - generic [ref=e253]: savings
+            - cell "—" [ref=e254]
+            - cell "$0.00" [ref=e255]
+            - cell [ref=e256]:
+              - img [ref=e257]
+            - cell [ref=e258]:
+              - button "Edit" [ref=e260] [cursor=pointer]:
+                - img [ref=e261]
+          - row "Entertainment system wants — $0.00" [ref=e264]:
+            - cell [ref=e265]:
+              - img [ref=e266]
+            - cell "Entertainment system" [ref=e268]:
+              - text: Entertainment
+              - generic [ref=e269]: system
+            - cell "wants" [ref=e270]:
+              - generic [ref=e271]: wants
+            - cell "—" [ref=e272]
+            - cell "$0.00" [ref=e273]
+            - cell [ref=e274]:
+              - img [ref=e275]
+            - cell [ref=e276]:
+              - button "Edit" [ref=e278] [cursor=pointer]:
+                - img [ref=e279]
+          - row "Gas Utility system needs essential $0.00" [ref=e282]:
+            - cell [ref=e283]:
+              - img [ref=e284]
+            - cell "Gas Utility system" [ref=e286]:
+              - text: Gas Utility
+              - generic [ref=e287]: system
+            - cell "needs" [ref=e288]:
+              - generic [ref=e289]: needs
+            - cell "essential" [ref=e290]:
+              - generic [ref=e291]: essential
+            - cell "$0.00" [ref=e292]
+            - cell [ref=e293]:
+              - img [ref=e294]
+            - cell [ref=e295]:
+              - button "Edit" [ref=e297] [cursor=pointer]:
+                - img [ref=e298]
+          - row "Gasoline system needs essential $0.00" [ref=e301]:
+            - cell [ref=e302]:
+              - img [ref=e303]
+            - cell "Gasoline system" [ref=e306]:
+              - text: Gasoline
+              - generic [ref=e307]: system
+            - cell "needs" [ref=e308]:
+              - generic [ref=e309]: needs
+            - cell "essential" [ref=e310]:
+              - generic [ref=e311]: essential
+            - cell "$0.00" [ref=e312]
+            - cell [ref=e313]:
+              - img [ref=e314]
+            - cell [ref=e315]:
+              - button "Edit" [ref=e317] [cursor=pointer]:
+                - img [ref=e318]
+          - row "Gifts system wants — $0.00" [ref=e321]:
+            - cell [ref=e322]:
+              - img [ref=e323]
+            - cell "Gifts system" [ref=e327]:
+              - text: Gifts
+              - generic [ref=e328]: system
+            - cell "wants" [ref=e329]:
+              - generic [ref=e330]: wants
+            - cell "—" [ref=e331]
+            - cell "$0.00" [ref=e332]
+            - cell [ref=e333]:
+              - img [ref=e334]
+            - cell [ref=e335]:
+              - button "Edit" [ref=e337] [cursor=pointer]:
+                - img [ref=e338]
+          - row "Groceries system needs essential $0.00" [ref=e341]:
+            - cell [ref=e342]:
+              - img [ref=e343]
+            - cell "Groceries system" [ref=e347]:
+              - text: Groceries
+              - generic [ref=e348]: system
+            - cell "needs" [ref=e349]:
+              - generic [ref=e350]: needs
+            - cell "essential" [ref=e351]:
+              - generic [ref=e352]: essential
+            - cell "$0.00" [ref=e353]
+            - cell [ref=e354]:
+              - img [ref=e355]
+            - cell [ref=e356]:
+              - button "Edit" [ref=e358] [cursor=pointer]:
+                - img [ref=e359]
+          - row "Health Insurance system needs essential $0.00" [ref=e362]:
+            - cell [ref=e363]:
+              - img [ref=e364]
+            - cell "Health Insurance system" [ref=e367]:
+              - text: Health Insurance
+              - generic [ref=e368]: system
+            - cell "needs" [ref=e369]:
+              - generic [ref=e370]: needs
+            - cell "essential" [ref=e371]:
+              - generic [ref=e372]: essential
+            - cell "$0.00" [ref=e373]
+            - cell [ref=e374]:
+              - img [ref=e375]
+            - cell [ref=e376]:
+              - button "Edit" [ref=e378] [cursor=pointer]:
+                - img [ref=e379]
+          - row "Hobbies system wants — $0.00" [ref=e382]:
+            - cell [ref=e383]:
+              - img [ref=e384]
+            - cell "Hobbies system" [ref=e386]:
+              - text: Hobbies
+              - generic [ref=e387]: system
+            - cell "wants" [ref=e388]:
+              - generic [ref=e389]: wants
+            - cell "—" [ref=e390]
+            - cell "$0.00" [ref=e391]
+            - cell [ref=e392]:
+              - img [ref=e393]
+            - cell [ref=e394]:
+              - button "Edit" [ref=e396] [cursor=pointer]:
+                - img [ref=e397]
+          - row "Home Repair system needs essential $0.00" [ref=e400]:
+            - cell [ref=e401]:
+              - img [ref=e402]
+            - cell "Home Repair system" [ref=e406]:
+              - text: Home Repair
+              - generic [ref=e407]: system
+            - cell "needs" [ref=e408]:
+              - generic [ref=e409]: needs
+            - cell "essential" [ref=e410]:
+              - generic [ref=e411]: essential
+            - cell "$0.00" [ref=e412]
+            - cell [ref=e413]:
+              - img [ref=e414]
+            - cell [ref=e415]:
+              - button "Edit" [ref=e417] [cursor=pointer]:
+                - img [ref=e418]
+          - row "Internet system needs essential $0.00" [ref=e421]:
+            - cell [ref=e422]:
+              - img [ref=e423]
+            - cell "Internet system" [ref=e427]:
+              - text: Internet
+              - generic [ref=e428]: system
+            - cell "needs" [ref=e429]:
+              - generic [ref=e430]: needs
+            - cell "essential" [ref=e431]:
+              - generic [ref=e432]: essential
+            - cell "$0.00" [ref=e433]
+            - cell [ref=e434]:
+              - img [ref=e435]
+            - cell [ref=e436]:
+              - button "Edit" [ref=e438] [cursor=pointer]:
+                - img [ref=e439]
+          - row "Medical system needs essential $0.00" [ref=e442]:
+            - cell [ref=e443]:
+              - img [ref=e444]
+            - cell "Medical system" [ref=e448]:
+              - text: Medical
+              - generic [ref=e449]: system
+            - cell "needs" [ref=e450]:
+              - generic [ref=e451]: needs
+            - cell "essential" [ref=e452]:
+              - generic [ref=e453]: essential
+            - cell "$0.00" [ref=e454]
+            - cell [ref=e455]:
+              - img [ref=e456]
+            - cell [ref=e457]:
+              - button "Edit" [ref=e459] [cursor=pointer]:
+                - img [ref=e460]
+          - row "Mortgage system needs essential $0.00" [ref=e463]:
+            - cell [ref=e464]:
+              - img [ref=e465]
+            - cell "Mortgage system" [ref=e468]:
+              - text: Mortgage
+              - generic [ref=e469]: system
+            - cell "needs" [ref=e470]:
+              - generic [ref=e471]: needs
+            - cell "essential" [ref=e472]:
+              - generic [ref=e473]: essential
+            - cell "$0.00" [ref=e474]
+            - cell [ref=e475]:
+              - img [ref=e476]
+            - cell [ref=e477]:
+              - button "Edit" [ref=e479] [cursor=pointer]:
+                - img [ref=e480]
+          - row "Personal Care system wants — $0.00" [ref=e483]:
+            - cell [ref=e484]:
+              - img [ref=e485]
+            - cell "Personal Care system" [ref=e488]:
+              - text: Personal Care
+              - generic [ref=e489]: system
+            - cell "wants" [ref=e490]:
+              - generic [ref=e491]: wants
+            - cell "—" [ref=e492]
+            - cell "$0.00" [ref=e493]
+            - cell [ref=e494]:
+              - img [ref=e495]
+            - cell [ref=e496]:
+              - button "Edit" [ref=e498] [cursor=pointer]:
+                - img [ref=e499]
+          - row "Phone system needs essential $0.00" [ref=e502]:
+            - cell [ref=e503]:
+              - img [ref=e504]
+            - cell "Phone system" [ref=e506]:
+              - text: Phone
+              - generic [ref=e507]: system
+            - cell "needs" [ref=e508]:
+              - generic [ref=e509]: needs
+            - cell "essential" [ref=e510]:
+              - generic [ref=e511]: essential
+            - cell "$0.00" [ref=e512]
+            - cell [ref=e513]:
+              - img [ref=e514]
+            - cell [ref=e515]:
+              - button "Edit" [ref=e517] [cursor=pointer]:
+                - img [ref=e518]
+          - row "Renovation Fund system savings — $0.00" [ref=e521]:
+            - cell [ref=e522]:
+              - img [ref=e523]
+            - cell "Renovation Fund system" [ref=e527]:
+              - text: Renovation Fund
+              - generic [ref=e528]: system
+            - cell "savings" [ref=e529]:
+              - generic [ref=e530]: savings
+            - cell "—" [ref=e531]
+            - cell "$0.00" [ref=e532]
+            - cell [ref=e533]:
+              - img [ref=e534]
+            - cell [ref=e535]:
+              - button "Edit" [ref=e537] [cursor=pointer]:
+                - img [ref=e538]
+          - row "Shopping system wants — $0.00" [ref=e541]:
+            - cell [ref=e542]:
+              - img [ref=e543]
+            - cell "Shopping system" [ref=e546]:
+              - text: Shopping
+              - generic [ref=e547]: system
+            - cell "wants" [ref=e548]:
+              - generic [ref=e549]: wants
+            - cell "—" [ref=e550]
+            - cell "$0.00" [ref=e551]
+            - cell [ref=e552]:
+              - img [ref=e553]
+            - cell [ref=e554]:
+              - button "Edit" [ref=e556] [cursor=pointer]:
+                - img [ref=e557]
+          - row "Subscriptions system wants — $0.00" [ref=e560]:
+            - cell [ref=e561]:
+              - img [ref=e562]
+            - cell "Subscriptions system" [ref=e567]:
+              - text: Subscriptions
+              - generic [ref=e568]: system
+            - cell "wants" [ref=e569]:
+              - generic [ref=e570]: wants
+            - cell "—" [ref=e571]
+            - cell "$0.00" [ref=e572]
+            - cell [ref=e573]:
+              - img [ref=e574]
+            - cell [ref=e575]:
+              - button "Edit" [ref=e577] [cursor=pointer]:
+                - img [ref=e578]
+          - row "Tithe system savings — $0.00" [ref=e581]:
+            - cell [ref=e582]:
+              - img [ref=e583]
+            - cell "Tithe system" [ref=e587]:
+              - text: Tithe
+              - generic [ref=e588]: system
+            - cell "savings" [ref=e589]:
+              - generic [ref=e590]: savings
+            - cell "—" [ref=e591]
+            - cell "$0.00" [ref=e592]
+            - cell [ref=e593]:
+              - img [ref=e594]
+            - cell [ref=e595]:
+              - button "Edit" [ref=e597] [cursor=pointer]:
+                - img [ref=e598]
+          - row "Uncategorized system wants — $0.00" [ref=e601]:
+            - cell [ref=e602]:
+              - img [ref=e603]
+            - cell "Uncategorized system" [ref=e606]:
+              - text: Uncategorized
+              - generic [ref=e607]: system
+            - cell "wants" [ref=e608]:
+              - generic [ref=e609]: wants
+            - cell "—" [ref=e610]
+            - cell "$0.00" [ref=e611]
+            - cell [ref=e612]:
+              - img [ref=e613]
+            - cell [ref=e614]:
+              - button "Edit" [ref=e616] [cursor=pointer]:
+                - img [ref=e617]
+          - row "Water system needs essential $0.00" [ref=e620]:
+            - cell [ref=e621]:
+              - img [ref=e622]
+            - cell "Water system" [ref=e625]:
+              - text: Water
+              - generic [ref=e626]: system
+            - cell "needs" [ref=e627]:
+              - generic [ref=e628]: needs
+            - cell "essential" [ref=e629]:
+              - generic [ref=e630]: essential
+            - cell "$0.00" [ref=e631]
+            - cell [ref=e632]:
+              - img [ref=e633]
+            - cell [ref=e634]:
+              - button "Edit" [ref=e636] [cursor=pointer]:
+                - img [ref=e637]
+      - generic [ref=e640]:
+        - heading "Add Category" [level=3] [ref=e641]
+        - generic [ref=e642]:
+          - generic [ref=e643]:
+            - generic [ref=e644]: Name
+            - textbox "Category name" [ref=e645]
+          - generic [ref=e646]:
+            - generic [ref=e647]: Icon
+            - generic [ref=e648]:
+              - img [ref=e650]
+              - combobox [ref=e653]:
+                - option "tag" [selected]
+                - option "home"
+                - option "wallet"
+                - option "coffee"
+                - option "car"
+                - option "shopping-bag"
+                - option "shopping-cart"
+                - option "utensils"
+                - option "zap"
+                - option "wifi"
+                - option "smartphone"
+                - option "tv"
+                - option "book"
+                - option "heart"
+                - option "music"
+                - option "plane"
+                - option "train"
+                - option "bus"
+                - option "dumbbell"
+                - option "scissors"
+                - option "gift"
+                - option "briefcase"
+                - option "building-2"
+                - option "piggy-bank"
+                - option "banknote"
+          - generic [ref=e654]:
+            - generic [ref=e655]: Bucket
+            - combobox [ref=e656]:
+              - option "Needs"
+              - option "Wants" [selected]
+              - option "Savings"
+          - generic [ref=e657]:
+            - generic [ref=e658] [cursor=pointer]:
+              - checkbox "Essential" [ref=e659]
+              - generic [ref=e660]: Essential
+            - button "Add" [ref=e662] [cursor=pointer]
