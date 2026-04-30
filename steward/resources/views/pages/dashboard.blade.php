@@ -27,5 +27,6 @@ class extends Component {
         </div>
 
         <livewire:dashboard.flagged-transactions />
+        <livewire:dashboard.goals-summary />
     </div>
 </div>
