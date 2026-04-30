@@ -30,7 +30,8 @@ class CategoryTest extends TestCase
     public function test_has_many_budgets(): void
     {
         $category = Category::factory()->create();
-        Budget::factory()->count(2)->create(['category_id' => $category->id]);
+        Budget::factory()->create(['category_id' => $category->id, 'month' => '2026-03']);
+        Budget::factory()->create(['category_id' => $category->id, 'month' => '2026-04']);
 
         $this->assertCount(2, $category->budgets);
         $this->assertInstanceOf(Budget::class, $category->budgets->first());

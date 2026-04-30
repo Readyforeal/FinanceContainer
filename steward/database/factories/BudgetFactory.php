@@ -12,7 +12,7 @@ class BudgetFactory extends Factory
     {
         return [
             'category_id' => Category::factory(),
-            'month' => now()->format('Y-m'),
+            'month' => now()->subMonths($this->faker->numberBetween(0, 11))->format('Y-m'),
             'budgeted_amount' => $this->faker->randomFloat(2, 50, 2000),
             'bucket' => $this->faker->randomElement(BudgetBucket::cases()),
         ];
