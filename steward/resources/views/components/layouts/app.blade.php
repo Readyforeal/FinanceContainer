@@ -14,7 +14,7 @@
     </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100 antialiased">
+<body class="text-zinc-900 dark:text-zinc-100 antialiased bg-gradient-to-br from-zinc-100 via-zinc-50 to-zinc-100 dark:from-zinc-900 dark:via-zinc-950 dark:to-zinc-900 min-h-screen">
     <div class="flex min-h-screen">
         @persist('sidebar')
             <livewire:layout.sidebar />

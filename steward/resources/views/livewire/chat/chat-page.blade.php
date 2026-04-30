@@ -184,13 +184,13 @@ new class extends Component {
                     @forelse ($messages as $message)
                         @if ($message->role === 'user')
                             <div class="flex justify-end">
-                                <div class="max-w-[75%] rounded-2xl rounded-tr-sm px-4 py-2.5 bg-blue-600 text-white text-sm leading-relaxed">
+                                <div class="max-w-[75%] rounded-2xl rounded-tr-sm px-4 py-2.5 bg-blue-600 text-white text-sm leading-relaxed bubble-user">
                                     {{ $message->content }}
                                 </div>
                             </div>
                         @else
                             <div class="flex justify-start">
-                                <div class="max-w-[75%] rounded-2xl rounded-tl-sm px-4 py-2.5 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm leading-relaxed">
+                                <div class="max-w-[75%] rounded-2xl rounded-tl-sm px-4 py-2.5 bg-white/80 dark:bg-zinc-800/80 text-zinc-900 dark:text-zinc-100 text-sm leading-relaxed bubble-assistant">
                                     {!! nl2br(e($message->content)) !!}
                                 </div>
                             </div>
@@ -212,10 +212,10 @@ new class extends Component {
                 </div>
             </div>
 
-            {{-- Input docked at bottom of chat area --}}
-            <div class="absolute bottom-0 left-0 right-0 px-8 pb-4 pt-4 bg-gradient-to-t from-zinc-100 via-zinc-100 dark:from-zinc-900 dark:via-zinc-900 to-transparent">
+            {{-- Frosted glass input docked at bottom --}}
+            <div class="absolute bottom-0 left-0 right-0 px-8 pb-4 pt-6 backdrop-blur-xl bg-zinc-100/60 dark:bg-zinc-900/60">
                 <form wire:submit="sendMessage" class="max-w-2xl mx-auto">
-                    <div class="flex gap-3 items-center rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-4 py-2.5 shadow-lg shadow-zinc-200/50 dark:shadow-zinc-950/50">
+                    <div class="flex gap-3 items-center rounded-2xl border border-white/60 dark:border-zinc-700/60 bg-white/70 dark:bg-zinc-800/70 backdrop-blur-sm px-4 py-2.5 shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 bubble-assistant">
                         <input
                             wire:model="messageText"
                             type="text"
