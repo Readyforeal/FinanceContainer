@@ -1,1 +1,4 @@
 .superpowers/
+steward/vendor/
+steward/node_modules/
+steward/.env
