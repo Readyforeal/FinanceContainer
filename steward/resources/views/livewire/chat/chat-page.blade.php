@@ -99,8 +99,9 @@ new class extends Component {
             $conversation->update(['title' => \Illuminate\Support\Str::limit($text, 60)]);
         }
 
-        // Show thinking state, then trigger AI response after this render completes
+        // Show thinking state, clear input, then trigger AI response after render
         $this->isStreaming = true;
+        $this->reset('messageText');
         $this->js('$wire.fetchResponse()');
     }
 
