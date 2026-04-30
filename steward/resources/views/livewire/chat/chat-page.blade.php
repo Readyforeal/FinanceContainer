@@ -220,7 +220,7 @@ new class extends Component {
                             wire:model="messageText"
                             type="text"
                             placeholder="Ask your financial advisor..."
-                            class="flex-1 bg-transparent text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm focus:outline-none disabled:opacity-50 border-0 focus:ring-0 p-0"
+                            class="flex-1 bg-transparent text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm focus:outline-none disabled:opacity-50 border-none focus:ring-0 ring-0 shadow-none p-0"
                             @disabled($isStreaming)
                         />
                         <button
