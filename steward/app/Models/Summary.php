@@ -9,6 +9,7 @@ class Summary extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         'type',
         'period_start',

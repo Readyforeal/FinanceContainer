@@ -6,7 +6,9 @@ use App\Models\Account;
 use App\Models\AppSetting;
 use App\Models\Budget;
 use App\Models\Category;
+use App\Models\Goal;
 use App\Models\IncomeSource;
+use App\Models\Summary;
 use App\Models\Transaction;
 use App\Services\FinancialContextBuilder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -169,5 +171,36 @@ class FinancialContextBuilderTest extends TestCase
         $this->assertStringContainsString('Streaming Services', $prompt);
         $this->assertStringContainsString('JSON', $prompt);
         $this->assertStringContainsString('confidence', $prompt);
+    }
+
+    public function test_system_prompt_includes_active_goals(): void
+    {
+        Goal::factory()->create([
+            'name' => 'New Car',
+            'target_amount' => 20000,
+            'current_amount' => 5000,
+            'priority' => 'high',
+            'is_completed' => false,
+        ]);
+
+        $prompt = $this->builder->buildSystemPrompt();
+
+        $this->assertStringContainsString('New Car', $prompt);
+        $this->assertStringContainsString('20,000.00', $prompt);
+        $this->assertStringContainsString('5,000.00', $prompt);
+        $this->assertStringContainsString('high', $prompt);
+    }
+
+    public function test_dynamic_context_includes_prior_summary_highlights(): void
+    {
+        Summary::factory()->create([
+            'type' => 'daily',
+            'period_start' => now()->subDay()->toDateString(),
+            'ai_analysis' => 'Yesterday was a moderate spending day.',
+        ]);
+
+        $context = $this->builder->buildDynamicContext();
+
+        $this->assertStringContainsString('Yesterday was a moderate spending day.', $context);
     }
 }

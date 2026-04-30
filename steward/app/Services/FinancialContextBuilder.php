@@ -6,7 +6,9 @@ use App\Models\Account;
 use App\Models\AppSetting;
 use App\Models\Budget;
 use App\Models\Category;
+use App\Models\Goal;
 use App\Models\IncomeSource;
+use App\Models\Summary;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\DB;
 
@@ -33,6 +35,9 @@ class FinancialContextBuilder
         // Categories section
         $sections[] = $this->buildCategoriesSection();
 
+        // Goals section
+        $sections[] = $this->buildGoalsSection();
+
         // Behavioral rules section
         $sections[] = $this->buildBehavioralRulesSection();
 
@@ -58,6 +63,9 @@ class FinancialContextBuilder
 
         // Flagged transactions
         $sections[] = $this->buildFlaggedTransactionsSection();
+
+        // Prior summaries
+        $sections[] = $this->buildPriorSummaries();
 
         return implode("\n\n", array_filter($sections));
     }
@@ -294,6 +302,68 @@ TEXT;
             $amount = $this->fmt($txn->amount);
             $category = $txn->category?->name ?? 'Uncategorized';
             $lines[] = "  - {$date} | {$merchant} | \${$amount} | {$category}";
+        }
+
+        return implode("\n", $lines);
+    }
+
+    private function buildGoalsSection(): string
+    {
+        $goals = Goal::where('is_completed', false)
+            ->orderByRaw("CASE priority WHEN 'high' THEN 0 WHEN 'medium' THEN 1 WHEN 'low' THEN 2 ELSE 3 END")
+            ->get();
+
+        if ($goals->isEmpty()) {
+            return "FINANCIAL GOALS: None set yet.";
+        }
+
+        $lines = ['FINANCIAL GOALS:'];
+
+        foreach ($goals as $goal) {
+            $progress = $goal->progressPercent();
+            $remaining = $this->fmt($goal->remaining());
+            $target = $this->fmt((float) $goal->target_amount);
+            $current = $this->fmt((float) $goal->current_amount);
+
+            $line = "- {$goal->name} [{$goal->priority}]: \${$current} / \${$target} ({$progress}% done, \${$remaining} remaining";
+
+            if ($goal->target_date) {
+                $byDate = $goal->target_date->format('M Y');
+                $monthly = $goal->monthlySavingsNeeded();
+                $monthlyStr = $monthly !== null ? $this->fmt($monthly) : '0.00';
+                $line .= " by {$byDate} (need \${$monthlyStr}/mo)";
+            }
+
+            $line .= ')';
+            $lines[] = $line;
+        }
+
+        return implode("\n", $lines);
+    }
+
+    private function buildPriorSummaries(): string
+    {
+        $summaries = Summary::where('type', 'daily')
+            ->orderByDesc('period_start')
+            ->limit(3)
+            ->get();
+
+        if ($summaries->isEmpty()) {
+            return '';
+        }
+
+        $lines = ['RECENT SUMMARIES:'];
+
+        foreach ($summaries as $summary) {
+            $date = $summary->period_start->format('M j');
+            $spent = $this->fmt((float) $summary->total_spent);
+            $analysis = $summary->ai_analysis ?? '';
+
+            $line = "- {$date}: \${$spent} spent";
+            if ($analysis) {
+                $line .= " — {$analysis}";
+            }
+            $lines[] = $line;
         }
 
         return implode("\n", $lines);
