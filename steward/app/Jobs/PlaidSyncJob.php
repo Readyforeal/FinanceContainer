@@ -1,6 +1,7 @@
 <?php
 namespace App\Jobs;
 
+use App\Jobs\CategorizationJob;
 use App\Models\Account;
 use App\Models\PlaidConnection;
 use App\Models\Transaction;
@@ -45,6 +46,15 @@ class PlaidSyncJob implements ShouldQueue
             'connection_id' => $this->plaidConnection->id,
             'institution' => $this->plaidConnection->institution_name,
         ]);
+
+        $newTransactionIds = Transaction::where('needs_review', true)
+            ->whereNull('category_id')
+            ->pluck('id')
+            ->toArray();
+
+        if (! empty($newTransactionIds)) {
+            CategorizationJob::dispatch($newTransactionIds);
+        }
     }
 
     private function processAdded(array $transactions): void

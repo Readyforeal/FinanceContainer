@@ -3,12 +3,14 @@ namespace Tests\Feature\Jobs;
 
 use App\Enums\AccountType;
 use App\Enums\PlaidConnectionStatus;
+use App\Jobs\CategorizationJob;
 use App\Jobs\PlaidSyncJob;
 use App\Models\Account;
 use App\Models\PlaidConnection;
 use App\Models\Transaction;
 use App\Services\PlaidService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
 use Mockery;
 use Tests\TestCase;
 
@@ -18,6 +20,8 @@ class PlaidSyncJobTest extends TestCase
 
     public function test_syncs_new_transactions(): void
     {
+        Queue::fake();
+
         $connection = PlaidConnection::factory()->create([
             'cursor' => null,
             'status' => PlaidConnectionStatus::Active,
@@ -82,10 +86,14 @@ class PlaidSyncJobTest extends TestCase
         $account->refresh();
         $this->assertEquals('1247.33', $account->current_balance);
         $this->assertEquals('1200.00', $account->available_balance);
+
+        Queue::assertPushed(CategorizationJob::class);
     }
 
     public function test_handles_removed_transactions(): void
     {
+        Queue::fake();
+
         $connection = PlaidConnection::factory()->create(['cursor' => 'old_cursor']);
         $account = Account::factory()->create([
             'plaid_connection_id' => $connection->id,
@@ -116,6 +124,8 @@ class PlaidSyncJobTest extends TestCase
 
     public function test_paginates_with_has_more(): void
     {
+        Queue::fake();
+
         $connection = PlaidConnection::factory()->create(['cursor' => null]);
         $account = Account::factory()->create([
             'plaid_connection_id' => $connection->id,
