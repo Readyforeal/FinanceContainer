@@ -11,6 +11,6 @@ class extends Component {
 };
 ?>
 
-<div class="-mt-8 -mr-8 -mb-8">
+<div>
     <livewire:chat.chat-page />
 </div>
