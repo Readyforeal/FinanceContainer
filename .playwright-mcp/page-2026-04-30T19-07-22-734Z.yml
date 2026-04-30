@@ -1,0 +1,186 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - img [ref=e7]
+      - generic [ref=e10]: Internal Server Error
+    - button "Copy as Markdown" [ref=e11] [cursor=pointer]:
+      - img [ref=e12]
+      - generic [ref=e15]: Copy as Markdown
+  - generic [ref=e18]:
+    - generic [ref=e19]:
+      - heading "Livewire\\Features\\SupportMultipleRootElementDetection\\MultipleRootElementsDetectedException" [level=1] [ref=e20]
+      - generic [ref=e22]: vendor/livewire/livewire/src/Features/SupportMultipleRootElementDetection/SupportMultipleRootElementDetection.php:27
+      - paragraph [ref=e23]: "Livewire only supports one HTML element per component. Multiple root elements detected for component: [layout.sidebar]"
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]: LARAVEL
+          - generic [ref=e28]: 13.7.0
+        - generic [ref=e29]:
+          - generic [ref=e30]: PHP
+          - generic [ref=e31]: 8.4.20
+      - generic [ref=e32]:
+        - img [ref=e33]
+        - text: UNHANDLED
+      - generic [ref=e36]: CODE 0
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - img [ref=e40]
+        - text: "500"
+      - generic [ref=e43]:
+        - img [ref=e44]
+        - text: GET
+      - generic [ref=e47]: http://localhost:8080/dashboard
+      - button [ref=e48] [cursor=pointer]:
+        - img [ref=e49]
+  - generic [ref=e53]:
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - img [ref=e57]
+        - heading "Exception trace" [level=3] [ref=e60]
+      - generic [ref=e61]:
+        - generic [ref=e63] [cursor=pointer]:
+          - img [ref=e64]
+          - generic [ref=e68]: 5 vendor frames
+          - button [ref=e69]:
+            - img [ref=e70]
+        - generic [ref=e74]:
+          - generic [ref=e75] [cursor=pointer]:
+            - generic [ref=e78]:
+              - code [ref=e82]:
+                - generic [ref=e83]: Livewire\LivewireManager->mount(string, array, string)
+              - generic [ref=e85]: resources/views/components/layouts/app.blade.php:8
+            - button [ref=e87]:
+              - img [ref=e88]
+          - code [ref=e96]:
+            - generic [ref=e97]: 3<head>
+            - generic [ref=e98]: 4 <meta charset="utf-8">
+            - generic [ref=e99]: 5 <meta name="viewport" content="width=device-width, initial-scale=1">
+            - generic [ref=e100]: "6 <meta name=\"csrf-token\" content=\"{{ csrf_token() }}\">"
+            - generic [ref=e101]: "7 <title>{{ $title ?? 'StewardAI' }}</title>"
+            - generic [ref=e102]: 8 @vite(['resources/css/app.css', 'resources/js/app.js'])
+            - generic [ref=e103]: 9</head>
+            - generic [ref=e104]: 10<body class="bg-gray-900 text-gray-100 antialiased">
+            - generic [ref=e105]: 11 <div class="flex min-h-screen">
+            - generic [ref=e106]: 12 <livewire:layout.sidebar />
+            - generic [ref=e107]: 13 <main class="flex-1 p-8 overflow-auto">
+            - generic [ref=e108]: "14 {{ $slot }}"
+            - generic [ref=e109]: 15 </main>
+            - generic [ref=e110]: 16 </div>
+            - generic [ref=e111]: 17</body>
+            - generic [ref=e112]: 18</html>
+            - generic [ref=e113]: "19"
+        - generic [ref=e115] [cursor=pointer]:
+          - img [ref=e116]
+          - generic [ref=e120]: 10 vendor frames
+          - button [ref=e121]:
+            - img [ref=e122]
+        - generic [ref=e127] [cursor=pointer]:
+          - generic [ref=e130]:
+            - code [ref=e134]:
+              - generic [ref=e135]: Illuminate\View\Factory->renderComponent()
+            - generic [ref=e137]: resources/views/pages/dashboard.blade.php:1
+          - button [ref=e139]:
+            - img [ref=e140]
+        - generic [ref=e145] [cursor=pointer]:
+          - img [ref=e146]
+          - generic [ref=e150]: 61 vendor frames
+          - button [ref=e151]:
+            - img [ref=e152]
+        - generic [ref=e157] [cursor=pointer]:
+          - generic [ref=e160]:
+            - code [ref=e164]:
+              - generic [ref=e165]: Illuminate\Foundation\Application->handleRequest(object(Illuminate\Http\Request))
+            - generic [ref=e167]: public/index.php:20
+          - button [ref=e169]:
+            - img [ref=e170]
+    - generic [ref=e174]:
+      - generic [ref=e175]:
+        - generic [ref=e176]:
+          - img [ref=e178]
+          - heading "Queries" [level=3] [ref=e180]
+        - generic [ref=e182]: 1-1 of 1
+      - generic [ref=e184]:
+        - generic [ref=e185]:
+          - generic [ref=e186]:
+            - img [ref=e187]
+            - generic [ref=e189]: pgsql
+          - code [ref=e193]:
+            - generic [ref=e194]: select * from "users" where "id" = 1 limit 1
+        - generic [ref=e195]: 4.12ms
+  - generic [ref=e197]:
+    - generic [ref=e198]:
+      - heading "Headers" [level=2] [ref=e199]
+      - generic [ref=e200]:
+        - generic [ref=e201]:
+          - generic [ref=e202]: cookie
+          - generic [ref=e204]: XSRF-TOKEN=eyJpdiI6InlrM1pJMkpxTW1TV0JueGRWVDVJc2c9PSIsInZhbHVlIjoiRWFabUcwd2ZJbUFpR1lLR2xyK2FRL3dyRVF2eXVuUGh6dWRMUlZHRlU2djA4Ni8rL3FtbExsZUQxVUVqeUlwNEJXZ1phVlhNNDR0Z2VXSUxmNlllQS9wZXBkQ1NkTmpWejlrQUpoRkdLZDJFRm9xTlp6bWpzb21sSGtDdTNZVmwiLCJtYWMiOiIzZjkyMzQ5YTQxYjM3YWQ2NzY0NWQ2ODY1MWM1ZDQ0YTkzNzA0NDQ5ZmI1NDFiZWFjNWYwNjJhNzYwOTYxOGM1IiwidGFnIjoiIn0%3D; stewardai-session=eyJpdiI6Ik9hZHp5eFNpeDU1UG5vOTV2WEJUVUE9PSIsInZhbHVlIjoiTklDN21STVdjTWdZWDgxQ2x2NWZUTlhoYUdkeU90QUVHSzhnRzdoNXZaLzUyR0JpK1MwclRDbTV5NWtkWVBPOEZabFdBamw2TC9kcXQ2WDBiR1U4dXpSeG5OU2poQ25OSWV2bXI3dzdDOExUdWtWK0Y3SmZpSzRBRmYwWUhRY20iLCJtYWMiOiI4YmYyNmFhMWEyYmMyODIwYjBkMDNhNzgyY2IxNTU1YzIyNzhiMDdkYTZhMmRhOTQ4YWJhNmMzNTgzMzM4ZTU1IiwidGFnIjoiIn0%3D
+        - generic [ref=e205]:
+          - generic [ref=e206]: accept-language
+          - generic [ref=e208]: en-US,en;q=0.9
+        - generic [ref=e209]:
+          - generic [ref=e210]: accept-encoding
+          - generic [ref=e212]: gzip, deflate, br, zstd
+        - generic [ref=e213]:
+          - generic [ref=e214]: referer
+          - generic [ref=e216]: http://localhost:8080/login
+        - generic [ref=e217]:
+          - generic [ref=e218]: sec-ch-ua-platform
+          - generic [ref=e220]: "\"macOS\""
+        - generic [ref=e221]:
+          - generic [ref=e222]: sec-ch-ua-mobile
+          - generic [ref=e224]: "?0"
+        - generic [ref=e225]:
+          - generic [ref=e226]: sec-ch-ua
+          - generic [ref=e228]: "\"Google Chrome\";v=\"147\", \"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"147\""
+        - generic [ref=e229]:
+          - generic [ref=e230]: sec-fetch-dest
+          - generic [ref=e232]: document
+        - generic [ref=e233]:
+          - generic [ref=e234]: sec-fetch-user
+          - generic [ref=e236]: "?1"
+        - generic [ref=e237]:
+          - generic [ref=e238]: sec-fetch-mode
+          - generic [ref=e240]: navigate
+        - generic [ref=e241]:
+          - generic [ref=e242]: sec-fetch-site
+          - generic [ref=e244]: same-origin
+        - generic [ref=e245]:
+          - generic [ref=e246]: accept
+          - generic [ref=e248]: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+        - generic [ref=e249]:
+          - generic [ref=e250]: user-agent
+          - generic [ref=e252]: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+        - generic [ref=e253]:
+          - generic [ref=e254]: upgrade-insecure-requests
+          - generic [ref=e256]: "1"
+        - generic [ref=e257]:
+          - generic [ref=e258]: cache-control
+          - generic [ref=e260]: max-age=0
+        - generic [ref=e261]:
+          - generic [ref=e262]: connection
+          - generic [ref=e264]: keep-alive
+        - generic [ref=e265]:
+          - generic [ref=e266]: host
+          - generic [ref=e268]: localhost:8080
+    - generic [ref=e269]:
+      - heading "Body" [level=2] [ref=e270]
+      - generic [ref=e271]: // No request body
+    - generic [ref=e272]:
+      - heading "Routing" [level=2] [ref=e273]
+      - generic [ref=e274]:
+        - generic [ref=e275]:
+          - generic [ref=e276]: controller
+          - generic [ref=e278]: Closure
+        - generic [ref=e279]:
+          - generic [ref=e280]: route name
+          - generic [ref=e282]: dashboard
+        - generic [ref=e283]:
+          - generic [ref=e284]: middleware
+          - generic [ref=e286]: web, auth
+    - generic [ref=e287]:
+      - heading "Routing parameters" [level=2] [ref=e288]
+      - generic [ref=e289]: // No routing parameters
+  - generic [ref=e292]:
+    - img [ref=e294]
+    - img [ref=e3332]

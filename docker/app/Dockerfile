@@ -8,6 +8,10 @@ RUN apk add --no-cache \
     nodejs \
     npm \
     git \
+    $PHPIZE_DEPS \
+    linux-headers \
+    && pecl install redis \
+    && docker-php-ext-enable redis \
     && docker-php-ext-install pdo pdo_pgsql zip pcntl
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
