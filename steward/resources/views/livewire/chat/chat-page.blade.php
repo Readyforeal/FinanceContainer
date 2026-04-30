@@ -40,6 +40,27 @@ new class extends Component {
         $this->activeConversationId = $id;
     }
 
+    public function deleteConversation(int $id): void
+    {
+        $conversation = ChatConversation::where('id', $id)
+            ->where('user_id', auth()->id())
+            ->first();
+
+        if (! $conversation) {
+            return;
+        }
+
+        $conversation->messages()->delete();
+        $conversation->delete();
+
+        if ($this->activeConversationId === $id) {
+            $next = ChatConversation::where('user_id', auth()->id())
+                ->latest()
+                ->first();
+            $this->activeConversationId = $next?->id;
+        }
+    }
+
     public function sendMessage(): void
     {
         if (blank($this->messageText) || $this->isStreaming || $this->activeConversationId === null) {
@@ -138,21 +159,32 @@ new class extends Component {
 
         <div class="flex-1 overflow-y-auto">
             @forelse ($conversations as $conversation)
-                <button
-                    wire:click="selectConversation({{ $conversation->id }})"
+                <div
                     @class([
-                        'w-full text-left px-4 py-3 transition-colors border-b border-zinc-100 dark:border-zinc-800/50',
+                        'group flex items-center border-b border-zinc-100 dark:border-zinc-800/50 transition-colors',
                         'bg-zinc-100 dark:bg-zinc-800' => $activeConversationId === $conversation->id,
                         'hover:bg-zinc-50 dark:hover:bg-zinc-800/50' => $activeConversationId !== $conversation->id,
                     ])
                 >
-                    <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100 truncate">
-                        {{ $conversation->title }}
-                    </p>
-                    <p class="text-xs text-zinc-400 dark:text-zinc-500 mt-0.5">
-                        {{ $conversation->updated_at->diffForHumans() }}
-                    </p>
-                </button>
+                    <button
+                        wire:click="selectConversation({{ $conversation->id }})"
+                        class="flex-1 text-left px-4 py-3 min-w-0"
+                    >
+                        <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100 truncate">
+                            {{ $conversation->title }}
+                        </p>
+                        <p class="text-xs text-zinc-400 dark:text-zinc-500 mt-0.5">
+                            {{ $conversation->updated_at->diffForHumans() }}
+                        </p>
+                    </button>
+                    <button
+                        wire:click="deleteConversation({{ $conversation->id }})"
+                        wire:confirm="Delete this conversation?"
+                        class="px-3 py-3 opacity-0 group-hover:opacity-100 text-zinc-400 hover:text-red-500 dark:hover:text-red-400 transition-all flex-shrink-0"
+                    >
+                        <x-lucide-trash-2 class="w-3.5 h-3.5" />
+                    </button>
+                </div>
             @empty
                 <div class="px-4 py-8 text-center">
                     <p class="text-sm text-zinc-400 dark:text-zinc-500">No conversations yet.</p>
