@@ -212,10 +212,10 @@ new class extends Component {
                 </div>
             </div>
 
-            {{-- Frosted glass input docked at bottom --}}
-            <div class="absolute bottom-0 left-0 right-0 px-8 pb-4 pt-6 backdrop-blur-xl bg-zinc-100/60 dark:bg-zinc-900/60">
-                <form wire:submit="sendMessage" class="max-w-2xl mx-auto">
-                    <div class="flex gap-3 items-center rounded-2xl border border-white/60 dark:border-zinc-700/60 bg-white/70 dark:bg-zinc-800/70 backdrop-blur-sm px-4 py-2.5 shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 bubble-assistant">
+            {{-- Input docked at bottom --}}
+            <div class="absolute bottom-0 left-0 right-0 px-8 pb-4 pt-6 pointer-events-none">
+                <form wire:submit="sendMessage" class="max-w-2xl mx-auto pointer-events-auto">
+                    <div class="flex gap-3 items-center rounded-2xl border border-white/40 dark:border-white/[0.08] bg-white/60 dark:bg-zinc-800/50 backdrop-blur-xl px-4 py-2.5 shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 bubble-assistant">
                         <input
                             wire:model="messageText"
                             type="text"
