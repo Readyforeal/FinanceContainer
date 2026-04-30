@@ -1,1 +1,3 @@
 [     115ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[   36535ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738
+[  130760ms] [WARNING] Detected multiple instances of Alpine running @ http://localhost:8080/livewire-e1f4650a/livewire.js?id=6b3709b1:15738

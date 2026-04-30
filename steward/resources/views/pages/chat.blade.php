@@ -11,11 +11,6 @@ class extends Component {
 };
 ?>
 
-<div>
-    <div class="mb-6">
-        <h1 class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">Chat</h1>
-        <p class="text-zinc-500 dark:text-zinc-400 mt-1">Talk with your financial advisor.</p>
-    </div>
-
+<div class="-mt-8 -mr-8 -mb-8">
     <livewire:chat.chat-page />
 </div>

@@ -121,10 +121,10 @@ new class extends Component {
 };
 ?>
 
-<div class="flex h-[calc(100vh-8rem)]">
+<div class="flex h-screen">
 
     {{-- Left panel: conversation history (in container) --}}
-    <div class="w-64 flex-shrink-0 flex flex-col rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden">
+    <div class="w-64 flex-shrink-0 flex flex-col m-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden">
         <div class="p-3 border-b border-zinc-200 dark:border-zinc-800">
             <button
                 wire:click="newConversation"
@@ -211,8 +211,9 @@ new class extends Component {
                 </div>
             </div>
 
-            {{-- Docked input at bottom center --}}
-            <div class="absolute bottom-0 left-0 right-0 px-8 pb-6 pt-4 bg-gradient-to-t from-zinc-100 via-zinc-100 dark:from-zinc-900 dark:via-zinc-900 to-transparent">
+            {{-- Fixed input at bottom center of chat area --}}
+            {{-- left offset = nav sidebar(15rem) + spacer(0.75rem) + conversation panel margin(0.75rem) + conversation panel(16rem) = 32.5rem --}}
+            <div class="fixed bottom-0 right-0 px-8 pb-6 pt-4 bg-gradient-to-t from-zinc-100 via-zinc-100 dark:from-zinc-900 dark:via-zinc-900 to-transparent" style="left: 32.5rem;">
                 <form wire:submit="sendMessage" class="max-w-2xl mx-auto">
                     <div class="flex gap-3 items-center rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-4 py-2.5 shadow-lg shadow-zinc-200/50 dark:shadow-zinc-950/50">
                         <input
