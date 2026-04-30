@@ -50,11 +50,12 @@ class ChatTest extends TestCase
                 $onToken('question!');
             });
 
-        Livewire::actingAs($user)
+        $component = Livewire::actingAs($user)
             ->test('chat.chat-page', ['activeConversationId' => $conversation->id])
             ->set('messageText', 'How am I doing financially?')
             ->call('sendMessage');
 
+        // sendMessage saves user message and sets isStreaming
         $this->assertDatabaseHas('chat_messages', [
             'conversation_id' => $conversation->id,
             'user_id' => $user->id,
@@ -62,11 +63,18 @@ class ChatTest extends TestCase
             'content' => 'How am I doing financially?',
         ]);
 
+        $component->assertSet('isStreaming', true);
+
+        // fetchResponse calls Ollama and saves assistant message
+        $component->call('fetchResponse');
+
         $this->assertDatabaseHas('chat_messages', [
             'conversation_id' => $conversation->id,
             'role' => 'assistant',
             'content' => 'Great question!',
         ]);
+
+        $component->assertSet('isStreaming', false);
     }
 
     public function test_displays_conversation_history(): void

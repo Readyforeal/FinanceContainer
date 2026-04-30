@@ -85,7 +85,7 @@ new class extends Component {
         $text = $this->messageText;
         $this->messageText = '';
 
-        // Create the user message
+        // Create the user message immediately so it renders
         ChatMessage::create([
             'conversation_id' => $this->activeConversationId,
             'user_id' => auth()->id(),
@@ -99,6 +99,13 @@ new class extends Component {
             $conversation->update(['title' => \Illuminate\Support\Str::limit($text, 60)]);
         }
 
+        // Show thinking state, then trigger AI response after this render completes
+        $this->isStreaming = true;
+        $this->js('$wire.fetchResponse()');
+    }
+
+    public function fetchResponse(): void
+    {
         // Build conversation history for Ollama
         $history = ChatMessage::where('conversation_id', $this->activeConversationId)
             ->orderBy('created_at')
@@ -109,10 +116,6 @@ new class extends Component {
         // Build prompts using financial context
         $contextBuilder = app(FinancialContextBuilder::class);
         $systemPrompt = $contextBuilder->buildSystemPrompt() . "\n\n" . $contextBuilder->buildDynamicContext();
-
-        // Stream response from Ollama
-        $this->isStreaming = true;
-        $this->streamingResponse = '';
 
         $fullResponse = '';
 
@@ -125,9 +128,6 @@ new class extends Component {
             $fullResponse = "I'm unable to connect to the AI service right now. Please try again later.\n\nError: " . $e->getMessage();
         }
 
-        $this->isStreaming = false;
-        $this->streamingResponse = '';
-
         // Persist the assistant message
         ChatMessage::create([
             'conversation_id' => $this->activeConversationId,
@@ -135,6 +135,8 @@ new class extends Component {
             'role' => 'assistant',
             'content' => $fullResponse,
         ]);
+
+        $this->isStreaming = false;
     }
 
     public function with(): array
@@ -236,7 +238,7 @@ new class extends Component {
                                 </div>
                             </div>
                         @else
-                            <div class="flex justify-start">
+                            <div class="flex justify-start {{ $loop->last && !$isStreaming ? 'chat-fade-in' : '' }}">
                                 <div class="max-w-[75%] rounded-2xl rounded-tl-sm px-4 py-2.5 bg-white/80 dark:bg-zinc-800/80 text-zinc-900 dark:text-zinc-100 text-sm leading-relaxed bubble-assistant">
                                     {!! nl2br(e($message->content)) !!}
                                 </div>
@@ -248,11 +250,15 @@ new class extends Component {
                         </div>
                     @endforelse
 
-                    {{-- Streaming indicator --}}
+                    {{-- Thinking indicator --}}
                     @if ($isStreaming)
                         <div class="flex justify-start">
-                            <div class="max-w-[75%] rounded-2xl rounded-tl-sm px-4 py-2.5 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm leading-relaxed">
-                                {!! nl2br(e($streamingResponse)) !!}<span class="inline-block w-1.5 h-4 bg-zinc-400 dark:bg-zinc-500 animate-pulse ml-0.5 align-middle"></span>
+                            <div class="rounded-2xl rounded-tl-sm px-4 py-3 bg-white/80 dark:bg-zinc-800/80 bubble-assistant">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-[thinking_1.4s_ease-in-out_infinite]"></span>
+                                    <span class="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-[thinking_1.4s_ease-in-out_0.2s_infinite]"></span>
+                                    <span class="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-[thinking_1.4s_ease-in-out_0.4s_infinite]"></span>
+                                </div>
                             </div>
                         </div>
                     @endif
