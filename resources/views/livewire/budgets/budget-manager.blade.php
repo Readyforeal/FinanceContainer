@@ -189,20 +189,29 @@ new class extends Component {
             @endphp
 
             <div>
-                <div class="flex items-center justify-between mb-3">
-                    <div class="flex items-center gap-2">
-                        @if ($bucket->value === 'needs')
-                            <flux:icon.house variant="mini" class="text-zinc-500 dark:text-zinc-400" />
-                        @elseif ($bucket->value === 'wants')
-                            <flux:icon.shopping-bag variant="mini" class="text-zinc-500 dark:text-zinc-400" />
-                        @else
-                            <flux:icon.piggy-bank variant="mini" class="text-zinc-500 dark:text-zinc-400" />
-                        @endif
-                        @php
-                            $budgetedPct = $incomeBase > 0 ? round($bucketData['budgeted'] / $incomeBase * 100, 1) : 0;
-                        @endphp
-                        <flux:heading size="sm" class="capitalize">{{ $bucket->value }}</flux:heading>
-                        <flux:text size="sm" class="text-zinc-400 dark:text-zinc-500">({{ $target }}% target)</flux:text>
+                {{-- Bucket header --}}
+                @php
+                    $budgetedPct = $incomeBase > 0 ? round($bucketData['budgeted'] / $incomeBase * 100, 1) : 0;
+                @endphp
+                <div class="mb-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            @if ($bucket->value === 'needs')
+                                <flux:icon.house variant="mini" class="text-zinc-500 dark:text-zinc-400" />
+                            @elseif ($bucket->value === 'wants')
+                                <flux:icon.shopping-bag variant="mini" class="text-zinc-500 dark:text-zinc-400" />
+                            @else
+                                <flux:icon.piggy-bank variant="mini" class="text-zinc-500 dark:text-zinc-400" />
+                            @endif
+                            <flux:heading size="sm" class="capitalize">{{ $bucket->value }}</flux:heading>
+                            <flux:text size="sm" class="text-zinc-400 dark:text-zinc-500 hidden sm:inline">({{ $target }}% target)</flux:text>
+                        </div>
+                        <flux:text size="sm" class="font-medium shrink-0">
+                            ${{ number_format($bucketData['budgeted'], 2) }}
+                        </flux:text>
+                    </div>
+                    <div class="flex items-center gap-2 mt-1 ml-7">
+                        <flux:text size="xs" class="text-zinc-400 dark:text-zinc-500 sm:hidden">{{ $target }}% target</flux:text>
                         @if ($budgetedPct > 0)
                             <flux:badge :color="$budgetedPct > $target ? 'red' : 'zinc'" size="sm">
                                 {{ $budgetedPct }}% budgeted
@@ -214,9 +223,6 @@ new class extends Component {
                             </flux:badge>
                         @endif
                     </div>
-                    <flux:text size="sm" class="font-medium">
-                        ${{ number_format($bucketData['budgeted'], 2) }} budgeted
-                    </flux:text>
                 </div>
 
                 <flux:card class="!p-0 overflow-hidden">
@@ -228,18 +234,16 @@ new class extends Component {
                             $isOver = $budget->spent > $budget->budgeted_amount;
                         @endphp
                         <div class="p-4 border-b border-zinc-100 dark:border-zinc-800 last:border-b-0">
-                            <div class="flex items-center gap-3 mb-2">
-                                {{-- Icon + Name --}}
+                            {{-- Desktop row --}}
+                            <div class="hidden lg:flex items-center gap-3 mb-2">
                                 <div class="flex items-center gap-2 min-w-0 flex-1">
                                     <flux:icon :icon="$budget->category->icon ?? 'tag'" variant="mini" class="shrink-0 text-zinc-400 dark:text-zinc-500" />
                                     <span class="font-medium text-zinc-800 dark:text-zinc-200 truncate">
                                         {{ $budget->category->name }}
                                     </span>
                                 </div>
-
-                                {{-- Amounts --}}
                                 <div class="flex items-center gap-4 shrink-0">
-                                    <flux:text size="sm" class="hidden sm:block">{{ $incomePct }}% of income</flux:text>
+                                    <flux:text size="sm">{{ $incomePct }}% of income</flux:text>
                                     <flux:text size="sm" class="font-medium">
                                         ${{ number_format($budget->budgeted_amount, 2) }}
                                     </flux:text>
@@ -248,11 +252,31 @@ new class extends Component {
                                         {{ $isOver ? '-' : '' }}${{ number_format(abs($remaining), 2) }} {{ $isOver ? 'over' : 'left' }}
                                     </span>
                                 </div>
-
-                                {{-- Actions --}}
                                 <div class="flex items-center gap-1 shrink-0">
                                     <flux:button variant="subtle" size="xs" icon="pencil" wire:click="editBudget({{ $budget->id }})" />
                                     <flux:button variant="subtle" size="xs" icon="trash-2" wire:click="deleteBudget({{ $budget->id }})" wire:confirm="Delete this budget?" />
+                                </div>
+                            </div>
+
+                            {{-- Mobile row --}}
+                            <div class="lg:hidden mb-2">
+                                <div class="flex items-center justify-between gap-2">
+                                    <div class="flex items-center gap-2 min-w-0">
+                                        <flux:icon :icon="$budget->category->icon ?? 'tag'" variant="mini" class="shrink-0 text-zinc-400 dark:text-zinc-500" />
+                                        <span class="font-medium text-zinc-800 dark:text-zinc-200">
+                                            {{ $budget->category->name }}
+                                        </span>
+                                    </div>
+                                    <div class="flex items-center gap-2 shrink-0">
+                                        <span class="{{ $isOver ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400' }} text-sm font-semibold">
+                                            {{ $isOver ? '-' : '' }}${{ number_format(abs($remaining), 2) }} {{ $isOver ? 'over' : 'left' }}
+                                        </span>
+                                        <flux:button variant="subtle" size="xs" icon="pencil" wire:click="editBudget({{ $budget->id }})" />
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3 mt-1 ml-7">
+                                    <flux:text size="xs">${{ number_format($budget->budgeted_amount, 2) }} budgeted</flux:text>
+                                    <flux:text size="xs">spent ${{ number_format($budget->spent, 2) }}</flux:text>
                                 </div>
                             </div>
 

@@ -142,7 +142,7 @@ new class extends Component {
 
 <div>
     {{-- Filters --}}
-    <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-end gap-3 mb-6">
+    <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 mb-6">
         <flux:input wire:model.live.debounce.300ms="search" placeholder="Search transactions..." size="sm" class="w-full sm:max-w-xs" />
 
         <div class="flex gap-3">
