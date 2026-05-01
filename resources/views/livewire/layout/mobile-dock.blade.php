@@ -65,11 +65,9 @@ new class extends Component {};
          @set-dock-action.window="actionIcon = $event.detail.icon || 'plus'; hasAction = true;"
          x-init="document.addEventListener('livewire:navigating', () => { hasAction = false; actionIcon = null; });">
 
-        {{-- Dock --}}
-        <div class="fixed bottom-3 left-3 z-40 transition-[right] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-             :class="hasAction ? 'right-[4.25rem]' : 'right-3'">
-            <div class="flex items-center justify-around bg-white/50 dark:bg-zinc-900/80 backdrop-blur-sm rounded-3xl shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 border border-zinc-200/50 dark:border-zinc-700/50 px-2 py-2.5">
-
+        {{-- Dock + action in shared flex row for matched height --}}
+        <div class="fixed bottom-3 left-3 right-3 z-40 flex items-stretch gap-2">
+            <div class="flex-1 flex items-center justify-around bg-white/50 dark:bg-zinc-900/80 backdrop-blur-sm rounded-3xl shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 border border-zinc-200/50 dark:border-zinc-700/50 px-2 py-2.5">
                 @php
                     $dockItems = [
                         ['path' => '/dashboard', 'icon' => 'layout-dashboard'],
@@ -89,26 +87,24 @@ new class extends Component {};
                     </a>
                 @endforeach
 
-                {{-- More button --}}
                 <button @click="expanded = !expanded"
                     :class="expanded ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500'"
                     class="flex items-center justify-center p-2.5 rounded-xl transition-colors">
                     <flux:icon.grip variant="mini" />
                 </button>
             </div>
-        </div>
 
-        {{-- Contextual action button --}}
-        <button x-show="hasAction" x-cloak
-            x-transition:enter="transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-            x-transition:enter-start="scale-0 opacity-0"
-            x-transition:enter-end="scale-100 opacity-100"
-            x-transition:leave="transition-all duration-200 ease-in"
-            x-transition:leave-start="scale-100 opacity-100"
-            x-transition:leave-end="scale-0 opacity-0"
-            @click="Livewire.dispatch('dock-action')"
-            class="fixed bottom-3 right-3 z-40 flex items-center justify-center size-[46px] rounded-2xl bg-accent/80 text-accent-foreground backdrop-blur-xl shadow-lg">
-            <template x-if="actionIcon === 'plus'"><flux:icon.plus variant="mini" /></template>
-        </button>
+            <button x-show="hasAction" x-cloak
+                x-transition:enter="transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                x-transition:enter-start="w-0 opacity-0 scale-x-0"
+                x-transition:enter-end="w-[46px] opacity-100 scale-x-100"
+                x-transition:leave="transition-all duration-200 ease-in"
+                x-transition:leave-start="w-[46px] opacity-100 scale-x-100"
+                x-transition:leave-end="w-0 opacity-0 scale-x-0"
+                @click="Livewire.dispatch('dock-action')"
+                class="shrink-0 w-[46px] flex items-center justify-center rounded-2xl bg-accent/80 text-accent-foreground backdrop-blur-xl shadow-lg overflow-hidden origin-right">
+                <flux:icon.plus variant="mini" />
+            </button>
+        </div>
     </div>
 </div>
