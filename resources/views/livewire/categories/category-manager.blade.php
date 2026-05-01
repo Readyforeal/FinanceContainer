@@ -16,7 +16,7 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->dispatch('set-dock-action', icon: 'plus');
+        $this->js("setTimeout(() => window.dispatchEvent(new CustomEvent('set-dock-action', { detail: { icon: 'plus' } })), 100)");
     }
 
     public function save(): void
