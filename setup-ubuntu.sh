@@ -357,6 +357,8 @@ echo "  You can check progress with: ollama list"
 echo ""
 
 # Pull in background
+sudo touch /var/log/$APP_NAME-ollama-pull.log
+sudo chown $USER:$USER /var/log/$APP_NAME-ollama-pull.log
 nohup ollama pull llama3.1:70b-instruct-q4_K_M > /var/log/$APP_NAME-ollama-pull.log 2>&1 &
 
 # ============================================================================
