@@ -154,103 +154,114 @@ new class extends Component {
         </div>
     </div>
 
-    {{-- Categories table --}}
-    <flux:table>
-        <flux:table.columns>
-            <flux:table.column>Icon</flux:table.column>
-            <flux:table.column>Name</flux:table.column>
-            <flux:table.column>Bucket</flux:table.column>
-            <flux:table.column>Essential</flux:table.column>
-            <flux:table.column align="end">Avg/mo</flux:table.column>
-            <flux:table.column align="center">Trend</flux:table.column>
-            <flux:table.column align="end">Actions</flux:table.column>
-        </flux:table.columns>
+    {{-- Desktop table --}}
+    <div class="hidden lg:block">
+        <flux:table>
+            <flux:table.columns>
+                <flux:table.column>Icon</flux:table.column>
+                <flux:table.column>Name</flux:table.column>
+                <flux:table.column>Bucket</flux:table.column>
+                <flux:table.column>Essential</flux:table.column>
+                <flux:table.column align="end">Avg/mo</flux:table.column>
+                <flux:table.column align="center">Trend</flux:table.column>
+                <flux:table.column align="end">Actions</flux:table.column>
+            </flux:table.columns>
 
-        <flux:table.rows>
-            @forelse ($categories as $category)
-                <flux:table.row>
-                    {{-- Icon --}}
-                    <flux:table.cell>
-                        <flux:icon :icon="$category->icon ?? 'tag'" variant="mini" class="text-zinc-400 dark:text-zinc-500" />
-                    </flux:table.cell>
+            <flux:table.rows>
+                @forelse ($categories as $category)
+                    @php
+                        $bv = $category->default_bucket->value;
+                        $bucketColor = match($bv) {
+                            'needs' => 'blue', 'wants' => 'violet', 'savings' => 'emerald',
+                            'income' => 'sky', 'transfer' => 'zinc', default => 'zinc',
+                        };
+                    @endphp
+                    <flux:table.row>
+                        <flux:table.cell>
+                            <flux:icon :icon="$category->icon ?? 'tag'" variant="mini" class="text-zinc-400 dark:text-zinc-500" />
+                        </flux:table.cell>
+                        <flux:table.cell class="font-medium">
+                            {{ $category->name }}
+                            @if ($category->is_system)
+                                <flux:badge color="zinc" size="sm" class="ml-2">system</flux:badge>
+                            @endif
+                        </flux:table.cell>
+                        <flux:table.cell>
+                            <flux:badge :color="$bucketColor" size="sm">{{ $bv }}</flux:badge>
+                        </flux:table.cell>
+                        <flux:table.cell>
+                            @if ($category->is_essential)
+                                <flux:badge color="amber" size="sm">essential</flux:badge>
+                            @else
+                                <span class="text-zinc-300 dark:text-zinc-600">&mdash;</span>
+                            @endif
+                        </flux:table.cell>
+                        <flux:table.cell align="end">${{ number_format($category->avg_spend, 2) }}</flux:table.cell>
+                        <flux:table.cell align="center">
+                            @if ($category->trend === 'up')
+                                <flux:icon.trending-up class="size-4 text-red-500 mx-auto" />
+                            @elseif ($category->trend === 'down')
+                                <flux:icon.trending-down class="size-4 text-emerald-500 mx-auto" />
+                            @else
+                                <flux:icon.minus class="size-4 text-zinc-400 dark:text-zinc-500 mx-auto" />
+                            @endif
+                        </flux:table.cell>
+                        <flux:table.cell align="end">
+                            <div class="flex items-center justify-end gap-1">
+                                <flux:button wire:click="edit({{ $category->id }})" variant="subtle" size="xs" icon="pencil" />
+                                <flux:button wire:click="delete({{ $category->id }})" wire:confirm="Delete '{{ $category->name }}'?" variant="subtle" size="xs" icon="trash-2" />
+                            </div>
+                        </flux:table.cell>
+                    </flux:table.row>
+                @empty
+                    <flux:table.row>
+                        <flux:table.cell colspan="7" class="text-center py-8">
+                            <flux:text>No categories yet.</flux:text>
+                        </flux:table.cell>
+                    </flux:table.row>
+                @endforelse
+            </flux:table.rows>
+        </flux:table>
+    </div>
 
-                    {{-- Name --}}
-                    <flux:table.cell class="font-medium">
-                        {{ $category->name }}
-                        @if ($category->is_system)
-                            <flux:badge color="zinc" size="sm" class="ml-2">system</flux:badge>
-                        @endif
-                    </flux:table.cell>
-
-                    {{-- Bucket badge --}}
-                    <flux:table.cell>
-                        @php
-                            $bv = $category->default_bucket->value;
-                            $bucketColor = match($bv) {
-                                'needs' => 'blue',
-                                'wants' => 'violet',
-                                'savings' => 'emerald',
-                                default => 'zinc',
-                            };
-                        @endphp
+    {{-- Mobile card list --}}
+    <div class="lg:hidden space-y-2">
+        @forelse ($categories as $category)
+            @php
+                $bv = $category->default_bucket->value;
+                $bucketColor = match($bv) {
+                    'needs' => 'blue', 'wants' => 'violet', 'savings' => 'emerald',
+                    'income' => 'sky', 'transfer' => 'zinc', default => 'zinc',
+                };
+            @endphp
+            <div class="flex items-center gap-3 p-3 rounded-xl border border-zinc-200 dark:border-zinc-700"
+                 wire:click="edit({{ $category->id }})"
+                 class="cursor-pointer active:bg-zinc-50 dark:active:bg-zinc-800">
+                <flux:icon :icon="$category->icon ?? 'tag'" variant="mini" class="shrink-0 text-zinc-400 dark:text-zinc-500" />
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-2">
+                        <flux:text size="sm" class="font-medium truncate">{{ $category->name }}</flux:text>
+                        <span class="shrink-0 text-sm font-semibold text-zinc-900 dark:text-zinc-100">${{ number_format($category->avg_spend, 2) }}/mo</span>
+                    </div>
+                    <div class="flex items-center gap-2 mt-1">
                         <flux:badge :color="$bucketColor" size="sm">{{ $bv }}</flux:badge>
-                    </flux:table.cell>
-
-                    {{-- Essential badge --}}
-                    <flux:table.cell>
                         @if ($category->is_essential)
                             <flux:badge color="amber" size="sm">essential</flux:badge>
-                        @else
-                            <span class="text-zinc-300 dark:text-zinc-600">&mdash;</span>
                         @endif
-                    </flux:table.cell>
-
-                    {{-- Avg spend --}}
-                    <flux:table.cell align="end">
-                        ${{ number_format($category->avg_spend, 2) }}
-                    </flux:table.cell>
-
-                    {{-- Trend --}}
-                    <flux:table.cell align="center">
                         @if ($category->trend === 'up')
-                            <flux:icon.trending-up class="size-4 text-red-500 mx-auto" />
+                            <flux:icon.trending-up class="size-3.5 text-red-500" />
                         @elseif ($category->trend === 'down')
-                            <flux:icon.trending-down class="size-4 text-emerald-500 mx-auto" />
-                        @else
-                            <flux:icon.minus class="size-4 text-zinc-400 dark:text-zinc-500 mx-auto" />
+                            <flux:icon.trending-down class="size-3.5 text-emerald-500" />
                         @endif
-                    </flux:table.cell>
-
-                    {{-- Actions --}}
-                    <flux:table.cell align="end">
-                        <div class="flex items-center justify-end gap-1">
-                            <flux:button
-                                wire:click="edit({{ $category->id }})"
-                                variant="subtle"
-                                size="xs"
-                                icon="pencil"
-                                title="Edit"
-                            />
-                            <flux:button
-                                wire:click="delete({{ $category->id }})"
-                                wire:confirm="Delete '{{ $category->name }}'? Transactions using this category will become uncategorized."
-                                variant="subtle"
-                                size="xs"
-                                icon="trash-2"
-                                title="Delete"
-                            />
-                        </div>
-                    </flux:table.cell>
-                </flux:table.row>
-            @empty
-                <flux:table.row>
-                    <flux:table.cell colspan="7" class="text-center py-8">
-                        <flux:text>No categories yet.</flux:text>
-                    </flux:table.cell>
-                </flux:table.row>
-            @endforelse
-        </flux:table.rows>
-    </flux:table>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="text-center py-8">
+                <flux:text>No categories yet.</flux:text>
+            </div>
+        @endforelse
+    </div>
 
     {{-- Category Editor Modal --}}
     <flux:modal name="category-editor" class="md:w-96">
@@ -277,7 +288,7 @@ new class extends Component {
 
             <flux:field>
                 <flux:label>Budget Bucket</flux:label>
-                <div class="grid grid-cols-3 gap-2">
+                <div class="grid grid-cols-3 gap-2 sm:grid-cols-5">
                     @foreach (App\Enums\BudgetBucket::cases() as $bucket)
                         @php
                             $isSelected = $defaultBucket === $bucket->value;
@@ -291,6 +302,12 @@ new class extends Component {
                                 'savings' => $isSelected
                                     ? 'bg-emerald-50 dark:bg-emerald-900/30 border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300'
                                     : 'border-zinc-200 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 hover:border-emerald-200 dark:hover:border-emerald-800',
+                                'income' => $isSelected
+                                    ? 'bg-sky-50 dark:bg-sky-900/30 border-sky-300 dark:border-sky-700 text-sky-700 dark:text-sky-300'
+                                    : 'border-zinc-200 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 hover:border-sky-200 dark:hover:border-sky-800',
+                                'transfer' => $isSelected
+                                    ? 'bg-zinc-100 dark:bg-zinc-800 border-zinc-400 dark:border-zinc-600 text-zinc-700 dark:text-zinc-300'
+                                    : 'border-zinc-200 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 hover:border-zinc-300 dark:hover:border-zinc-600',
                             };
                         @endphp
                         <button
