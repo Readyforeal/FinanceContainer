@@ -10,7 +10,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @fluxAppearance
 </head>
-<body class="min-h-screen bg-white dark:bg-zinc-800">
+<body class="min-h-screen bg-gradient-to-br from-white to-zinc-100 dark:from-zinc-800 dark:to-zinc-900">
     <flux:sidebar sticky collapsible="mobile" class="border-r border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
         <flux:sidebar.header>
             <flux:sidebar.brand name="Better With 90" href="/dashboard" wire:navigate>
