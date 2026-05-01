@@ -97,12 +97,23 @@ new class extends Component {
 
         $spendingBuckets = array_filter(BudgetBucket::cases(), fn ($b) => $b->isSpending());
 
+        // Actual income for the viewed month
+        $actualIncome = (float) Transaction::whereYear('date', $monthDate->year)
+            ->whereMonth('date', $monthDate->month)
+            ->where('budget_bucket', 'income')
+            ->where('amount', '>', 0)
+            ->sum('amount');
+
+        $incomeBase = $actualIncome > 0 ? $actualIncome : $totalMonthlyIncome;
+
         $bucketTotals = [];
         foreach ($spendingBuckets as $bucket) {
             $bucketBudgets = $budgets->where('bucket', $bucket);
+            $spent = $bucketBudgets->sum('spent');
             $bucketTotals[$bucket->value] = [
                 'budgeted' => $bucketBudgets->sum('budgeted_amount'),
-                'spent' => $bucketBudgets->sum('spent'),
+                'spent' => $spent,
+                'actualPct' => $incomeBase > 0 ? round($spent / $incomeBase * 100, 1) : 0,
             ];
         }
 
@@ -170,6 +181,11 @@ new class extends Component {
                         @endif
                         <flux:heading size="sm" class="capitalize">{{ $bucket->value }}</flux:heading>
                         <flux:text size="sm" class="text-zinc-400 dark:text-zinc-500">({{ $target }}% target)</flux:text>
+                        @if ($bucketData['actualPct'] > 0)
+                            <flux:badge :color="$bucketData['actualPct'] > $target ? 'red' : 'green'" size="sm">
+                                {{ $bucketData['actualPct'] }}% actual
+                            </flux:badge>
+                        @endif
                     </div>
                     <flux:text size="sm" class="font-medium">
                         ${{ number_format($bucketData['budgeted'], 2) }} budgeted
