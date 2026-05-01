@@ -276,11 +276,10 @@ new class extends Component {
 
     {{-- Floating mobile Add Budget button --}}
     <div class="fixed bottom-16 left-3 right-3 z-30 lg:hidden">
-        <div class="bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl shadow-lg rounded-xl border border-zinc-200/50 dark:border-zinc-700/50 p-2">
-            <flux:button wire:click="openCreateModal" variant="primary" icon="plus" class="w-full" size="sm">
-                Add Budget
-            </flux:button>
-        </div>
+        <button wire:click="openCreateModal" class="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl text-sm font-medium text-white bg-zinc-900/50 dark:bg-zinc-100/50 backdrop-blur-xl shadow-lg">
+            <flux:icon.plus variant="mini" />
+            Add Budget
+        </button>
     </div>
 
     {{-- Budget editor modal --}}
