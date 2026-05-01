@@ -1,5 +1,8 @@
+/vendor/
+/node_modules/
+.env
+.env.backup
 .superpowers/
-steward/vendor/
-steward/node_modules/
-steward/.env
 .playwright-mcp/
+/storage/*.key
+/storage/framework/views/*.php
