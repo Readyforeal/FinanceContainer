@@ -194,15 +194,13 @@ MAIL_FROM_ADDRESS="steward@localhost"
 MAIL_FROM_NAME="Better With 90"
 ENVFILE
 
-# Generate app key before anything else
-php artisan key:generate --force
+# Install PHP dependencies FIRST (artisan needs vendor/autoload.php)
+composer install --no-dev --optimize-autoloader --no-interaction
 
-# Clear any cached config to ensure .env is read fresh
+# Now we can use artisan
+php artisan key:generate --force
 php artisan config:clear
 php artisan cache:clear 2>/dev/null || true
-
-# Install PHP dependencies
-composer install --no-dev --optimize-autoloader --no-interaction
 
 # Install and build frontend
 npm ci
