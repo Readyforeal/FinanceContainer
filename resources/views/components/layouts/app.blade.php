@@ -5,27 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title ?? 'StewardAI' }}</title>
-    <script>
-        (function() {
-            const theme = localStorage.getItem('theme') || 'system';
-            const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-            document.documentElement.classList.toggle('dark', isDark);
-        })();
-    </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @fluxAppearance
 </head>
-<body class="text-zinc-900 dark:text-zinc-100 antialiased bg-gradient-to-br from-zinc-50 to-zinc-200 dark:from-zinc-900 dark:to-zinc-950 min-h-screen">
-    <div class="flex min-h-screen">
-        @persist('sidebar')
-            <livewire:layout.sidebar />
-        @endpersist
-        <main class="flex-1 p-4 pb-24 lg:p-8 lg:pb-8 overflow-auto">
-            {{ $slot }}
-        </main>
-    </div>
+<body class="min-h-screen bg-white dark:bg-zinc-800">
+    <flux:sidebar sticky collapsible="mobile" class="border-r border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
+        <flux:sidebar.header>
+            <flux:sidebar.brand name="Better With 90" class="text-lg font-semibold tracking-tight" />
+            <flux:sidebar.collapse class="lg:hidden" />
+        </flux:sidebar.header>
 
-    @persist('mobile-dock')
-        <livewire:layout.mobile-dock />
-    @endpersist
+        <flux:sidebar.nav>
+            <flux:sidebar.item icon="layout-dashboard" href="/dashboard" wire:navigate>Dashboard</flux:sidebar.item>
+            <flux:sidebar.item icon="arrow-left-right" href="/transactions" wire:navigate>Transactions</flux:sidebar.item>
+            <flux:sidebar.item icon="wallet" href="/budgets" wire:navigate>Budgets</flux:sidebar.item>
+            <flux:sidebar.item icon="tags" href="/categories" wire:navigate>Categories</flux:sidebar.item>
+            <flux:sidebar.item icon="landmark" href="/accounts" wire:navigate>Accounts</flux:sidebar.item>
+            <flux:sidebar.item icon="file-text" href="/summaries" wire:navigate>Summaries</flux:sidebar.item>
+            <flux:sidebar.item icon="target" href="/goals" wire:navigate>Goals</flux:sidebar.item>
+            <flux:sidebar.item icon="message-square" href="/chat" wire:navigate>Chat</flux:sidebar.item>
+        </flux:sidebar.nav>
+
+        <flux:spacer />
+
+        <flux:sidebar.nav>
+            <flux:sidebar.item icon="user" href="/profile" wire:navigate>Profile</flux:sidebar.item>
+            <flux:sidebar.item icon="settings" href="/settings" wire:navigate>Settings</flux:sidebar.item>
+        </flux:sidebar.nav>
+
+        <div class="px-4 py-2">
+            <flux:dropdown x-data align="start" position="top">
+                <flux:button variant="subtle" size="sm" class="w-full justify-start" icon="sun">Appearance</flux:button>
+                <flux:menu>
+                    <flux:menu.item icon="sun" x-on:click="$flux.appearance = 'light'">Light</flux:menu.item>
+                    <flux:menu.item icon="moon" x-on:click="$flux.appearance = 'dark'">Dark</flux:menu.item>
+                    <flux:menu.item icon="monitor" x-on:click="$flux.appearance = 'system'">System</flux:menu.item>
+                </flux:menu>
+            </flux:dropdown>
+        </div>
+
+        <flux:separator />
+
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <flux:sidebar.item icon="log-out" type="submit">Sign Out</flux:sidebar.item>
+        </form>
+    </flux:sidebar>
+
+    <flux:header class="lg:hidden">
+        <flux:sidebar.toggle class="lg:hidden" icon="menu" inset="left" />
+        <flux:spacer />
+        <flux:dropdown x-data align="end">
+            <flux:button variant="subtle" square icon="sun" aria-label="Appearance" />
+            <flux:menu>
+                <flux:menu.item icon="sun" x-on:click="$flux.appearance = 'light'">Light</flux:menu.item>
+                <flux:menu.item icon="moon" x-on:click="$flux.appearance = 'dark'">Dark</flux:menu.item>
+                <flux:menu.item icon="monitor" x-on:click="$flux.appearance = 'system'">System</flux:menu.item>
+            </flux:menu>
+        </flux:dropdown>
+    </flux:header>
+
+    <flux:main>
+        {{ $slot }}
+    </flux:main>
+
+    @fluxScripts
 </body>
 </html>
