@@ -13,8 +13,8 @@ class extends Component {
 
 <div>
     <div class="mb-6">
-        <h1 class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">Settings</h1>
-        <p class="text-zinc-500 dark:text-zinc-400 mt-1">Configure your StewardAI preferences.</p>
+        <flux:heading size="xl">Settings</flux:heading>
+        <flux:text class="mt-1">Configure your StewardAI preferences.</flux:text>
     </div>
 
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">

@@ -45,69 +45,61 @@ new class extends Component {
 ?>
 
 <div>
-    <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-4">Sync Schedule</h2>
+    <flux:heading size="lg" class="mb-4">Sync Schedule</flux:heading>
 
     <form wire:submit="save" class="space-y-6">
         {{-- Time of Day --}}
-        <div class="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-300 dark:border-zinc-700 p-5">
+        <flux:card class="p-5">
             <div class="flex items-center gap-2 mb-4">
-                <x-lucide-clock class="w-5 h-5 text-indigo-400" />
-                <h3 class="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Daily Sync Time</h3>
+                <flux:icon.clock class="size-5 text-indigo-400" />
+                <flux:heading size="sm">Daily Sync Time</flux:heading>
             </div>
-            <p class="text-xs text-zinc-400 dark:text-zinc-500 mb-4">Transactions will be automatically synced at this time each day.</p>
+            <flux:text size="xs" class="mb-4">Transactions will be automatically synced at this time each day.</flux:text>
 
             <div class="flex items-center gap-3">
                 <div>
-                    <label class="block text-xs text-zinc-500 dark:text-zinc-400 mb-1">Hour</label>
-                    <select
-                        wire:model="hour"
-                        class="bg-white dark:bg-zinc-700 border border-zinc-300 dark:border-zinc-600 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg px-3 py-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    >
+                    <flux:select wire:model="hour" label="Hour">
                         @for ($h = 0; $h < 24; $h++)
-                            <option value="{{ $h }}">{{ str_pad($h, 2, '0', STR_PAD_LEFT) }}</option>
+                            <flux:select.option value="{{ $h }}">{{ str_pad($h, 2, '0', STR_PAD_LEFT) }}</flux:select.option>
                         @endfor
-                    </select>
-                    @error('hour') <p class="text-red-400 text-xs mt-1">{{ $message }}</p> @enderror
+                    </flux:select>
+                    @error('hour') <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text> @enderror
                 </div>
 
                 <span class="text-zinc-500 dark:text-zinc-400 mt-5">:</span>
 
                 <div>
-                    <label class="block text-xs text-zinc-500 dark:text-zinc-400 mb-1">Minute</label>
-                    <select
-                        wire:model="minute"
-                        class="bg-white dark:bg-zinc-700 border border-zinc-300 dark:border-zinc-600 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg px-3 py-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    >
+                    <flux:select wire:model="minute" label="Minute">
                         @foreach ([0, 15, 30, 45] as $m)
-                            <option value="{{ $m }}">{{ str_pad($m, 2, '0', STR_PAD_LEFT) }}</option>
-                        @endforeach
-                    </select>
-                    @error('minute') <p class="text-red-400 text-xs mt-1">{{ $message }}</p> @enderror
+                            <flux:select.option value="{{ $m }}">{{ str_pad($m, 2, '0', STR_PAD_LEFT) }}</flux:select.option>
+                        @endfor
+                    </flux:select>
+                    @error('minute') <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text> @enderror
                 </div>
 
-                <div class="mt-5 text-sm text-zinc-500 dark:text-zinc-400">
+                <flux:text size="sm" class="mt-5">
                     ({{ str_pad($hour, 2, '0', STR_PAD_LEFT) }}:{{ str_pad($minute, 2, '0', STR_PAD_LEFT) }} UTC)
-                </div>
+                </flux:text>
             </div>
-        </div>
+        </flux:card>
 
         {{-- Confidence Threshold --}}
-        <div class="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-300 dark:border-zinc-700 p-5">
+        <flux:card class="p-5">
             <div class="flex items-center gap-2 mb-4">
-                <x-lucide-sliders-horizontal class="w-5 h-5 text-indigo-400" />
-                <h3 class="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Categorization Confidence Threshold</h3>
+                <flux:icon.sliders-horizontal class="size-5 text-indigo-400" />
+                <flux:heading size="sm">Categorization Confidence Threshold</flux:heading>
             </div>
-            <p class="text-xs text-zinc-400 dark:text-zinc-500 mb-4">
+            <flux:text size="xs" class="mb-4">
                 Transactions with confidence below this threshold will be flagged for manual review.
-            </p>
+            </flux:text>
 
             <div class="space-y-3">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs text-zinc-500 dark:text-zinc-400">50%</span>
+                    <flux:text size="xs">50%</flux:text>
                     <span class="text-sm font-semibold text-indigo-400">
                         {{ number_format($confidenceThreshold * 100, 0) }}%
                     </span>
-                    <span class="text-xs text-zinc-500 dark:text-zinc-400">100%</span>
+                    <flux:text size="xs">100%</flux:text>
                 </div>
 
                 <input
@@ -119,21 +111,18 @@ new class extends Component {
                     class="w-full h-2 bg-zinc-200 dark:bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
                 />
 
-                @error('confidenceThreshold') <p class="text-red-400 text-xs mt-1">{{ $message }}</p> @enderror
+                @error('confidenceThreshold') <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text> @enderror
             </div>
-        </div>
+        </flux:card>
 
         <div class="flex items-center gap-4">
-            <button
-                type="submit"
-                class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-6 py-2 rounded-lg transition-colors"
-            >
+            <flux:button type="submit" variant="primary">
                 Save Settings
-            </button>
+            </flux:button>
 
             @if ($saved)
                 <span class="flex items-center gap-1 text-sm text-green-400">
-                    <x-lucide-check-circle class="w-4 h-4" />
+                    <flux:icon.circle-check class="size-4" />
                     Saved!
                 </span>
             @endif
