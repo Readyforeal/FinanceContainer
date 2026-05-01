@@ -124,6 +124,7 @@ new class extends Component {
         return compact(
             'budgets',
             'totalMonthlyIncome',
+            'incomeBase',
             'totalBudgeted',
             'overIncome',
             'bucketTotals',
@@ -179,11 +180,19 @@ new class extends Component {
                         @else
                             <flux:icon.piggy-bank variant="mini" class="text-zinc-500 dark:text-zinc-400" />
                         @endif
+                        @php
+                            $budgetedPct = $incomeBase > 0 ? round($bucketData['budgeted'] / $incomeBase * 100, 1) : 0;
+                        @endphp
                         <flux:heading size="sm" class="capitalize">{{ $bucket->value }}</flux:heading>
                         <flux:text size="sm" class="text-zinc-400 dark:text-zinc-500">({{ $target }}% target)</flux:text>
+                        @if ($budgetedPct > 0)
+                            <flux:badge :color="$budgetedPct > $target ? 'red' : 'zinc'" size="sm">
+                                {{ $budgetedPct }}% budgeted
+                            </flux:badge>
+                        @endif
                         @if ($bucketData['actualPct'] > 0)
                             <flux:badge :color="$bucketData['actualPct'] > $target ? 'red' : 'green'" size="sm">
-                                {{ $bucketData['actualPct'] }}% actual
+                                {{ $bucketData['actualPct'] }}% spent
                             </flux:badge>
                         @endif
                     </div>
