@@ -173,7 +173,7 @@ new class extends Component {
                     Budgets exceed income &mdash; over by ${{ number_format($totalBudgeted - $totalMonthlyIncome, 2) }}
                 </flux:callout>
             @endif
-            <flux:button wire:click="openCreateModal" variant="primary" icon="plus">Add Budget</flux:button>
+            <flux:button wire:click="openCreateModal" variant="primary" icon="plus" class="hidden lg:inline-flex">Add Budget</flux:button>
         </div>
     </div>
 
@@ -270,6 +270,15 @@ new class extends Component {
                 </flux:card>
             </div>
         @endforeach
+    </div>
+
+    {{-- Floating mobile Add Budget button --}}
+    <div class="fixed bottom-16 left-3 right-3 z-30 lg:hidden">
+        <div class="bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl shadow-lg rounded-xl border border-zinc-200/50 dark:border-zinc-700/50 p-2">
+            <flux:button wire:click="openCreateModal" variant="primary" icon="plus" class="w-full" size="sm">
+                Add Budget
+            </flux:button>
+        </div>
     </div>
 
     {{-- Budget editor modal --}}
