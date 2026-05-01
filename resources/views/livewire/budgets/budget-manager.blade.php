@@ -275,7 +275,7 @@ new class extends Component {
     </div>
 
     {{-- Floating mobile Add Budget button --}}
-    <div class="fixed bottom-16 left-3 right-3 z-30 lg:hidden">
+    <div class="fixed bottom-20 left-3 right-3 z-30 lg:hidden">
         <button wire:click="openCreateModal" class="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl text-sm font-medium text-white bg-zinc-900/50 dark:bg-zinc-100/50 backdrop-blur-xl shadow-lg">
             <flux:icon.plus variant="mini" />
             Add Budget
