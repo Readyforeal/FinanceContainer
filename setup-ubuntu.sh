@@ -152,19 +152,34 @@ sudo chmod -R 775 $APP_DIR/storage $APP_DIR/bootstrap/cache
 
 # Configure .env FIRST (before any artisan or composer commands)
 cd $APP_DIR
-cp .env.example .env
 
-# Update .env with actual values
-sed -i "s|APP_ENV=local|APP_ENV=production|" .env
-sed -i "s|APP_DEBUG=true|APP_DEBUG=false|" .env
-sed -i "s|APP_URL=http://localhost|APP_URL=http://$APP_DOMAIN|" .env
-sed -i "s|DB_HOST=postgres|DB_HOST=127.0.0.1|" .env
-sed -i "s|DB_PASSWORD=steward_secret|DB_PASSWORD=$DB_PASS|" .env
-sed -i "s|REDIS_HOST=redis|REDIS_HOST=127.0.0.1|" .env
-sed -i "s|OLLAMA_HOST=http://ollama:11434|OLLAMA_HOST=http://127.0.0.1:11434|" .env
+cat > .env <<ENVFILE
+APP_NAME="Better With 90"
+APP_ENV=production
+APP_KEY=
+APP_DEBUG=false
+APP_URL=http://$APP_DOMAIN
 
-# Remove the dev OLLAMA_MODEL line if present (will use default from config — the big model)
-sed -i "/OLLAMA_MODEL=llama3.2:3b/d" .env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=$DB_NAME
+DB_USERNAME=$DB_USER
+DB_PASSWORD=$DB_PASS
+
+REDIS_HOST=127.0.0.1
+REDIS_PORT=6379
+
+CACHE_STORE=redis
+SESSION_DRIVER=redis
+QUEUE_CONNECTION=redis
+
+OLLAMA_HOST=http://127.0.0.1:11434
+
+MAIL_MAILER=log
+MAIL_FROM_ADDRESS="steward@localhost"
+MAIL_FROM_NAME="Better With 90"
+ENVFILE
 
 # Generate app key before anything else
 php artisan key:generate --force
