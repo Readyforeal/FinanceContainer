@@ -11,7 +11,11 @@
 <body class="min-h-screen bg-white dark:bg-zinc-800">
     <flux:sidebar sticky collapsible="mobile" class="border-r border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
         <flux:sidebar.header>
-            <flux:sidebar.brand name="Better With 90" class="text-lg font-semibold tracking-tight" />
+            <flux:sidebar.brand name="Better With 90" href="/dashboard" wire:navigate>
+                <x-slot name="logo">
+                    <flux:icon.hand-coins class="size-6" />
+                </x-slot>
+            </flux:sidebar.brand>
             <flux:sidebar.collapse class="lg:hidden" />
         </flux:sidebar.header>
 
