@@ -29,33 +29,32 @@ class AccountListTest extends TestCase
             ->assertSee('1,234.56');
     }
 
-    public function test_shows_plaid_link_when_no_connections(): void
+    public function test_shows_add_account_when_no_accounts(): void
     {
         $user = User::factory()->create();
 
         Livewire::actingAs($user)
             ->test('accounts.account-list')
-            ->assertSeeLivewire('plaid.plaid-link');
+            ->assertSee('No Accounts Yet')
+            ->assertSee('Add Account');
     }
 
-    public function test_refreshes_on_plaid_connected_event(): void
+    public function test_refreshes_on_account_created_event(): void
     {
         $user = User::factory()->create();
 
         $component = Livewire::actingAs($user)
             ->test('accounts.account-list');
 
-        // No connections initially
-        $component->assertSeeLivewire('plaid.plaid-link');
+        $component->assertSee('No Accounts Yet');
 
-        // Simulate a connection being created and event dispatched
         $connection = PlaidConnection::factory()->create();
         Account::factory()->create([
             'plaid_connection_id' => $connection->id,
             'name' => 'New Account',
         ]);
 
-        $component->dispatch('plaid-connected')
+        $component->dispatch('account-created')
             ->assertSee('New Account');
     }
 }
