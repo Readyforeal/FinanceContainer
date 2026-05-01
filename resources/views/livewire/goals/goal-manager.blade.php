@@ -114,24 +114,24 @@ new class extends Component {
 
     {{-- Summary Bar --}}
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
-            <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Active Goals</p>
-            <p class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">{{ $activeGoals->count() }}</p>
-        </div>
-        <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
-            <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Total Targeted</p>
-            <p class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">${{ number_format($totalTargeted, 2) }}</p>
-        </div>
-        <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
-            <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Total Saved</p>
-            <p class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">${{ number_format($totalSaved, 2) }}</p>
-        </div>
-        <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
-            <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Overall Progress</p>
-            <p class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+        <flux:card class="p-5">
+            <flux:text size="sm" class="mb-1">Active Goals</flux:text>
+            <flux:heading size="xl">{{ $activeGoals->count() }}</flux:heading>
+        </flux:card>
+        <flux:card class="p-5">
+            <flux:text size="sm" class="mb-1">Total Targeted</flux:text>
+            <flux:heading size="xl">${{ number_format($totalTargeted, 2) }}</flux:heading>
+        </flux:card>
+        <flux:card class="p-5">
+            <flux:text size="sm" class="mb-1">Total Saved</flux:text>
+            <flux:heading size="xl">${{ number_format($totalSaved, 2) }}</flux:heading>
+        </flux:card>
+        <flux:card class="p-5">
+            <flux:text size="sm" class="mb-1">Overall Progress</flux:text>
+            <flux:heading size="xl">
                 {{ $totalTargeted > 0 ? round(($totalSaved / $totalTargeted) * 100, 1) : 0 }}%
-            </p>
-        </div>
+            </flux:heading>
+        </flux:card>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -141,37 +141,23 @@ new class extends Component {
 
             {{-- Active Goals --}}
             @forelse ($activeGoals as $goal)
-                <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
+                <flux:card class="p-5">
                     <div class="flex items-start justify-between mb-3">
                         <div class="flex-1 min-w-0">
                             <div class="flex items-center gap-2 flex-wrap">
-                                <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{{ $goal->name }}</h3>
-                                <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium
-                                    {{ $goal->priority === 'high' ? 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400' : '' }}
-                                    {{ $goal->priority === 'medium' ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400' : '' }}
-                                    {{ $goal->priority === 'low' ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' : '' }}
-                                ">
+                                <flux:heading size="sm">{{ $goal->name }}</flux:heading>
+                                <flux:badge :color="match($goal->priority) { 'high' => 'red', 'medium' => 'amber', 'low' => 'blue', default => 'zinc' }" size="sm">
                                     {{ ucfirst($goal->priority) }}
-                                </span>
+                                </flux:badge>
                             </div>
                             @if ($goal->target_date)
-                                <p class="text-xs text-zinc-400 dark:text-zinc-500 mt-0.5">Target: {{ $goal->target_date->format('M Y') }}</p>
+                                <flux:text size="sm" class="mt-0.5">Target: {{ $goal->target_date->format('M Y') }}</flux:text>
                             @endif
                         </div>
                         <div class="flex items-center gap-1 ml-2 flex-shrink-0">
-                            <button wire:click="edit({{ $goal->id }})"
-                                class="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                                <x-lucide-pencil class="w-4 h-4" />
-                            </button>
-                            <button wire:click="toggleComplete({{ $goal->id }})"
-                                class="p-1.5 rounded-lg text-zinc-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                                <x-lucide-check class="w-4 h-4" />
-                            </button>
-                            <button wire:click="delete({{ $goal->id }})"
-                                wire:confirm="Delete this goal?"
-                                class="p-1.5 rounded-lg text-zinc-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                                <x-lucide-trash-2 class="w-4 h-4" />
-                            </button>
+                            <flux:button wire:click="edit({{ $goal->id }})" variant="ghost" size="sm" icon="pencil" />
+                            <flux:button wire:click="toggleComplete({{ $goal->id }})" variant="ghost" size="sm" icon="check" class="hover:text-green-600 dark:hover:text-green-400" />
+                            <flux:button wire:click="delete({{ $goal->id }})" wire:confirm="Delete this goal?" variant="ghost" size="sm" icon="trash-2" class="hover:text-red-600 dark:hover:text-red-400" />
                         </div>
                     </div>
 
@@ -190,35 +176,35 @@ new class extends Component {
                     {{-- Amounts row --}}
                     <div class="grid grid-cols-3 gap-3 text-center">
                         <div>
-                            <p class="text-xs text-zinc-400 dark:text-zinc-500">Target</p>
-                            <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100">${{ number_format($goal->target_amount, 2) }}</p>
+                            <flux:text size="sm">Target</flux:text>
+                            <flux:text class="font-semibold">${{ number_format($goal->target_amount, 2) }}</flux:text>
                         </div>
                         <div>
-                            <p class="text-xs text-zinc-400 dark:text-zinc-500">Saved</p>
-                            <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100">${{ number_format($goal->current_amount, 2) }}</p>
+                            <flux:text size="sm">Saved</flux:text>
+                            <flux:text class="font-semibold">${{ number_format($goal->current_amount, 2) }}</flux:text>
                         </div>
                         <div>
-                            <p class="text-xs text-zinc-400 dark:text-zinc-500">Remaining</p>
-                            <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100">${{ number_format($goal->remaining(), 2) }}</p>
+                            <flux:text size="sm">Remaining</flux:text>
+                            <flux:text class="font-semibold">${{ number_format($goal->remaining(), 2) }}</flux:text>
                         </div>
                     </div>
 
                     @if ($goal->target_date && $goal->monthlySavingsNeeded() !== null)
-                        <p class="text-xs text-zinc-400 dark:text-zinc-500 mt-3">
+                        <flux:text size="sm" class="mt-3">
                             Save ${{ number_format($goal->monthlySavingsNeeded(), 2) }}/mo to reach goal by {{ $goal->target_date->format('M Y') }}
-                        </p>
+                        </flux:text>
                     @endif
 
                     @if ($goal->notes)
-                        <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-2 italic">{{ $goal->notes }}</p>
+                        <flux:text size="sm" class="mt-2 italic">{{ $goal->notes }}</flux:text>
                     @endif
-                </div>
+                </flux:card>
             @empty
-                <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 text-center">
-                    <x-lucide-target class="w-10 h-10 text-zinc-300 dark:text-zinc-700 mx-auto mb-3" />
-                    <p class="text-zinc-500 dark:text-zinc-400 text-sm">No active goals yet</p>
-                    <p class="text-zinc-400 dark:text-zinc-500 text-xs mt-1">Add a goal using the form</p>
-                </div>
+                <flux:card class="p-5 text-center">
+                    <flux:icon.target class="size-10 text-zinc-300 dark:text-zinc-700 mx-auto mb-3" />
+                    <flux:text>No active goals yet</flux:text>
+                    <flux:text size="sm" class="mt-1">Add a goal using the form</flux:text>
+                </flux:card>
             @endforelse
 
             {{-- Completed Goals Toggle --}}
@@ -226,35 +212,30 @@ new class extends Component {
                 <div>
                     <button wire:click="$toggle('showCompleted')"
                         class="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">
-                        <x-lucide-chevron-right class="w-4 h-4 transition-transform {{ $showCompleted ? 'rotate-90' : '' }}" />
+                        <flux:icon.chevron-right variant="mini" class="transition-transform {{ $showCompleted ? 'rotate-90' : '' }}" />
                         {{ $showCompleted ? 'Hide' : 'Show' }} completed goals ({{ $completedGoals->count() }})
                     </button>
 
                     @if ($showCompleted)
                         <div class="mt-3 space-y-3">
                             @foreach ($completedGoals as $goal)
-                                <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 p-4 opacity-75">
+                                <flux:card class="p-4 opacity-75">
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-center gap-2">
-                                            <x-lucide-check-circle class="w-4 h-4 text-green-500" />
-                                            <span class="text-sm font-medium text-zinc-700 dark:text-zinc-300">{{ $goal->name }}</span>
+                                            <flux:icon.circle-check variant="mini" class="text-green-500" />
+                                            <flux:text class="font-medium">{{ $goal->name }}</flux:text>
                                         </div>
                                         <div class="flex items-center gap-1">
-                                            <button wire:click="toggleComplete({{ $goal->id }})"
-                                                class="p-1.5 rounded-lg text-zinc-400 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-xs">
+                                            <flux:button wire:click="toggleComplete({{ $goal->id }})" variant="ghost" size="sm">
                                                 Reopen
-                                            </button>
-                                            <button wire:click="delete({{ $goal->id }})"
-                                                wire:confirm="Delete this goal?"
-                                                class="p-1.5 rounded-lg text-zinc-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                                                <x-lucide-trash-2 class="w-4 h-4" />
-                                            </button>
+                                            </flux:button>
+                                            <flux:button wire:click="delete({{ $goal->id }})" wire:confirm="Delete this goal?" variant="ghost" size="sm" icon="trash-2" class="hover:text-red-600 dark:hover:text-red-400" />
                                         </div>
                                     </div>
-                                    <p class="text-xs text-zinc-400 dark:text-zinc-500 mt-1">
+                                    <flux:text size="sm" class="mt-1">
                                         ${{ number_format($goal->target_amount, 2) }} target
-                                    </p>
-                                </div>
+                                    </flux:text>
+                                </flux:card>
                             @endforeach
                         </div>
                     @endif
@@ -264,70 +245,44 @@ new class extends Component {
         </div>
 
         {{-- Add / Edit Form --}}
-        <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 h-fit">
-            <h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
+        <flux:card class="p-5 h-fit">
+            <flux:heading size="sm" class="mb-4">
                 {{ $editingId ? 'Edit Goal' : 'Add Goal' }}
-            </h2>
+            </flux:heading>
 
             <form wire:submit="save" class="space-y-4">
 
-                <div>
-                    <label class="block text-xs font-medium text-zinc-700 dark:text-zinc-300 mb-1">Name</label>
-                    <input wire:model="name" type="text" placeholder="e.g. Emergency Fund"
-                        class="w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                    @error('name') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
-                </div>
+                <flux:input wire:model="name" label="Name" placeholder="e.g. Emergency Fund" />
+                @error('name') <flux:text class="text-red-500 text-xs">{{ $message }}</flux:text> @enderror
 
-                <div>
-                    <label class="block text-xs font-medium text-zinc-700 dark:text-zinc-300 mb-1">Target Amount ($)</label>
-                    <input wire:model="targetAmount" type="number" step="0.01" min="0.01" placeholder="10000"
-                        class="w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                    @error('targetAmount') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
-                </div>
+                <flux:input wire:model="targetAmount" label="Target Amount ($)" type="number" step="0.01" min="0.01" placeholder="10000" />
+                @error('targetAmount') <flux:text class="text-red-500 text-xs">{{ $message }}</flux:text> @enderror
 
-                <div>
-                    <label class="block text-xs font-medium text-zinc-700 dark:text-zinc-300 mb-1">Current Amount ($)</label>
-                    <input wire:model="currentAmount" type="number" step="0.01" min="0" placeholder="0"
-                        class="w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                </div>
+                <flux:input wire:model="currentAmount" label="Current Amount ($)" type="number" step="0.01" min="0" placeholder="0" />
 
-                <div>
-                    <label class="block text-xs font-medium text-zinc-700 dark:text-zinc-300 mb-1">Target Date</label>
-                    <input wire:model="targetDate" type="date"
-                        class="w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                </div>
+                <flux:input wire:model="targetDate" label="Target Date" type="date" />
 
-                <div>
-                    <label class="block text-xs font-medium text-zinc-700 dark:text-zinc-300 mb-1">Priority</label>
-                    <select wire:model="priority"
-                        class="w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="high">High</option>
-                        <option value="medium">Medium</option>
-                        <option value="low">Low</option>
-                    </select>
-                </div>
+                <flux:select wire:model="priority" label="Priority">
+                    <flux:select.option value="high">High</flux:select.option>
+                    <flux:select.option value="medium">Medium</flux:select.option>
+                    <flux:select.option value="low">Low</flux:select.option>
+                </flux:select>
 
-                <div>
-                    <label class="block text-xs font-medium text-zinc-700 dark:text-zinc-300 mb-1">Notes</label>
-                    <textarea wire:model="notes" rows="3" placeholder="Optional notes..."
-                        class="w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
-                </div>
+                <flux:textarea wire:model="notes" label="Notes" rows="3" placeholder="Optional notes..." />
 
                 <div class="flex gap-2">
-                    <button type="submit"
-                        class="flex-1 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors">
+                    <flux:button type="submit" variant="primary" class="flex-1">
                         {{ $editingId ? 'Update Goal' : 'Add Goal' }}
-                    </button>
+                    </flux:button>
                     @if ($editingId)
-                        <button type="button" wire:click="cancelEdit"
-                            class="rounded-lg border border-zinc-200 dark:border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors">
+                        <flux:button type="button" wire:click="cancelEdit" variant="subtle">
                             Cancel
-                        </button>
+                        </flux:button>
                     @endif
                 </div>
 
             </form>
-        </div>
+        </flux:card>
 
     </div>
 </div>

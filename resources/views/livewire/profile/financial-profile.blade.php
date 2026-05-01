@@ -104,58 +104,60 @@ new class extends Component {
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         {{-- Card 1: Income & Accounts --}}
-        <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
+        <flux:card class="p-5">
             <div class="flex items-center gap-2 mb-4">
-                <x-lucide-banknote class="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
-                <h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Income &amp; Accounts</h2>
+                <flux:icon.banknote variant="mini" class="text-zinc-400 dark:text-zinc-500" />
+                <flux:heading size="sm">Income &amp; Accounts</flux:heading>
             </div>
 
             <div class="mb-4">
-                <p class="text-xs font-medium text-zinc-500 dark:text-zinc-400 mb-2">Income Sources</p>
+                <flux:text size="sm" class="font-medium mb-2">Income Sources</flux:text>
                 @forelse ($incomeSources as $source)
                     <div class="flex justify-between items-center py-1.5 border-b border-zinc-100 dark:border-zinc-800 last:border-0">
-                        <span class="text-sm text-zinc-700 dark:text-zinc-300">{{ $source->name }}</span>
-                        <span class="text-sm text-zinc-600 dark:text-zinc-400">${{ number_format($source->monthlyAmount(), 2) }}/mo</span>
+                        <flux:text>{{ $source->name }}</flux:text>
+                        <flux:text>${{ number_format($source->monthlyAmount(), 2) }}/mo</flux:text>
                     </div>
                 @empty
-                    <p class="text-sm text-zinc-400 dark:text-zinc-500">No income sources configured</p>
+                    <flux:text size="sm">No income sources configured</flux:text>
                 @endforelse
 
                 <div class="flex justify-between items-center pt-2 mt-1">
-                    <span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Total Monthly</span>
-                    <span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">${{ number_format($totalMonthlyIncome, 2) }}</span>
+                    <flux:text class="font-semibold">Total Monthly</flux:text>
+                    <flux:text class="font-semibold">${{ number_format($totalMonthlyIncome, 2) }}</flux:text>
                 </div>
                 <div class="flex justify-between items-center mt-0.5">
-                    <span class="text-xs text-zinc-400 dark:text-zinc-500">Annual Income</span>
-                    <span class="text-xs text-zinc-500 dark:text-zinc-400">${{ number_format($annualIncome, 2) }}</span>
+                    <flux:text size="sm">Annual Income</flux:text>
+                    <flux:text size="sm">${{ number_format($annualIncome, 2) }}</flux:text>
                 </div>
             </div>
 
-            <div class="border-t border-zinc-100 dark:border-zinc-800 pt-4">
-                <p class="text-xs font-medium text-zinc-500 dark:text-zinc-400 mb-2">Account Balances</p>
+            <flux:separator />
+
+            <div class="pt-4">
+                <flux:text size="sm" class="font-medium mb-2">Account Balances</flux:text>
                 @forelse ($accounts as $account)
                     <div class="flex justify-between items-center py-1.5 border-b border-zinc-100 dark:border-zinc-800 last:border-0">
-                        <span class="text-sm text-zinc-700 dark:text-zinc-300">{{ $account->name }}</span>
-                        <span class="text-sm text-zinc-600 dark:text-zinc-400">${{ number_format($account->current_balance, 2) }}</span>
+                        <flux:text>{{ $account->name }}</flux:text>
+                        <flux:text>${{ number_format($account->current_balance, 2) }}</flux:text>
                     </div>
                 @empty
-                    <p class="text-sm text-zinc-400 dark:text-zinc-500">No accounts connected</p>
+                    <flux:text size="sm">No accounts connected</flux:text>
                 @endforelse
 
                 @if ($accounts->isNotEmpty())
                     <div class="flex justify-between items-center pt-2 mt-1">
-                        <span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Total Balance</span>
-                        <span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">${{ number_format($totalBalance, 2) }}</span>
+                        <flux:text class="font-semibold">Total Balance</flux:text>
+                        <flux:text class="font-semibold">${{ number_format($totalBalance, 2) }}</flux:text>
                     </div>
                 @endif
             </div>
-        </div>
+        </flux:card>
 
         {{-- Card 2: Monthly Budget --}}
-        <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
+        <flux:card class="p-5">
             <div class="flex items-center gap-2 mb-4">
-                <x-lucide-pie-chart class="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
-                <h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Monthly Budget</h2>
+                <flux:icon.chart-pie variant="mini" class="text-zinc-400 dark:text-zinc-500" />
+                <flux:heading size="sm">Monthly Budget</flux:heading>
             </div>
 
             @php
@@ -189,27 +191,29 @@ new class extends Component {
                 @endforeach
             </div>
 
-            <div class="border-t border-zinc-100 dark:border-zinc-800 pt-4">
+            <flux:separator />
+
+            <div class="pt-4">
                 <div class="flex justify-between items-center">
-                    <span class="text-sm text-zinc-600 dark:text-zinc-400">Monthly Net Position</span>
-                    <span class="text-sm font-semibold {{ $monthlyNetPosition >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400' }}">
+                    <flux:text>Monthly Net Position</flux:text>
+                    <flux:text class="font-semibold {{ $monthlyNetPosition >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400' }}">
                         {{ $monthlyNetPosition >= 0 ? '+' : '' }}${{ number_format(abs($monthlyNetPosition), 2) }}
-                    </span>
+                    </flux:text>
                 </div>
-                <p class="text-xs text-zinc-400 dark:text-zinc-500 mt-1">
+                <flux:text size="sm" class="mt-1">
                     {{ $monthlyNetPosition >= 0 ? 'Surplus' : 'Deficit' }} vs average monthly spending
-                </p>
+                </flux:text>
             </div>
-        </div>
+        </flux:card>
 
         {{-- Card 3: Goals Progress --}}
-        <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
+        <flux:card class="p-5">
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-2">
-                    <x-lucide-target class="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
-                    <h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Goals Progress</h2>
+                    <flux:icon.target variant="mini" class="text-zinc-400 dark:text-zinc-500" />
+                    <flux:heading size="sm">Goals Progress</flux:heading>
                 </div>
-                <a href="/goals" wire:navigate class="text-xs text-blue-500 hover:underline">View all</a>
+                <flux:link href="/goals" wire:navigate class="text-xs">View all</flux:link>
             </div>
 
             @forelse ($activeGoals as $goal)
@@ -224,11 +228,12 @@ new class extends Component {
                     </div>
                 </div>
             @empty
-                <p class="text-sm text-zinc-400 dark:text-zinc-500">No active goals</p>
+                <flux:text size="sm">No active goals</flux:text>
             @endforelse
 
             @if ($activeGoals->isNotEmpty())
-                <div class="border-t border-zinc-100 dark:border-zinc-800 pt-3 mt-3">
+                <flux:separator class="my-3" />
+                <div>
                     <div class="flex justify-between text-xs">
                         <span class="text-zinc-500 dark:text-zinc-400">Total Target</span>
                         <span class="text-zinc-700 dark:text-zinc-300">${{ number_format($totalGoalTarget, 2) }}</span>
@@ -239,31 +244,31 @@ new class extends Component {
                     </div>
                     <div class="flex justify-between text-xs mt-0.5">
                         <span class="text-zinc-500 dark:text-zinc-400">Overall</span>
-                        <span class="font-semibold text-zinc-900 dark:text-zinc-100">
+                        <flux:text class="font-semibold text-xs">
                             {{ $totalGoalTarget > 0 ? round($totalGoalSaved / $totalGoalTarget * 100, 1) : 0 }}%
-                        </span>
+                        </flux:text>
                     </div>
                 </div>
             @endif
-        </div>
+        </flux:card>
 
         {{-- Card 4: Annual Outlook --}}
-        <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
+        <flux:card class="p-5">
             <div class="flex items-center gap-2 mb-4">
-                <x-lucide-trending-up class="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
-                <h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Annual Outlook</h2>
+                <flux:icon.trending-up variant="mini" class="text-zinc-400 dark:text-zinc-500" />
+                <flux:heading size="sm">Annual Outlook</flux:heading>
             </div>
 
             <div class="space-y-3">
                 <div class="flex justify-between items-center py-2 border-b border-zinc-100 dark:border-zinc-800">
-                    <span class="text-sm text-zinc-600 dark:text-zinc-400">Annual Income</span>
-                    <span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">${{ number_format($annualIncome, 2) }}</span>
+                    <flux:text>Annual Income</flux:text>
+                    <flux:text class="font-semibold">${{ number_format($annualIncome, 2) }}</flux:text>
                 </div>
                 <div class="flex justify-between items-center py-2 border-b border-zinc-100 dark:border-zinc-800">
-                    <span class="text-sm text-zinc-600 dark:text-zinc-400">Projected Annual Savings</span>
-                    <span class="text-sm font-semibold {{ $projectedAnnualSavings >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400' }}">
+                    <flux:text>Projected Annual Savings</flux:text>
+                    <flux:text class="font-semibold {{ $projectedAnnualSavings >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400' }}">
                         {{ $projectedAnnualSavings >= 0 ? '+' : '' }}${{ number_format(abs($projectedAnnualSavings), 2) }}
-                    </span>
+                    </flux:text>
                 </div>
             </div>
 
@@ -274,7 +279,7 @@ new class extends Component {
             @endphp
 
             <div class="mt-4">
-                <p class="text-xs font-medium text-zinc-500 dark:text-zinc-400 mb-3">Projected Annual Breakdown (50/30/20 target)</p>
+                <flux:text size="sm" class="font-medium mb-3">Projected Annual Breakdown (50/30/20 target)</flux:text>
                 <div class="space-y-2">
                     <div class="flex justify-between text-xs">
                         <span class="text-zinc-600 dark:text-zinc-400">Needs ({{ $budgetRatios['needs'] ?? 50 }}%)</span>
@@ -292,16 +297,16 @@ new class extends Component {
             </div>
 
             <div class="mt-4 rounded-lg bg-zinc-50 dark:bg-zinc-800/50 px-3 py-2">
-                <p class="text-xs text-zinc-500 dark:text-zinc-400">
+                <flux:text size="sm">
                     At this rate,
                     @if ($projectedAnnualSavings >= 0)
                         you are on track to save ${{ number_format($projectedAnnualSavings, 2) }} this year.
                     @else
                         you are spending ${{ number_format(abs($projectedAnnualSavings), 2) }} more per year than you earn.
                     @endif
-                </p>
+                </flux:text>
             </div>
-        </div>
+        </flux:card>
 
     </div>
 </div>

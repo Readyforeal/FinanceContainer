@@ -29,22 +29,20 @@ new class extends Component {
 <div>
     {{-- Header --}}
     <div class="mb-6">
-        <h1 class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">Summaries</h1>
-        <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Your AI-generated financial summaries.</p>
+        <flux:heading size="xl">Summaries</flux:heading>
+        <flux:text size="sm" class="mt-1">Your AI-generated financial summaries.</flux:text>
     </div>
 
     {{-- Tab bar --}}
-    <div class="flex items-center gap-1 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-1 w-fit mb-6">
+    <div class="flex items-center gap-1 mb-6">
         @foreach (['daily' => 'Daily', 'weekly' => 'Weekly', 'monthly' => 'Monthly'] as $tab => $label)
-            <button
+            <flux:button
                 wire:click="setTab('{{ $tab }}')"
-                class="px-4 py-2 rounded-lg text-sm font-medium transition-colors
-                    {{ $activeTab === $tab
-                        ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100'
-                        : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200' }}"
+                :variant="$activeTab === $tab ? 'subtle' : 'ghost'"
+                size="sm"
             >
                 {{ $label }}
-            </button>
+            </flux:button>
         @endforeach
     </div>
 
@@ -56,39 +54,39 @@ new class extends Component {
             $wantsPct  = $total > 0 ? round($summary->wants_spent  / $total * 100) : 0;
             $savingsPct = $total > 0 ? round($summary->savings_spent / $total * 100) : 0;
         @endphp
-        <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 mb-4">
+        <flux:card class="p-5 mb-4">
             {{-- Period header --}}
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-2">
-                    <x-lucide-calendar class="w-4 h-4 text-zinc-400 dark:text-zinc-500 shrink-0" />
-                    <span class="font-semibold text-zinc-800 dark:text-zinc-200">
+                    <flux:icon.calendar variant="mini" class="text-zinc-400 dark:text-zinc-500" />
+                    <flux:text class="font-semibold">
                         @if ($summary->period_start->eq($summary->period_end))
                             {{ $summary->period_start->format('M j, Y') }}
                         @else
                             {{ $summary->period_start->format('M j') }} &ndash; {{ $summary->period_end->format('M j, Y') }}
                         @endif
-                    </span>
+                    </flux:text>
                 </div>
-                <span class="text-xs text-zinc-400 dark:text-zinc-500 capitalize">{{ $summary->type }}</span>
+                <flux:badge size="sm" color="zinc">{{ ucfirst($summary->type) }}</flux:badge>
             </div>
 
             {{-- Spending totals grid --}}
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
                 <div class="rounded-lg bg-zinc-50 dark:bg-zinc-800/50 p-3">
-                    <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Total</p>
-                    <p class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">${{ number_format($summary->total_spent, 2) }}</p>
+                    <flux:text size="sm" class="mb-1">Total</flux:text>
+                    <flux:text class="font-semibold">${{ number_format($summary->total_spent, 2) }}</flux:text>
                 </div>
                 <div class="rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3">
-                    <p class="text-xs text-blue-500 dark:text-blue-400 mb-1">Needs</p>
-                    <p class="text-sm font-semibold text-blue-700 dark:text-blue-300">${{ number_format($summary->needs_spent, 2) }}</p>
+                    <flux:text size="sm" class="text-blue-500 dark:text-blue-400 mb-1">Needs</flux:text>
+                    <flux:text class="font-semibold text-blue-700 dark:text-blue-300">${{ number_format($summary->needs_spent, 2) }}</flux:text>
                 </div>
                 <div class="rounded-lg bg-violet-50 dark:bg-violet-900/20 p-3">
-                    <p class="text-xs text-violet-500 dark:text-violet-400 mb-1">Wants</p>
-                    <p class="text-sm font-semibold text-violet-700 dark:text-violet-300">${{ number_format($summary->wants_spent, 2) }}</p>
+                    <flux:text size="sm" class="text-violet-500 dark:text-violet-400 mb-1">Wants</flux:text>
+                    <flux:text class="font-semibold text-violet-700 dark:text-violet-300">${{ number_format($summary->wants_spent, 2) }}</flux:text>
                 </div>
                 <div class="rounded-lg bg-emerald-50 dark:bg-emerald-900/20 p-3">
-                    <p class="text-xs text-emerald-500 dark:text-emerald-400 mb-1">Savings</p>
-                    <p class="text-sm font-semibold text-emerald-700 dark:text-emerald-300">${{ number_format($summary->savings_spent, 2) }}</p>
+                    <flux:text size="sm" class="text-emerald-500 dark:text-emerald-400 mb-1">Savings</flux:text>
+                    <flux:text class="font-semibold text-emerald-700 dark:text-emerald-300">${{ number_format($summary->savings_spent, 2) }}</flux:text>
                 </div>
             </div>
 
@@ -112,10 +110,10 @@ new class extends Component {
             @if ($summary->ai_analysis)
                 <div class="mb-3">
                     <div class="flex items-center gap-1.5 mb-1">
-                        <x-lucide-brain class="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500" />
-                        <span class="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">Analysis</span>
+                        <flux:icon.brain variant="mini" class="text-zinc-400 dark:text-zinc-500" />
+                        <flux:text size="sm" class="font-medium uppercase tracking-wide">Analysis</flux:text>
                     </div>
-                    <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">{{ $summary->ai_analysis }}</p>
+                    <flux:text class="leading-relaxed">{{ $summary->ai_analysis }}</flux:text>
                 </div>
             @endif
 
@@ -123,10 +121,10 @@ new class extends Component {
             @if ($summary->ai_advice)
                 <div class="mb-3">
                     <div class="flex items-center gap-1.5 mb-1">
-                        <x-lucide-lightbulb class="w-3.5 h-3.5 text-amber-500" />
-                        <span class="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">Advice</span>
+                        <flux:icon.lightbulb variant="mini" class="text-amber-500" />
+                        <flux:text size="sm" class="font-medium uppercase tracking-wide">Advice</flux:text>
                     </div>
-                    <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">{{ $summary->ai_advice }}</p>
+                    <flux:text class="leading-relaxed">{{ $summary->ai_advice }}</flux:text>
                 </div>
             @endif
 
@@ -134,19 +132,17 @@ new class extends Component {
             @if (! empty($summary->habit_flags))
                 <div class="flex flex-wrap gap-2 mt-3">
                     @foreach ($summary->habit_flags as $flag)
-                        <span class="inline-flex items-center rounded-full bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                            {{ $flag }}
-                        </span>
+                        <flux:badge size="sm" color="zinc">{{ $flag }}</flux:badge>
                     @endforeach
                 </div>
             @endif
-        </div>
+        </flux:card>
     @empty
-        <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-10 text-center">
-            <x-lucide-file-text class="w-10 h-10 text-zinc-300 dark:text-zinc-600 mx-auto mb-3" />
-            <p class="text-zinc-500 dark:text-zinc-400 font-medium">No summaries yet.</p>
-            <p class="text-sm text-zinc-400 dark:text-zinc-500 mt-1">They'll appear after your first daily sync.</p>
-        </div>
+        <flux:card class="p-10 text-center">
+            <flux:icon.file-text class="size-10 text-zinc-300 dark:text-zinc-600 mx-auto mb-3" />
+            <flux:text class="font-medium">No summaries yet.</flux:text>
+            <flux:text size="sm" class="mt-1">They'll appear after your first daily sync.</flux:text>
+        </flux:card>
     @endforelse
 
     {{-- Pagination --}}
