@@ -6,6 +6,7 @@ use App\Models\Budget;
 use App\Models\Category;
 use App\Models\IncomeSource;
 use App\Models\Transaction;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 new class extends Component {
@@ -29,6 +30,7 @@ new class extends Component {
         $this->viewingMonth = \Carbon\Carbon::createFromFormat('Y-m', $this->viewingMonth)->addMonth()->format('Y-m');
     }
 
+    #[On('dock-action')]
     public function openCreateModal(): void
     {
         $this->editingBudgetId = null;
@@ -131,7 +133,7 @@ new class extends Component {
 };
 ?>
 
-<div>
+<div x-data x-init="$store.dockAction = { icon: 'plus' }">
     {{-- Header --}}
     <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
@@ -295,14 +297,6 @@ new class extends Component {
                 </flux:card>
             </div>
         @endforeach
-    </div>
-
-    {{-- Floating mobile Add Budget button --}}
-    <div class="fixed bottom-20 right-3 z-30 lg:hidden">
-        <button wire:click="openCreateModal"
-            class="flex items-center justify-center size-12 rounded-full text-accent-foreground bg-accent/80 backdrop-blur-xl shadow-lg">
-            <flux:icon.plus variant="mini" />
-        </button>
     </div>
 
     {{-- Budget editor modal --}}

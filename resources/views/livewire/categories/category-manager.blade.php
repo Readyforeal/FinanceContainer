@@ -3,6 +3,7 @@
 use App\Enums\BudgetBucket;
 use App\Models\Category;
 use App\Models\Transaction;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 new class extends Component {
@@ -51,6 +52,7 @@ new class extends Component {
         $this->modal('category-editor')->show();
     }
 
+    #[On('dock-action')]
     public function openCreateModal(): void
     {
         $this->resetForm();
@@ -125,7 +127,7 @@ new class extends Component {
 };
 ?>
 
-<div>
+<div x-data x-init="$store.dockAction = { icon: 'plus' }">
     {{-- Header --}}
     <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>

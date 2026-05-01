@@ -61,7 +61,7 @@
         </form>
     </flux:sidebar>
 
-    <flux:header class="lg:hidden">
+    <flux:header class="lg:hidden mt-2">
         <flux:icon.hand-coins class="size-5 mr-2" />
         <flux:heading size="sm ml-2">Better With 90</flux:heading>
         <flux:spacer />
@@ -84,6 +84,11 @@
 
     <livewire:layout.mobile-dock />
 
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('dockAction', null);
+        });
+    </script>
     @fluxScripts
 </body>
 
