@@ -2,3 +2,4 @@
 steward/vendor/
 steward/node_modules/
 steward/.env
+.playwright-mcp/
