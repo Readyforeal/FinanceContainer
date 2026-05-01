@@ -142,193 +142,142 @@ new class extends Component {
 
 <div>
     {{-- Filters --}}
-    <div class="flex flex-wrap gap-3 mb-6">
-        <input
-            wire:model.live.debounce.300ms="search"
-            type="text"
-            placeholder="Search transactions..."
-            class="bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg px-3 py-2 focus:ring-indigo-500 focus:border-indigo-500 placeholder-zinc-400 dark:placeholder-zinc-500"
-        />
+    <div class="flex flex-wrap items-end gap-3 mb-6">
+        <flux:input wire:model.live.debounce.300ms="search" placeholder="Search transactions..." size="sm" class="max-w-xs" />
 
-        <select
-            wire:model.live="accountFilter"
-            class="bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg px-3 py-2 focus:ring-indigo-500 focus:border-indigo-500"
-        >
-            <option value="">All Accounts</option>
+        <flux:select wire:model.live="accountFilter" size="sm" class="max-w-48">
+            <flux:select.option value="">All Accounts</flux:select.option>
             @foreach ($accounts as $account)
-                <option value="{{ $account->id }}">{{ $account->name }}</option>
+                <flux:select.option value="{{ $account->id }}">{{ $account->name }}</flux:select.option>
             @endforeach
-        </select>
+        </flux:select>
 
-        <select
-            wire:model.live="categoryFilter"
-            class="bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg px-3 py-2 focus:ring-indigo-500 focus:border-indigo-500"
-        >
-            <option value="">All Categories</option>
+        <flux:select wire:model.live="categoryFilter" size="sm" class="max-w-48">
+            <flux:select.option value="">All Categories</flux:select.option>
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                <flux:select.option value="{{ $category->id }}">{{ $category->name }}</flux:select.option>
             @endforeach
-        </select>
+        </flux:select>
 
-        <label class="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 cursor-pointer">
-            <input
-                wire:model.live="reviewFilter"
-                type="checkbox"
-                value="1"
-                class="rounded border-zinc-400 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-indigo-500"
-            />
-            Needs Review
-        </label>
+        <flux:checkbox wire:model.live="reviewFilter" label="Needs Review" />
     </div>
 
     {{-- Bulk action bar --}}
     @if (count($selectedIds) > 0)
         <div class="flex flex-wrap items-center gap-3 mb-4 px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
-            <span class="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+            <flux:text size="sm" class="font-medium">
                 {{ count($selectedIds) }} selected
-            </span>
+            </flux:text>
 
-            <select
-                wire:model="bulkCategoryId"
-                class="bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg px-3 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"
-            >
-                <option value="">Select category...</option>
+            <flux:select wire:model="bulkCategoryId" size="sm" class="max-w-48">
+                <flux:select.option value="">Select category...</flux:select.option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <flux:select.option value="{{ $category->id }}">{{ $category->name }}</flux:select.option>
                 @endforeach
-            </select>
+            </flux:select>
 
             @error('bulkCategory')
-                <span class="text-red-400 text-xs">{{ $message }}</span>
+                <flux:text size="xs" class="text-red-400">{{ $message }}</flux:text>
             @enderror
 
-            <button
-                wire:click="bulkCategorize"
-                class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-3 py-1.5 rounded-lg transition-colors"
-            >
-                Categorize
-            </button>
-
-            <button
-                wire:click="deselectAll"
-                class="bg-zinc-200 dark:bg-zinc-700 hover:bg-zinc-300 dark:hover:bg-zinc-600 text-zinc-700 dark:text-zinc-300 text-sm px-3 py-1.5 rounded-lg transition-colors"
-            >
-                Clear
-            </button>
+            <flux:button wire:click="bulkCategorize" variant="primary" size="sm">Categorize</flux:button>
+            <flux:button wire:click="deselectAll" variant="ghost" size="sm">Clear</flux:button>
         </div>
     @endif
 
     {{-- Table --}}
-    <div class="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-300 dark:border-zinc-700 overflow-hidden">
-        <table class="w-full text-sm">
-            <thead>
-                <tr class="border-b border-zinc-300 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 text-xs uppercase tracking-wide">
-                    <th class="px-4 py-3 w-8">
-                        <input
-                            type="checkbox"
-                            wire:click="selectAllVisible"
-                            class="rounded border-zinc-400 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-indigo-500"
-                        />
-                    </th>
-                    <th class="text-left px-4 py-3">
-                        <button wire:click="sortBy('date')" class="flex items-center gap-1 hover:text-zinc-800 dark:hover:text-zinc-200">
-                            Date
-                            @if ($sortField === 'date')
-                                <x-lucide-chevron-{{ $sortDirection === 'asc' ? 'up' : 'down' }} class="w-3 h-3" />
+    <flux:table>
+        <flux:table.columns>
+            <flux:table.column class="w-8">
+                <flux:checkbox wire:click="selectAllVisible" />
+            </flux:table.column>
+            <flux:table.column>
+                <button wire:click="sortBy('date')" class="flex items-center gap-1 hover:text-zinc-800 dark:hover:text-zinc-200">
+                    Date
+                    @if ($sortField === 'date')
+                        <flux:icon :icon="$sortDirection === 'asc' ? 'chevron-up' : 'chevron-down'" class="size-3" />
+                    @endif
+                </button>
+            </flux:table.column>
+            <flux:table.column>
+                <button wire:click="sortBy('merchant_name')" class="flex items-center gap-1 hover:text-zinc-800 dark:hover:text-zinc-200">
+                    Merchant
+                    @if ($sortField === 'merchant_name')
+                        <flux:icon :icon="$sortDirection === 'asc' ? 'chevron-up' : 'chevron-down'" class="size-3" />
+                    @endif
+                </button>
+            </flux:table.column>
+            <flux:table.column>Account</flux:table.column>
+            <flux:table.column>Category</flux:table.column>
+            <flux:table.column class="text-right">
+                <button wire:click="sortBy('amount')" class="flex items-center gap-1 hover:text-zinc-800 dark:hover:text-zinc-200 ml-auto">
+                    Amount
+                    @if ($sortField === 'amount')
+                        <flux:icon :icon="$sortDirection === 'asc' ? 'chevron-up' : 'chevron-down'" class="size-3" />
+                    @endif
+                </button>
+            </flux:table.column>
+            <flux:table.column class="text-center">Status</flux:table.column>
+        </flux:table.columns>
+
+        <flux:table.rows>
+            @forelse ($transactions as $transaction)
+                <flux:table.row class="{{ $transaction->needs_review ? 'bg-yellow-50 dark:bg-yellow-950/20' : '' }}">
+                    <flux:table.cell class="w-8">
+                        <flux:checkbox wire:click="toggleSelect({{ $transaction->id }})" :checked="in_array($transaction->id, $selectedIds)" />
+                    </flux:table.cell>
+                    <flux:table.cell class="whitespace-nowrap text-zinc-500 dark:text-zinc-400">
+                        {{ $transaction->date->format('M j, Y') }}
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        {{ $transaction->merchant_name ?? $transaction->description ?? 'Unknown' }}
+                    </flux:table.cell>
+                    <flux:table.cell class="text-zinc-500 dark:text-zinc-400">
+                        {{ $transaction->account?->name ?? '-' }}
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        <select
+                            wire:change="assignCategory({{ $transaction->id }}, $event.target.value)"
+                            class="appearance-none bg-transparent border-0 text-sm rounded-md py-0.5 pr-6 pl-1.5 -ml-1.5 cursor-pointer transition-colors
+                                {{ $transaction->needs_review
+                                    ? 'text-yellow-700 dark:text-yellow-400 font-medium'
+                                    : 'text-zinc-600 dark:text-zinc-400' }}
+                                hover:bg-zinc-100 dark:hover:bg-zinc-700/50
+                                focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:bg-zinc-50 dark:focus:bg-zinc-700"
+                            style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E&quot;); background-repeat: no-repeat; background-position: right 4px center;"
+                        >
+                            @if (! $transaction->category_id)
+                                <option value="">-- Assign --</option>
                             @endif
-                        </button>
-                    </th>
-                    <th class="text-left px-4 py-3">
-                        <button wire:click="sortBy('merchant_name')" class="flex items-center gap-1 hover:text-zinc-800 dark:hover:text-zinc-200">
-                            Merchant
-                            @if ($sortField === 'merchant_name')
-                                <x-lucide-chevron-{{ $sortDirection === 'asc' ? 'up' : 'down' }} class="w-3 h-3" />
-                            @endif
-                        </button>
-                    </th>
-                    <th class="text-left px-4 py-3">Account</th>
-                    <th class="text-left px-4 py-3">Category</th>
-                    <th class="text-right px-4 py-3">
-                        <button wire:click="sortBy('amount')" class="flex items-center gap-1 hover:text-zinc-800 dark:hover:text-zinc-200 ml-auto">
-                            Amount
-                            @if ($sortField === 'amount')
-                                <x-lucide-chevron-{{ $sortDirection === 'asc' ? 'up' : 'down' }} class="w-3 h-3" />
-                            @endif
-                        </button>
-                    </th>
-                    <th class="text-center px-4 py-3">Status</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
-                @forelse ($transactions as $transaction)
-                    <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/30 transition-colors {{ $transaction->needs_review ? 'bg-yellow-50 dark:bg-yellow-950/20' : '' }}">
-                        <td class="px-4 py-3 w-8">
-                            <input
-                                type="checkbox"
-                                wire:click="toggleSelect({{ $transaction->id }})"
-                                @checked(in_array($transaction->id, $selectedIds))
-                                class="rounded border-zinc-400 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-indigo-500"
-                            />
-                        </td>
-                        <td class="px-4 py-3 text-zinc-500 dark:text-zinc-400 whitespace-nowrap">
-                            {{ $transaction->date->format('M j, Y') }}
-                        </td>
-                        <td class="px-4 py-3 text-zinc-900 dark:text-zinc-100">
-                            {{ $transaction->merchant_name ?? $transaction->description ?? 'Unknown' }}
-                        </td>
-                        <td class="px-4 py-3 text-zinc-500 dark:text-zinc-400">
-                            {{ $transaction->account?->name ?? '-' }}
-                        </td>
-                        <td class="px-4 py-3">
-                            <select
-                                wire:change="assignCategory({{ $transaction->id }}, $event.target.value)"
-                                class="appearance-none bg-transparent border-0 text-sm rounded-md py-0.5 pr-6 pl-1.5 -ml-1.5 cursor-pointer transition-colors
-                                    {{ $transaction->needs_review
-                                        ? 'text-yellow-700 dark:text-yellow-400 font-medium'
-                                        : 'text-zinc-600 dark:text-zinc-400' }}
-                                    hover:bg-zinc-100 dark:hover:bg-zinc-700/50
-                                    focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:bg-zinc-50 dark:focus:bg-zinc-700"
-                                style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E&quot;); background-repeat: no-repeat; background-position: right 4px center;"
-                            >
-                                @if (! $transaction->category_id)
-                                    <option value="">-- Assign --</option>
-                                @endif
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}" @selected($transaction->category_id === $category->id)>
-                                        {{ $category->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td class="px-4 py-3 text-right font-mono">
-                            <span class="{{ $transaction->amount < 0 ? 'text-green-600 dark:text-green-400' : 'text-zinc-900 dark:text-zinc-100' }}">
-                                {{ $transaction->amount < 0 ? '-' : '' }}${{ number_format(abs($transaction->amount), 2) }}
-                            </span>
-                        </td>
-                        <td class="px-4 py-3 text-center">
-                            @if ($transaction->needs_review)
-                                <span class="inline-flex items-center gap-1 text-xs bg-yellow-100 dark:bg-yellow-500/15 text-yellow-700 dark:text-yellow-300 border border-yellow-300 dark:border-yellow-500/30 px-2 py-0.5 rounded-full">
-                                    <x-lucide-flag class="w-3 h-3" />
-                                    Review
-                                </span>
-                            @else
-                                <span class="inline-flex items-center gap-1 text-xs bg-green-100 dark:bg-green-500/15 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-500/30 px-2 py-0.5 rounded-full">
-                                    <x-lucide-check class="w-3 h-3" />
-                                    OK
-                                </span>
-                            @endif
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="7" class="px-4 py-12 text-center text-zinc-400 dark:text-zinc-500">
-                            No transactions found.
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" @selected($transaction->category_id === $category->id)>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </flux:table.cell>
+                    <flux:table.cell class="text-right font-mono">
+                        <span class="{{ $transaction->amount < 0 ? 'text-green-600 dark:text-green-400' : 'text-zinc-900 dark:text-zinc-100' }}">
+                            {{ $transaction->amount < 0 ? '-' : '' }}${{ number_format(abs($transaction->amount), 2) }}
+                        </span>
+                    </flux:table.cell>
+                    <flux:table.cell class="text-center">
+                        @if ($transaction->needs_review)
+                            <flux:badge color="yellow" size="sm" icon="flag">Review</flux:badge>
+                        @else
+                            <flux:badge color="green" size="sm" icon="circle-check">OK</flux:badge>
+                        @endif
+                    </flux:table.cell>
+                </flux:table.row>
+            @empty
+                <flux:table.row>
+                    <flux:table.cell colspan="7" class="text-center py-12">
+                        <flux:text class="text-zinc-400 dark:text-zinc-500">No transactions found.</flux:text>
+                    </flux:table.cell>
+                </flux:table.row>
+            @endforelse
+        </flux:table.rows>
+    </flux:table>
 
     @if ($transactions->hasPages())
         <div class="mt-4">
