@@ -13,8 +13,8 @@ class extends Component {
 
 <div>
     <div class="mb-6">
-        <h1 class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">Accounts</h1>
-        <p class="text-zinc-500 dark:text-zinc-400 mt-1">Manage your connected bank accounts.</p>
+        <flux:heading size="xl" level="1">Accounts</flux:heading>
+        <flux:text class="mt-1">Manage your connected bank accounts.</flux:text>
     </div>
 
     <livewire:accounts.account-list />

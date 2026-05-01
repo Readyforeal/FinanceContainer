@@ -55,47 +55,27 @@ new class extends Component {
 
 <div>
     @if (! $showForm)
-        <button wire:click="$toggle('showForm')"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded-lg transition-colors">
-            <x-lucide-plus class="w-4 h-4" />
+        <flux:button wire:click="$toggle('showForm')" variant="primary" icon="plus">
             Add Account
-        </button>
+        </flux:button>
     @else
-        <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
-            <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-4">Add Account</h3>
+        <flux:card class="p-5">
+            <flux:heading size="sm" level="3" class="mb-4">Add Account</flux:heading>
 
             <form wire:submit="save" class="space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-xs text-zinc-500 dark:text-zinc-400 mb-1">Account Name</label>
-                        <input type="text" wire:model="name" placeholder="e.g. Main Checking"
-                            class="w-full bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2 text-sm text-zinc-900 dark:text-zinc-200 placeholder-zinc-400" />
-                        @error('name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                    </div>
-                    <div>
-                        <label class="block text-xs text-zinc-500 dark:text-zinc-400 mb-1">Type</label>
-                        <select wire:model="type"
-                            class="w-full bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2 text-sm text-zinc-900 dark:text-zinc-200">
-                            <option value="checking">Checking</option>
-                            <option value="savings">Savings</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs text-zinc-500 dark:text-zinc-400 mb-1">Current Balance</label>
-                        <input type="number" step="0.01" wire:model="balance" placeholder="0.00"
-                            class="w-full bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2 text-sm text-zinc-900 dark:text-zinc-200" />
-                        @error('balance') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                    </div>
+                    <flux:input wire:model="name" label="Account Name" placeholder="e.g. Main Checking" />
+                    <flux:select wire:model="type" label="Type">
+                        <flux:select.option value="checking">Checking</flux:select.option>
+                        <flux:select.option value="savings">Savings</flux:select.option>
+                    </flux:select>
+                    <flux:input type="number" step="0.01" wire:model="balance" label="Current Balance" placeholder="0.00" />
                 </div>
                 <div class="flex items-center gap-3">
-                    <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded-lg transition-colors">
-                        Save Account
-                    </button>
-                    <button type="button" wire:click="$toggle('showForm')" class="px-4 py-2 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-                        Cancel
-                    </button>
+                    <flux:button type="submit" variant="primary">Save Account</flux:button>
+                    <flux:button type="button" wire:click="$toggle('showForm')" variant="ghost">Cancel</flux:button>
                 </div>
             </form>
-        </div>
+        </flux:card>
     @endif
 </div>

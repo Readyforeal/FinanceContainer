@@ -54,32 +54,32 @@ new class extends Component {
 <div>
     @if ($accounts->isEmpty())
         <div class="text-center py-16">
-            <x-lucide-landmark class="w-12 h-12 text-zinc-400 dark:text-zinc-600 mx-auto mb-4" />
-            <h2 class="text-xl font-semibold text-zinc-700 dark:text-zinc-300 mb-2">No Accounts Yet</h2>
-            <p class="text-zinc-400 dark:text-zinc-500 mb-6">Add your checking and savings accounts to get started.</p>
+            <flux:icon.landmark class="size-12 text-zinc-400 dark:text-zinc-600 mx-auto mb-4" />
+            <flux:heading size="lg" level="2" class="mb-2">No Accounts Yet</flux:heading>
+            <flux:text class="mb-6">Add your checking and savings accounts to get started.</flux:text>
             <livewire:accounts.add-account />
         </div>
     @else
         <div class="flex items-center justify-between mb-6">
-            <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Your Accounts</h2>
+            <flux:heading size="lg" level="2">Your Accounts</flux:heading>
             <livewire:accounts.add-account />
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
             @foreach ($accounts as $account)
-                <div class="bg-white dark:bg-zinc-800 rounded-xl p-5 border border-zinc-200 dark:border-zinc-700">
+                <flux:card class="p-5">
                     <div class="flex items-start justify-between mb-4">
                         <div>
-                            <p class="text-sm text-zinc-500 dark:text-zinc-400">{{ $account->name }}</p>
+                            <flux:text class="text-sm">{{ $account->name }}</flux:text>
                             <p class="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">
                                 ${{ number_format($account->current_balance, 2) }}
                             </p>
                         </div>
                         <div class="p-2 bg-zinc-100 dark:bg-zinc-700 rounded-lg">
                             @if ($account->type->value === 'savings')
-                                <x-lucide-piggy-bank class="w-5 h-5 text-indigo-500 dark:text-indigo-400" />
+                                <flux:icon.piggy-bank variant="mini" class="size-5 text-indigo-500 dark:text-indigo-400" />
                             @else
-                                <x-lucide-wallet class="w-5 h-5 text-blue-500 dark:text-blue-400" />
+                                <flux:icon.wallet variant="mini" class="size-5 text-blue-500 dark:text-blue-400" />
                             @endif
                         </div>
                     </div>
@@ -87,7 +87,7 @@ new class extends Component {
                     <div class="text-xs text-zinc-400 dark:text-zinc-500 space-y-1">
                         <div class="flex justify-between">
                             <span>Type</span>
-                            <span class="capitalize text-zinc-500 dark:text-zinc-400">{{ $account->type->value }}</span>
+                            <flux:badge size="sm" class="capitalize">{{ $account->type->value }}</flux:badge>
                         </div>
                         @if ($account->last_synced_at)
                             <div class="flex justify-between">
@@ -112,7 +112,7 @@ new class extends Component {
                             <div x-ref="spark{{ $account->id }}"></div>
                         </div>
                     @endif
-                </div>
+                </flux:card>
             @endforeach
         </div>
 

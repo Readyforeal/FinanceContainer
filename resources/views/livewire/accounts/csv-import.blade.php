@@ -326,80 +326,57 @@ new class extends Component {
 <div>
     {{-- Import status messages --}}
     @if ($importStatus === 'success')
-        <div class="rounded-xl border border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20 p-4 mb-4">
-            <div class="flex items-center gap-3">
-                <x-lucide-check-circle class="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0" />
-                <div>
-                    <p class="text-sm font-medium text-green-800 dark:text-green-300">Import complete</p>
-                    <p class="text-sm text-green-600 dark:text-green-400">{{ $importedCount }} transactions imported{{ $skippedCount > 0 ? ", {$skippedCount} skipped (duplicates or invalid)" : '' }}. Categorization is running in the background.</p>
-                </div>
-            </div>
-        </div>
+        <flux:callout variant="success" icon="circle-check" class="mb-4">
+            <flux:callout.heading>Import complete</flux:callout.heading>
+            <flux:callout.text>{{ $importedCount }} transactions imported{{ $skippedCount > 0 ? ", {$skippedCount} skipped (duplicates or invalid)" : '' }}. Categorization is running in the background.</flux:callout.text>
+        </flux:callout>
     @endif
 
     @if ($importStatus === 'error')
-        <div class="rounded-xl border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/20 p-4 mb-4">
-            <div class="flex items-start gap-3">
-                <x-lucide-alert-circle class="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" />
-                <div>
-                    <p class="text-sm font-medium text-red-800 dark:text-red-300">Import failed</p>
-                    @foreach ($importErrors as $error)
-                        <p class="text-sm text-red-600 dark:text-red-400">{{ $error }}</p>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+        <flux:callout variant="danger" icon="circle-alert" class="mb-4">
+            <flux:callout.heading>Import failed</flux:callout.heading>
+            @foreach ($importErrors as $error)
+                <flux:callout.text>{{ $error }}</flux:callout.text>
+            @endforeach
+        </flux:callout>
     @endif
 
     {{-- Import form --}}
-    <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
+    <flux:card class="p-5">
         <div class="flex items-center gap-3 mb-4">
-            <x-lucide-upload class="w-5 h-5 text-zinc-400 dark:text-zinc-500" />
-            <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Import Transactions from CSV</h3>
+            <flux:icon.upload variant="mini" class="size-5 text-zinc-400 dark:text-zinc-500" />
+            <flux:heading size="sm" level="3">Import Transactions from CSV</flux:heading>
         </div>
 
-        <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-4">
+        <flux:text class="text-xs mb-4">
             Download a CSV from your bank's website and upload it here. Works with or without headers.
             Supports most bank formats including headerless files (date, amount, ID, merchant).
-        </p>
+        </flux:text>
 
         <form wire:submit="import" class="space-y-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-xs text-zinc-500 dark:text-zinc-400 mb-1">Account</label>
-                    <select wire:model="accountId" class="w-full bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2 text-sm text-zinc-900 dark:text-zinc-200">
-                        <option value="">Select account...</option>
-                        @foreach ($accounts as $account)
-                            <option value="{{ $account->id }}">{{ $account->name }} ({{ $account->type->value }})</option>
-                        @endforeach
-                    </select>
-                </div>
+                <flux:select wire:model="accountId" label="Account" placeholder="Select account...">
+                    @foreach ($accounts as $account)
+                        <flux:select.option value="{{ $account->id }}">{{ $account->name }} ({{ $account->type->value }})</flux:select.option>
+                    @endforeach
+                </flux:select>
 
-                <div>
-                    <label class="block text-xs text-zinc-500 dark:text-zinc-400 mb-1">CSV File</label>
-                    <input type="file" wire:model="csvFile" accept=".csv,.txt"
-                        class="w-full text-sm text-zinc-500 dark:text-zinc-400 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-zinc-100 dark:file:bg-zinc-800 file:text-zinc-700 dark:file:text-zinc-300 hover:file:bg-zinc-200 dark:hover:file:bg-zinc-700 file:cursor-pointer file:transition-colors" />
-                    @error('csvFile') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
-                </div>
+                <flux:input type="file" wire:model="csvFile" label="CSV File" accept=".csv,.txt" />
             </div>
 
             <div class="flex items-center gap-3">
-                <button type="submit"
-                    class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded-lg transition-colors disabled:opacity-50"
+                <flux:button type="submit" variant="primary" icon="upload"
                     wire:loading.attr="disabled"
-                    @disabled(! $csvFile || ! $accountId)
+                    :disabled="! $csvFile || ! $accountId"
                 >
-                    <span wire:loading.remove wire:target="import">
-                        <x-lucide-upload class="w-4 h-4" />
-                    </span>
-                    <span wire:loading wire:target="import">
-                        <x-lucide-loader-2 class="w-4 h-4 animate-spin" />
+                    <span wire:loading wire:target="import" class="mr-1">
+                        <flux:icon.loader-circle variant="mini" class="size-4 animate-spin" />
                     </span>
                     Import Transactions
-                </button>
+                </flux:button>
 
                 <span wire:loading wire:target="csvFile" class="text-xs text-zinc-400">Uploading file...</span>
             </div>
         </form>
-    </div>
+    </flux:card>
 </div>
