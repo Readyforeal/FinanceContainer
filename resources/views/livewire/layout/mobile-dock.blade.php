@@ -27,7 +27,7 @@ new class extends Component {};
          x-transition:leave="transition-all duration-200 ease-in"
          x-transition:leave-start="translate-y-0 opacity-100"
          x-transition:leave-end="translate-y-full opacity-0"
-         class="fixed bottom-20 left-3 right-3 z-50 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-xl overflow-hidden">
+         class="fixed bottom-20 left-3 right-3 z-50 rounded-2xl bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-700/50 shadow-xl overflow-hidden">
 
         {{-- Header --}}
         <div class="px-5 py-3 border-b border-zinc-200 dark:border-zinc-700 flex items-center justify-between">
@@ -67,7 +67,7 @@ new class extends Component {};
 
     {{-- Bottom dock bar --}}
     <div class="fixed bottom-3 left-3 right-3 z-40">
-        <div class="flex items-center justify-around bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 border border-zinc-200/50 dark:border-zinc-700/50 px-2 py-2.5">
+        <div class="flex items-center justify-around bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl rounded-2xl shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 border border-zinc-200/50 dark:border-zinc-700/50 px-2 py-2.5">
 
             @php
                 $dockItems = [
