@@ -94,28 +94,20 @@ new class extends Component {
         $budgetedCategoryIds = $budgets->pluck('category_id')->toArray();
 
         foreach ($budgets as $budget) {
-            $budget->spent = (float) abs(Transaction::where('category_id', $budget->category_id)
-                ->whereYear('date', $monthDate->year)
-                ->whereMonth('date', $monthDate->month)
-                ->where('amount', '<', 0)
-                ->sum('amount'));
+            $budget->spent = (float) abs(Transaction::where('category_id', $budget->category_id)->whereYear('date', $monthDate->year)->whereMonth('date', $monthDate->month)->where('amount', '<', 0)->sum('amount'));
         }
 
         $incomeSources = IncomeSource::where('is_active', true)->get();
-        $totalMonthlyIncome = $incomeSources->sum(fn ($s) => $s->monthlyAmount());
+        $totalMonthlyIncome = $incomeSources->sum(fn($s) => $s->monthlyAmount());
 
         $totalBudgeted = $budgets->sum('budgeted_amount');
 
         $overIncome = $totalMonthlyIncome > 0 && $totalBudgeted > $totalMonthlyIncome;
 
-        $spendingBuckets = array_filter(BudgetBucket::cases(), fn ($b) => $b->isSpending());
+        $spendingBuckets = array_filter(BudgetBucket::cases(), fn($b) => $b->isSpending());
 
         // Actual income for the viewed month
-        $actualIncome = (float) Transaction::whereYear('date', $monthDate->year)
-            ->whereMonth('date', $monthDate->month)
-            ->where('budget_bucket', 'income')
-            ->where('amount', '>', 0)
-            ->sum('amount');
+        $actualIncome = (float) Transaction::whereYear('date', $monthDate->year)->whereMonth('date', $monthDate->month)->where('budget_bucket', 'income')->where('amount', '>', 0)->sum('amount');
 
         $incomeBase = $actualIncome > 0 ? $actualIncome : $totalMonthlyIncome;
 
@@ -126,7 +118,7 @@ new class extends Component {
             $bucketTotals[$bucket->value] = [
                 'budgeted' => $bucketBudgets->sum('budgeted_amount'),
                 'spent' => $spent,
-                'actualPct' => $incomeBase > 0 ? round($spent / $incomeBase * 100, 1) : 0,
+                'actualPct' => $incomeBase > 0 ? round(($spent / $incomeBase) * 100, 1) : 0,
             ];
         }
 
@@ -134,18 +126,7 @@ new class extends Component {
 
         $ratios = AppSetting::getValue('budget_ratios', ['needs' => 50, 'wants' => 30, 'savings' => 20]);
 
-        return compact(
-            'budgets',
-            'totalMonthlyIncome',
-            'incomeBase',
-            'totalBudgeted',
-            'overIncome',
-            'bucketTotals',
-            'availableCategories',
-            'ratios',
-            'monthDate',
-            'spendingBuckets',
-        );
+        return compact('budgets', 'totalMonthlyIncome', 'incomeBase', 'totalBudgeted', 'overIncome', 'bucketTotals', 'availableCategories', 'ratios', 'monthDate', 'spendingBuckets');
     }
 };
 ?>
@@ -154,12 +135,12 @@ new class extends Component {
     {{-- Header --}}
     <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 justify-between md:justify-start">
                 <flux:button variant="subtle" square icon="chevron-left" wire:click="previousMonth" />
                 <flux:heading size="xl">{{ $monthDate->format('F Y') }} Budget</flux:heading>
                 <flux:button variant="subtle" square icon="chevron-right" wire:click="nextMonth" />
             </div>
-            <flux:text size="sm" class="mt-1">
+            <flux:text size="sm" class="mt-1 text-center md:text-left">
                 ${{ number_format($totalBudgeted, 2) }} budgeted
                 @if ($totalMonthlyIncome > 0)
                     of ${{ number_format($totalMonthlyIncome, 2) }} income
@@ -191,7 +172,7 @@ new class extends Component {
             <div>
                 {{-- Bucket header --}}
                 @php
-                    $budgetedPct = $incomeBase > 0 ? round($bucketData['budgeted'] / $incomeBase * 100, 1) : 0;
+                    $budgetedPct = $incomeBase > 0 ? round(($bucketData['budgeted'] / $incomeBase) * 100, 1) : 0;
                 @endphp
                 <div class="mb-3">
                     <div class="flex items-center justify-between">
@@ -204,14 +185,17 @@ new class extends Component {
                                 <flux:icon.piggy-bank variant="mini" class="text-zinc-500 dark:text-zinc-400" />
                             @endif
                             <flux:heading size="sm" class="capitalize">{{ $bucket->value }}</flux:heading>
-                            <flux:text size="sm" class="text-zinc-400 dark:text-zinc-500 hidden sm:inline">({{ $target }}% target)</flux:text>
+                            <flux:text size="sm" class="text-zinc-400 dark:text-zinc-500 hidden sm:inline">
+                                ({{ $target }}% target)
+                            </flux:text>
                         </div>
                         <flux:text size="sm" class="font-medium shrink-0">
                             ${{ number_format($bucketData['budgeted'], 2) }}
                         </flux:text>
                     </div>
-                    <div class="flex items-center gap-2 mt-1 ml-7">
-                        <flux:text size="xs" class="text-zinc-400 dark:text-zinc-500 sm:hidden">{{ $target }}% target</flux:text>
+                    <div class="flex items-center gap-2 mt-1 justify-between md:justify-start">
+                        <flux:text size="xs" class="text-zinc-400 dark:text-zinc-500 sm:hidden">
+                            {{ $target }}% target</flux:text>
                         @if ($budgetedPct > 0)
                             <flux:badge :color="$budgetedPct > $target ? 'red' : 'zinc'" size="sm">
                                 {{ $budgetedPct }}% budgeted
@@ -229,15 +213,22 @@ new class extends Component {
                     @forelse ($bucketBudgets as $budget)
                         @php
                             $remaining = $budget->budgeted_amount - $budget->spent;
-                            $pct = $budget->budgeted_amount > 0 ? min(100, round($budget->spent / $budget->budgeted_amount * 100)) : 0;
-                            $incomePct = $totalMonthlyIncome > 0 ? round($budget->budgeted_amount / $totalMonthlyIncome * 100) : 0;
+                            $pct =
+                                $budget->budgeted_amount > 0
+                                    ? min(100, round(($budget->spent / $budget->budgeted_amount) * 100))
+                                    : 0;
+                            $incomePct =
+                                $totalMonthlyIncome > 0
+                                    ? round(($budget->budgeted_amount / $totalMonthlyIncome) * 100)
+                                    : 0;
                             $isOver = $budget->spent > $budget->budgeted_amount;
                         @endphp
                         <div class="p-4 border-b border-zinc-100 dark:border-zinc-800 last:border-b-0">
                             {{-- Desktop row --}}
                             <div class="hidden lg:flex items-center gap-3 mb-2">
                                 <div class="flex items-center gap-2 min-w-0 flex-1">
-                                    <flux:icon :icon="$budget->category->icon ?? 'tag'" variant="mini" class="shrink-0 text-zinc-400 dark:text-zinc-500" />
+                                    <flux:icon :icon="$budget->category->icon ?? 'tag'" variant="mini"
+                                        class="shrink-0 text-zinc-400 dark:text-zinc-500" />
                                     <span class="font-medium text-zinc-800 dark:text-zinc-200 truncate">
                                         {{ $budget->category->name }}
                                     </span>
@@ -248,13 +239,18 @@ new class extends Component {
                                         ${{ number_format($budget->budgeted_amount, 2) }}
                                     </flux:text>
                                     <flux:text size="sm">spent ${{ number_format($budget->spent, 2) }}</flux:text>
-                                    <span class="{{ $isOver ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400' }} text-sm font-medium">
-                                        {{ $isOver ? '-' : '' }}${{ number_format(abs($remaining), 2) }} {{ $isOver ? 'over' : 'left' }}
+                                    <span
+                                        class="{{ $isOver ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400' }} text-sm font-medium">
+                                        {{ $isOver ? '-' : '' }}${{ number_format(abs($remaining), 2) }}
+                                        {{ $isOver ? 'over' : 'left' }}
                                     </span>
                                 </div>
                                 <div class="flex items-center gap-1 shrink-0">
-                                    <flux:button variant="subtle" size="xs" icon="pencil" wire:click="editBudget({{ $budget->id }})" />
-                                    <flux:button variant="subtle" size="xs" icon="trash-2" wire:click="deleteBudget({{ $budget->id }})" wire:confirm="Delete this budget?" />
+                                    <flux:button variant="subtle" size="xs" icon="pencil"
+                                        wire:click="editBudget({{ $budget->id }})" />
+                                    <flux:button variant="subtle" size="xs" icon="trash-2"
+                                        wire:click="deleteBudget({{ $budget->id }})"
+                                        wire:confirm="Delete this budget?" />
                                 </div>
                             </div>
 
@@ -262,30 +258,33 @@ new class extends Component {
                             <div class="lg:hidden mb-2">
                                 <div class="flex items-center justify-between gap-2">
                                     <div class="flex items-center gap-2 min-w-0">
-                                        <flux:icon :icon="$budget->category->icon ?? 'tag'" variant="mini" class="shrink-0 text-zinc-400 dark:text-zinc-500" />
+                                        <flux:icon :icon="$budget->category->icon ?? 'tag'" variant="mini"
+                                            class="shrink-0 text-zinc-400 dark:text-zinc-500" />
                                         <span class="font-medium text-zinc-800 dark:text-zinc-200">
                                             {{ $budget->category->name }}
                                         </span>
                                     </div>
                                     <div class="flex items-center gap-2 shrink-0">
-                                        <span class="{{ $isOver ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400' }} text-sm font-semibold">
-                                            {{ $isOver ? '-' : '' }}${{ number_format(abs($remaining), 2) }} {{ $isOver ? 'over' : 'left' }}
+                                        <span
+                                            class="{{ $isOver ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400' }} text-sm font-semibold">
+                                            {{ $isOver ? '-' : '' }}${{ number_format(abs($remaining), 2) }}
+                                            {{ $isOver ? 'over' : 'left' }}
                                         </span>
-                                        <flux:button variant="subtle" size="xs" icon="pencil" wire:click="editBudget({{ $budget->id }})" />
+                                        <flux:button variant="subtle" size="xs" icon="pencil"
+                                            wire:click="editBudget({{ $budget->id }})" />
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-3 mt-1 ml-7">
-                                    <flux:text size="xs">${{ number_format($budget->budgeted_amount, 2) }} budgeted</flux:text>
+                                    <flux:text size="xs">${{ number_format($budget->budgeted_amount, 2) }}
+                                        budgeted</flux:text>
                                     <flux:text size="xs">spent ${{ number_format($budget->spent, 2) }}</flux:text>
                                 </div>
                             </div>
 
                             {{-- Progress bar --}}
                             <div class="h-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
-                                <div
-                                    class="h-full rounded-full transition-all {{ $isOver ? 'bg-red-500' : 'bg-emerald-500' }}"
-                                    style="width: {{ $pct }}%"
-                                ></div>
+                                <div class="h-full rounded-full transition-all {{ $isOver ? 'bg-red-500' : 'bg-emerald-500' }}"
+                                    style="width: {{ $pct }}%"></div>
                             </div>
                         </div>
                     @empty
@@ -300,7 +299,8 @@ new class extends Component {
 
     {{-- Floating mobile Add Budget button --}}
     <div class="fixed bottom-20 right-3 z-30 lg:hidden">
-        <button wire:click="openCreateModal" class="flex items-center justify-center size-12 rounded-full text-accent-foreground bg-accent/80 backdrop-blur-xl shadow-lg">
+        <button wire:click="openCreateModal"
+            class="flex items-center justify-center size-12 rounded-full text-accent-foreground bg-accent/80 backdrop-blur-xl shadow-lg">
             <flux:icon.plus variant="mini" />
         </button>
     </div>
@@ -310,11 +310,15 @@ new class extends Component {
         <div class="space-y-6">
             <div>
                 <flux:heading size="lg">{{ $editingBudgetId ? 'Edit Budget' : 'Add Budget' }}</flux:heading>
-                <flux:text class="mt-1">{{ $editingBudgetId ? 'Update the budgeted amount.' : 'Set a monthly budget for a category.' }}</flux:text>
+                <flux:text class="mt-1">
+                    {{ $editingBudgetId ? 'Update the budgeted amount.' : 'Set a monthly budget for a category.' }}
+                </flux:text>
             </div>
 
             @if ($editingBudgetId)
-                <flux:input label="Category" value="{{ $budgets->firstWhere('id', $editingBudgetId)?->category->name ?? 'Selected' }}" readonly />
+                <flux:input label="Category"
+                    value="{{ $budgets->firstWhere('id', $editingBudgetId)?->category->name ?? 'Selected' }}"
+                    readonly />
             @else
                 <flux:select wire:model="editCategoryId" label="Category" placeholder="Select category...">
                     @foreach ($availableCategories as $cat)
@@ -323,7 +327,8 @@ new class extends Component {
                 </flux:select>
             @endif
 
-            <flux:input wire:model="editAmount" type="number" label="Monthly Amount" min="0.01" step="0.01" placeholder="0.00" />
+            <flux:input wire:model="editAmount" type="number" label="Monthly Amount" min="0.01" step="0.01"
+                placeholder="0.00" />
             @error('editAmount')
                 <flux:text size="xs" class="text-red-500">{{ $message }}</flux:text>
             @enderror

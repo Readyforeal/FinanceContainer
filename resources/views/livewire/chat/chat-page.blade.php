@@ -163,19 +163,22 @@ new class extends Component {
 ?>
 
 {{-- Chat layout -- fully separate mobile vs desktop --}}
-<div class="fixed inset-0 lg:left-[15.75rem] flex flex-col lg:flex-row lg:gap-3 lg:p-3">
+<div class="fixed inset-0 top-14 lg:top-0 lg:left-[15.75rem] flex flex-col lg:flex-row lg:gap-3 lg:p-3">
 
     {{-- ==================== MOBILE TOP BAR ==================== --}}
-    <div class="flex items-center justify-between px-4 py-3 lg:hidden flex-shrink-0">
-        <flux:button wire:click="$toggle('showMobileHistory')" variant="ghost" size="sm" icon="menu" />
-        <flux:text class="font-medium truncate mx-4">
-            @if ($activeConversationId)
-                {{ $conversations->firstWhere('id', $activeConversationId)?->title ?? 'Chat' }}
-            @else
-                Chat
-            @endif
-        </flux:text>
-        <flux:button wire:click="newConversation" variant="ghost" size="sm" icon="square-pen" />
+    <div class="lg:hidden flex-shrink-0 relative z-10">
+        <div class="flex items-center justify-between px-4 py-3">
+            <flux:button wire:click="$toggle('showMobileHistory')" variant="ghost" size="sm" icon="menu" />
+            <flux:text class="font-medium truncate mx-4">
+                @if ($activeConversationId)
+                    {{ $conversations->firstWhere('id', $activeConversationId)?->title ?? 'Chat' }}
+                @else
+                    Chat
+                @endif
+            </flux:text>
+            <flux:button wire:click="newConversation" variant="ghost" size="sm" icon="square-pen" />
+        </div>
+        <div class="h-4 bg-gradient-to-b from-white dark:from-zinc-800 to-transparent pointer-events-none"></div>
     </div>
 
     {{-- ==================== MOBILE HISTORY DRAWER ==================== --}}
@@ -292,7 +295,7 @@ new class extends Component {
             </div>
 
             {{-- Input -- mobile: above dock, desktop: bottom of chat area --}}
-            <div class="absolute bottom-16 lg:bottom-0 left-0 right-0 px-3 lg:px-8 pb-2 lg:pb-4 pt-4 pointer-events-none">
+            <div class="absolute bottom-16 lg:bottom-0 left-0 right-0 px-3 lg:px-8 pb-2 lg:pb-4 pt-8 pointer-events-none bg-gradient-to-t from-white/80 via-white/50 dark:from-zinc-800/80 dark:via-zinc-800/50 to-transparent lg:from-white/80 lg:dark:from-zinc-800/80">
                 <form wire:submit="sendMessage" class="max-w-2xl mx-auto pointer-events-auto">
                     <div class="flex gap-3 items-center rounded-2xl border border-white/40 dark:border-white/[0.08] bg-white/60 dark:bg-zinc-800/50 backdrop-blur-xl px-4 py-2.5 shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 bubble-assistant">
                         <input
