@@ -14,6 +14,11 @@ new class extends Component {
     public ?int $editingId = null;
     public int $lookbackMonths = 3;
 
+    public function mount(): void
+    {
+        $this->js("\$store.dockAction = { icon: 'plus' }");
+    }
+
     public function save(): void
     {
         $this->validate([
@@ -127,7 +132,7 @@ new class extends Component {
 };
 ?>
 
-<div x-data x-init="$store.dockAction = { icon: 'plus' }">
+<div>
     {{-- Header --}}
     <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
