@@ -19,9 +19,10 @@ new class extends Component {
         $accounts = Account::orderBy('name')->get();
         $totalBalance = $accounts->sum(fn ($a) => (float) $a->current_balance);
 
-        // Current month spending (negative amounts = money out; abs() gives a positive total)
-        $currentMonth = now()->format('Y-m');
-        $currentMonthSpent = abs(Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$currentMonth])
+        // Current month spending
+        $monthStart = now()->startOfMonth()->toDateString();
+        $monthEnd = now()->endOfMonth()->toDateString();
+        $currentMonthSpent = abs(Transaction::whereBetween('date', [$monthStart, $monthEnd])
             ->where('amount', '<', 0)
             ->sum('amount'));
 
@@ -32,17 +33,17 @@ new class extends Component {
             'savings' => 20,
         ]);
 
-        // Bucket spending this month (spending only — negative amounts; abs() gives positive totals)
+        // Bucket spending this month
         $bucketSpending = [
-            'needs' => (float) abs(Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$currentMonth])
+            'needs' => (float) abs(Transaction::whereBetween('date', [$monthStart, $monthEnd])
                 ->where('budget_bucket', 'needs')
                 ->where('amount', '<', 0)
                 ->sum('amount')),
-            'wants' => (float) abs(Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$currentMonth])
+            'wants' => (float) abs(Transaction::whereBetween('date', [$monthStart, $monthEnd])
                 ->where('budget_bucket', 'wants')
                 ->where('amount', '<', 0)
                 ->sum('amount')),
-            'savings' => (float) abs(Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$currentMonth])
+            'savings' => (float) abs(Transaction::whereBetween('date', [$monthStart, $monthEnd])
                 ->where('budget_bucket', 'savings')
                 ->where('amount', '<', 0)
                 ->sum('amount')),
@@ -79,15 +80,16 @@ new class extends Component {
 
     private function averageMonthlySpending(): float
     {
-        $months = [];
+        $totals = [];
         for ($i = 1; $i <= 3; $i++) {
-            $month = now()->subMonths($i)->format('Y-m');
-            $months[] = (float) abs(Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$month])
+            $start = now()->subMonths($i)->startOfMonth()->toDateString();
+            $end = now()->subMonths($i)->endOfMonth()->toDateString();
+            $totals[] = (float) abs(Transaction::whereBetween('date', [$start, $end])
                 ->where('amount', '<', 0)
                 ->sum('amount'));
         }
 
-        $nonZero = array_filter($months, fn ($m) => $m > 0);
+        $nonZero = array_filter($totals, fn ($m) => $m > 0);
         if (empty($nonZero)) {
             return 0.0;
         }

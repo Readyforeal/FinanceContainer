@@ -32,7 +32,7 @@ new class extends Component {
             $dailyTotals = Transaction::where('account_id', $account->id)
                 ->where('amount', '<', 0)
                 ->whereBetween('date', [$start->toDateString(), $today->toDateString()])
-                ->selectRaw('date::date as day, ABS(SUM(amount)) as total')
+                ->selectRaw('date as day, ABS(SUM(amount)) as total')
                 ->groupBy('day')
                 ->pluck('total', 'day')
                 ->toArray();

@@ -265,10 +265,9 @@ TEXT;
         foreach ($budgets as $budget) {
             $categoryName = $budget->category?->name ?? 'Unknown';
 
-            // Sum actual spending for this category in current month using PostgreSQL to_char
-            // Only count negative amounts (spending); abs() makes the total a positive number
+            // Sum actual spending for this category in current month
             $actual = abs(Transaction::where('category_id', $budget->category_id)
-                ->whereRaw("to_char(date, 'YYYY-MM') = ?", [$currentMonth])
+                ->whereBetween('date', [now()->startOfMonth()->toDateString(), now()->endOfMonth()->toDateString()])
                 ->where('amount', '<', 0)
                 ->sum('amount'));
 
