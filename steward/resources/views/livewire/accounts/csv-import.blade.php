@@ -128,7 +128,7 @@ new class extends Component {
             $transaction = Transaction::create([
                 'account_id' => $account->id,
                 'plaid_transaction_id' => $uniqueId,
-                'amount' => abs($amount),
+                'amount' => $amount,
                 'date' => $date,
                 'merchant_name' => $merchant,
                 'description' => $description,

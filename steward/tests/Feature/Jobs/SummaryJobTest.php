@@ -27,7 +27,7 @@ class SummaryJobTest extends TestCase
 
         Transaction::factory()->create([
             'account_id' => $account->id,
-            'amount' => 75.00,
+            'amount' => -75.00,
             'date' => now()->toDateString(),
             'budget_bucket' => BudgetBucket::Wants,
         ]);
@@ -70,7 +70,7 @@ class SummaryJobTest extends TestCase
 
         Transaction::factory()->create([
             'account_id' => $account->id,
-            'amount' => 120.00,
+            'amount' => -120.00,
             'date' => now()->startOfWeek()->addDays(2)->toDateString(),
             'budget_bucket' => BudgetBucket::Needs,
         ]);

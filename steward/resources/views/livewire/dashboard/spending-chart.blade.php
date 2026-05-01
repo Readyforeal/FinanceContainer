@@ -21,7 +21,7 @@ new class extends Component {
         ])->get()->groupBy(fn ($t) => $t->date->toDateString());
 
         $chartLabels = $range->map(fn ($day) => $day->format('M j'))->values()->toArray();
-        $chartValues = $range->map(fn ($day) => (float) ($transactions->get($day->toDateString())?->sum('amount') ?? 0))->values()->toArray();
+        $chartValues = $range->map(fn ($day) => (float) abs($transactions->get($day->toDateString())?->where('amount', '<', 0)->sum('amount') ?? 0))->values()->toArray();
 
         return [
             'chartLabels' => $chartLabels,

@@ -42,25 +42,25 @@ class CategoryTest extends TestCase
         $category = Category::factory()->create();
         $account = Account::factory()->create();
 
-        // Create transactions within the last 3 months
+        // Create transactions within the last 3 months (negative = spending)
         Transaction::factory()->create([
             'category_id' => $category->id,
             'account_id' => $account->id,
-            'amount' => 300.00,
+            'amount' => -300.00,
             'date' => now()->subMonth(),
         ]);
 
         Transaction::factory()->create([
             'category_id' => $category->id,
             'account_id' => $account->id,
-            'amount' => 300.00,
+            'amount' => -300.00,
             'date' => now()->subMonths(2),
         ]);
 
         Transaction::factory()->create([
             'category_id' => $category->id,
             'account_id' => $account->id,
-            'amount' => 300.00,
+            'amount' => -300.00,
             'date' => now()->subMonths(3)->addDay(),
         ]);
 

@@ -76,11 +76,12 @@ new class extends Component {
         $categories = Category::orderBy('name')->get()->map(function ($cat) {
             $cat->avg_spend = $cat->averageSpend($this->lookbackMonths);
 
-            // Trend: compare last month vs the average
-            $lastMonthSpend = (float) Transaction::where('category_id', $cat->id)
+            // Trend: compare last month vs the average (spending only — negative amounts)
+            $lastMonthSpend = (float) abs(Transaction::where('category_id', $cat->id)
                 ->whereYear('date', now()->subMonth()->year)
                 ->whereMonth('date', now()->subMonth()->month)
-                ->sum('amount');
+                ->where('amount', '<', 0)
+                ->sum('amount'));
 
             $avg = $cat->avg_spend;
 

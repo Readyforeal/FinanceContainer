@@ -66,10 +66,11 @@ new class extends Component {
         $budgetedCategoryIds = $budgets->pluck('category_id')->toArray();
 
         foreach ($budgets as $budget) {
-            $budget->spent = (float) Transaction::where('category_id', $budget->category_id)
+            $budget->spent = (float) abs(Transaction::where('category_id', $budget->category_id)
                 ->whereYear('date', now()->year)
                 ->whereMonth('date', now()->month)
-                ->sum('amount');
+                ->where('amount', '<', 0)
+                ->sum('amount'));
         }
 
         $incomeSources = IncomeSource::where('is_active', true)->get();

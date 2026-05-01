@@ -41,7 +41,7 @@ class Category extends Model
     public function averageSpend(int $months = 3): float
     {
         $since = now()->subMonths($months);
-        $total = $this->transactions()->where('date', '>=', $since)->sum('amount');
+        $total = abs($this->transactions()->where('date', '>=', $since)->where('amount', '<', 0)->sum('amount'));
 
         return round($total / max($months, 1), 2);
     }

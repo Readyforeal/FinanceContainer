@@ -53,7 +53,7 @@ new class extends Component {
                         </p>
                         <p class="text-xs text-zinc-400 dark:text-zinc-500">
                             {{ $transaction->date->format('M j') }}
-                            &middot; ${{ number_format($transaction->amount, 2) }}
+                            &middot; {{ $transaction->amount < 0 ? '-' : '+' }}${{ number_format(abs($transaction->amount), 2) }}
                         </p>
                     </div>
                     <div class="flex-shrink-0">
