@@ -29,6 +29,14 @@ new class extends Component {
         $this->viewingMonth = \Carbon\Carbon::createFromFormat('Y-m', $this->viewingMonth)->addMonth()->format('Y-m');
     }
 
+    public function openCreateModal(): void
+    {
+        $this->editingBudgetId = null;
+        $this->editCategoryId = null;
+        $this->editAmount = '';
+        $this->modal('budget-editor')->show();
+    }
+
     public function saveBudget(): void
     {
         $this->validate([
@@ -49,7 +57,10 @@ new class extends Component {
             ]);
         }
 
-        $this->cancelEdit();
+        $this->modal('budget-editor')->close();
+        $this->editCategoryId = null;
+        $this->editAmount = '';
+        $this->editingBudgetId = null;
     }
 
     public function editBudget(int $budgetId): void
@@ -58,6 +69,7 @@ new class extends Component {
         $this->editingBudgetId = $budget->id;
         $this->editCategoryId = $budget->category_id;
         $this->editAmount = (string) $budget->budgeted_amount;
+        $this->modal('budget-editor')->show();
     }
 
     public function deleteBudget(int $budgetId): void
@@ -67,6 +79,7 @@ new class extends Component {
 
     public function cancelEdit(): void
     {
+        $this->modal('budget-editor')->close();
         $this->editCategoryId = null;
         $this->editAmount = '';
         $this->editingBudgetId = null;
@@ -154,11 +167,14 @@ new class extends Component {
             </flux:text>
         </div>
 
-        @if ($overIncome)
-            <flux:callout variant="danger" icon="triangle-alert" class="!py-2">
-                Budgets exceed income &mdash; over by ${{ number_format($totalBudgeted - $totalMonthlyIncome, 2) }}
-            </flux:callout>
-        @endif
+        <div class="flex items-center gap-3">
+            @if ($overIncome)
+                <flux:callout variant="danger" icon="triangle-alert" class="!py-2">
+                    Budgets exceed income &mdash; over by ${{ number_format($totalBudgeted - $totalMonthlyIncome, 2) }}
+                </flux:callout>
+            @endif
+            <flux:button wire:click="openCreateModal" variant="primary" icon="plus">Add Budget</flux:button>
+        </div>
     </div>
 
     {{-- Bucket sections --}}
@@ -256,43 +272,37 @@ new class extends Component {
         @endforeach
     </div>
 
-    {{-- Add / Edit form --}}
-    <flux:card class="mt-8">
-        <flux:heading size="sm" class="mb-4">
-            {{ $editingBudgetId ? 'Edit Budget' : 'Add Budget' }}
-        </flux:heading>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {{-- Category select (locked when editing) --}}
+    {{-- Budget editor modal --}}
+    <flux:modal name="budget-editor" class="md:w-96">
+        <div class="space-y-6">
             <div>
-                @if ($editingBudgetId)
-                    <flux:input label="Category" value="{{ $budgets->firstWhere('id', $editingBudgetId)?->category->name ?? 'Selected' }}" readonly />
-                @else
-                    <flux:select wire:model="editCategoryId" label="Category" placeholder="Select category...">
-                        @foreach ($availableCategories as $cat)
-                            <flux:select.option value="{{ $cat->id }}">{{ $cat->name }}</flux:select.option>
-                        @endforeach
-                    </flux:select>
-                @endif
+                <flux:heading size="lg">{{ $editingBudgetId ? 'Edit Budget' : 'Add Budget' }}</flux:heading>
+                <flux:text class="mt-1">{{ $editingBudgetId ? 'Update the budgeted amount.' : 'Set a monthly budget for a category.' }}</flux:text>
             </div>
 
-            {{-- Amount --}}
-            <div>
-                <flux:input wire:model="editAmount" type="number" label="Amount" min="0.01" step="0.01" placeholder="0.00" />
-                @error('editAmount')
-                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-                @enderror
-            </div>
+            @if ($editingBudgetId)
+                <flux:input label="Category" value="{{ $budgets->firstWhere('id', $editingBudgetId)?->category->name ?? 'Selected' }}" readonly />
+            @else
+                <flux:select wire:model="editCategoryId" label="Category" placeholder="Select category...">
+                    @foreach ($availableCategories as $cat)
+                        <flux:select.option value="{{ $cat->id }}">{{ $cat->name }}</flux:select.option>
+                    @endforeach
+                </flux:select>
+            @endif
 
-            {{-- Buttons --}}
-            <div class="flex items-end gap-2">
-                <flux:button wire:click="saveBudget" variant="primary" class="flex-1">
+            <flux:input wire:model="editAmount" type="number" label="Monthly Amount" min="0.01" step="0.01" placeholder="0.00" />
+            @error('editAmount')
+                <flux:text size="xs" class="text-red-500">{{ $message }}</flux:text>
+            @enderror
+
+            <div class="flex justify-end gap-2">
+                <flux:modal.close>
+                    <flux:button variant="ghost">Cancel</flux:button>
+                </flux:modal.close>
+                <flux:button wire:click="saveBudget" variant="primary">
                     {{ $editingBudgetId ? 'Update' : 'Add Budget' }}
                 </flux:button>
-                @if ($editingBudgetId)
-                    <flux:button wire:click="cancelEdit" variant="ghost">Cancel</flux:button>
-                @endif
             </div>
         </div>
-    </flux:card>
+    </flux:modal>
 </div>
