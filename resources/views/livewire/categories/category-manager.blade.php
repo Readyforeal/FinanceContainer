@@ -16,7 +16,7 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->js("\$store.dockAction = { icon: 'plus' }");
+        $this->dispatch('set-dock-action', icon: 'plus');
     }
 
     public function save(): void

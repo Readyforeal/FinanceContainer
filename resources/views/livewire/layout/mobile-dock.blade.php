@@ -96,12 +96,13 @@ new class extends Component {};
         {{-- Contextual action button --}}
         <div x-data="{ show: false, icon: null }"
              x-init="
-                $watch('$store.dockAction', (val) => {
-                    if (val?.icon) { icon = val.icon; show = true; }
-                    else { show = false; }
+                Livewire.on('set-dock-action', (data) => {
+                    icon = data[0]?.icon || data.icon || 'plus';
+                    show = true;
                 });
-                document.addEventListener('livewire:navigated', () => {
-                    show = false; icon = null; $store.dockAction = { icon: null };
+                document.addEventListener('livewire:navigating', () => {
+                    show = false;
+                    icon = null;
                 });
              ">
             <button

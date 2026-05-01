@@ -18,7 +18,7 @@ new class extends Component {
     public function mount(): void
     {
         $this->viewingMonth = now()->format('Y-m');
-        $this->js("\$store.dockAction = { icon: 'plus' }");
+        $this->dispatch('set-dock-action', icon: 'plus');
     }
 
     public function previousMonth(): void
