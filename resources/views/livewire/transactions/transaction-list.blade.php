@@ -280,35 +280,39 @@ new class extends Component {
                             {{ $transaction->account?->name ?? '-' }}
                         </td>
                         <td class="px-4 py-3">
-                            @if ($transaction->needs_review)
-                                <select
-                                    wire:change="assignCategory({{ $transaction->id }}, $event.target.value)"
-                                    class="bg-zinc-200 dark:bg-zinc-700 border border-yellow-600 text-zinc-900 dark:text-zinc-100 text-xs rounded px-2 py-1"
-                                >
-                                    <option value="">-- Assign Category --</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}" {{ $transaction->category_id === $category->id ? 'selected' : '' }}>
-                                            {{ $category->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            @else
-                                <span class="text-zinc-500 dark:text-zinc-400">{{ $transaction->category?->name ?? '-' }}</span>
-                            @endif
+                            <select
+                                wire:change="assignCategory({{ $transaction->id }}, $event.target.value)"
+                                class="appearance-none bg-transparent border-0 text-sm rounded-md py-0.5 pr-6 pl-1.5 -ml-1.5 cursor-pointer transition-colors
+                                    {{ $transaction->needs_review
+                                        ? 'text-yellow-700 dark:text-yellow-400 font-medium'
+                                        : 'text-zinc-600 dark:text-zinc-400' }}
+                                    hover:bg-zinc-100 dark:hover:bg-zinc-700/50
+                                    focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:bg-zinc-50 dark:focus:bg-zinc-700"
+                                style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E&quot;); background-repeat: no-repeat; background-position: right 4px center;"
+                            >
+                                @if (! $transaction->category_id)
+                                    <option value="">-- Assign --</option>
+                                @endif
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" @selected($transaction->category_id === $category->id)>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </td>
                         <td class="px-4 py-3 text-right font-mono">
-                            <span class="{{ $transaction->amount < 0 ? 'text-green-400' : 'text-zinc-900 dark:text-zinc-100' }}">
+                            <span class="{{ $transaction->amount < 0 ? 'text-green-600 dark:text-green-400' : 'text-zinc-900 dark:text-zinc-100' }}">
                                 {{ $transaction->amount < 0 ? '-' : '' }}${{ number_format(abs($transaction->amount), 2) }}
                             </span>
                         </td>
                         <td class="px-4 py-3 text-center">
                             @if ($transaction->needs_review)
-                                <span class="inline-flex items-center gap-1 text-xs bg-yellow-900/50 text-yellow-400 border border-yellow-700 px-2 py-0.5 rounded-full">
+                                <span class="inline-flex items-center gap-1 text-xs bg-yellow-100 dark:bg-yellow-500/15 text-yellow-700 dark:text-yellow-300 border border-yellow-300 dark:border-yellow-500/30 px-2 py-0.5 rounded-full">
                                     <x-lucide-flag class="w-3 h-3" />
                                     Review
                                 </span>
                             @else
-                                <span class="inline-flex items-center gap-1 text-xs bg-green-900/50 text-green-400 px-2 py-0.5 rounded-full">
+                                <span class="inline-flex items-center gap-1 text-xs bg-green-100 dark:bg-green-500/15 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-500/30 px-2 py-0.5 rounded-full">
                                     <x-lucide-check class="w-3 h-3" />
                                     OK
                                 </span>

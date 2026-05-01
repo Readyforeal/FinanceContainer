@@ -33,7 +33,7 @@ class BudgetManagerTest extends TestCase
 
         $budget = Budget::factory()->create([
             'category_id' => $category->id,
-            'month' => now()->format('Y-m'),
+
             'budgeted_amount' => 400,
             'bucket' => BudgetBucket::Needs,
         ]);
@@ -68,7 +68,7 @@ class BudgetManagerTest extends TestCase
 
         Budget::factory()->create([
             'category_id' => $category->id,
-            'month' => now()->format('Y-m'),
+
             'budgeted_amount' => 1500,
             'bucket' => BudgetBucket::Needs,
         ]);
@@ -96,7 +96,6 @@ class BudgetManagerTest extends TestCase
 
         $this->assertDatabaseHas('budgets', [
             'category_id' => $category->id,
-            'month' => now()->format('Y-m'),
             'budgeted_amount' => 250,
         ]);
     }
@@ -116,14 +115,14 @@ class BudgetManagerTest extends TestCase
 
         Budget::factory()->create([
             'category_id' => $category1->id,
-            'month' => now()->format('Y-m'),
+
             'budgeted_amount' => 1500,
             'bucket' => BudgetBucket::Needs,
         ]);
 
         Budget::factory()->create([
             'category_id' => $category2->id,
-            'month' => now()->format('Y-m'),
+
             'budgeted_amount' => 800,
             'bucket' => BudgetBucket::Wants,
         ]);

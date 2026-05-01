@@ -9,9 +9,25 @@ use App\Models\Transaction;
 use Livewire\Component;
 
 new class extends Component {
+    public string $viewingMonth = '';
     public ?int $editCategoryId = null;
     public string $editAmount = '';
     public ?int $editingBudgetId = null;
+
+    public function mount(): void
+    {
+        $this->viewingMonth = now()->format('Y-m');
+    }
+
+    public function previousMonth(): void
+    {
+        $this->viewingMonth = \Carbon\Carbon::createFromFormat('Y-m', $this->viewingMonth)->subMonth()->format('Y-m');
+    }
+
+    public function nextMonth(): void
+    {
+        $this->viewingMonth = \Carbon\Carbon::createFromFormat('Y-m', $this->viewingMonth)->addMonth()->format('Y-m');
+    }
 
     public function saveBudget(): void
     {
@@ -28,7 +44,6 @@ new class extends Component {
 
             Budget::create([
                 'category_id' => $this->editCategoryId,
-                'month' => now()->format('Y-m'),
                 'budgeted_amount' => $this->editAmount,
                 'bucket' => $category->default_bucket,
             ]);
@@ -59,16 +74,16 @@ new class extends Component {
 
     public function with(): array
     {
-        $currentMonth = now()->format('Y-m');
+        $monthDate = \Carbon\Carbon::createFromFormat('Y-m', $this->viewingMonth);
 
-        $budgets = Budget::with('category')->where('month', $currentMonth)->get();
+        $budgets = Budget::with('category')->get();
 
         $budgetedCategoryIds = $budgets->pluck('category_id')->toArray();
 
         foreach ($budgets as $budget) {
             $budget->spent = (float) abs(Transaction::where('category_id', $budget->category_id)
-                ->whereYear('date', now()->year)
-                ->whereMonth('date', now()->month)
+                ->whereYear('date', $monthDate->year)
+                ->whereMonth('date', $monthDate->month)
                 ->where('amount', '<', 0)
                 ->sum('amount'));
         }
@@ -101,6 +116,7 @@ new class extends Component {
             'bucketTotals',
             'availableCategories',
             'ratios',
+            'monthDate',
         );
     }
 };
@@ -110,9 +126,25 @@ new class extends Component {
     {{-- Header --}}
     <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-            <h1 class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                {{ now()->format('F Y') }} Budget
-            </h1>
+            <div class="flex items-center gap-3">
+                <button
+                    wire:click="previousMonth"
+                    class="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                    title="Previous month"
+                >
+                    <x-lucide-chevron-left class="w-5 h-5" />
+                </button>
+                <h1 class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+                    {{ $monthDate->format('F Y') }} Budget
+                </h1>
+                <button
+                    wire:click="nextMonth"
+                    class="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                    title="Next month"
+                >
+                    <x-lucide-chevron-right class="w-5 h-5" />
+                </button>
+            </div>
             <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
                 ${{ number_format($totalBudgeted, 2) }} budgeted
                 @if ($totalMonthlyIncome > 0)

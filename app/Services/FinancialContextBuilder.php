@@ -252,7 +252,6 @@ TEXT;
         $currentMonth = now()->format('Y-m');
 
         $budgets = Budget::with('category')
-            ->where('month', $currentMonth)
             ->orderBy('budgeted_amount', 'desc')
             ->get();
 

@@ -42,13 +42,13 @@ new class extends Component {
 };
 ?>
 
-<div class="bubble-assistant rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
+<flux:card>
     <div class="flex items-center justify-between mb-4">
-        <h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <flux:heading size="sm">
             {{ now()->format('F') }} &mdash; 50 / 30 / 20 Breakdown
-        </h2>
+        </flux:heading>
         @if ($totalSpent > 0)
-            <span class="text-xs text-zinc-400 dark:text-zinc-500">${{ number_format($totalSpent, 2) }} spent</span>
+            <flux:text size="sm">${{ number_format($totalSpent, 2) }} spent</flux:text>
         @endif
     </div>
 
@@ -68,14 +68,14 @@ new class extends Component {
     <div class="grid grid-cols-3 gap-3">
         @foreach ($buckets as $bucket)
             <div class="text-center">
-                <p class="text-xs font-medium text-zinc-500 dark:text-zinc-400 mb-1">{{ $bucket['label'] }}</p>
-                <p class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">{{ $bucket['pct'] }}%</p>
-                <p class="text-xs text-zinc-400 dark:text-zinc-500">target {{ $bucket['target'] }}%</p>
-                <p class="text-xs text-zinc-400 dark:text-zinc-500">${{ number_format($bucket['spent'], 2) }}</p>
+                <flux:text size="xs" class="font-medium mb-1">{{ $bucket['label'] }}</flux:text>
+                <flux:heading size="lg">{{ $bucket['pct'] }}%</flux:heading>
+                <flux:text size="xs">target {{ $bucket['target'] }}%</flux:text>
+                <flux:text size="xs">${{ number_format($bucket['spent'], 2) }}</flux:text>
                 @if ($bucket['over'])
-                    <p class="text-xs text-red-500 font-medium mt-0.5">over target</p>
+                    <flux:text size="xs" class="text-red-500 font-medium mt-0.5">over target</flux:text>
                 @endif
             </div>
         @endforeach
     </div>
-</div>
+</flux:card>

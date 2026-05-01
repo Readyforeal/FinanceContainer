@@ -13,7 +13,6 @@ class Budget extends Model
 
     protected $fillable = [
         'category_id',
-        'month',
         'budgeted_amount',
         'bucket',
     ];

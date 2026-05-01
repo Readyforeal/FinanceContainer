@@ -32,18 +32,12 @@ new class extends Component {
 };
 ?>
 
-<div class="bubble-assistant rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
+<flux:card>
     <div class="flex items-center justify-between mb-1">
-        <h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Spending Trend</h2>
+        <flux:heading size="sm">Spending Trend</flux:heading>
         <div class="flex gap-1">
-            <button
-                wire:click="setDays(7)"
-                class="px-3 py-1 text-xs rounded-full transition-colors {{ $days === 7 ? 'bg-blue-500 text-white' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700' }}"
-            >7d</button>
-            <button
-                wire:click="setDays(30)"
-                class="px-3 py-1 text-xs rounded-full transition-colors {{ $days === 30 ? 'bg-blue-500 text-white' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700' }}"
-            >30d</button>
+            <flux:button size="xs" :variant="$days === 7 ? 'primary' : 'subtle'" wire:click="setDays(7)">7d</flux:button>
+            <flux:button size="xs" :variant="$days === 30 ? 'primary' : 'subtle'" wire:click="setDays(30)">30d</flux:button>
         </div>
     </div>
 
@@ -61,4 +55,4 @@ new class extends Component {
     " class="mt-4">
         <div x-ref="chart"></div>
     </div>
-</div>
+</flux:card>

@@ -39,7 +39,6 @@ class BudgetCheckJobTest extends TestCase
 
         Budget::factory()->create([
             'category_id' => $category->id,
-            'month' => now()->format('Y-m'),
             'budgeted_amount' => 600,
         ]);
 
