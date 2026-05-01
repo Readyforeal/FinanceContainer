@@ -286,9 +286,9 @@ new class extends Component {
                 </div>
             </flux:field>
 
-            <flux:field>
-                <flux:label>Budget Bucket</flux:label>
-                <div class="grid grid-cols-3 gap-2 sm:grid-cols-5">
+            <div>
+                <flux:label class="mb-2">Budget Bucket</flux:label>
+                <div class="flex flex-wrap gap-2">
                     @foreach (App\Enums\BudgetBucket::cases() as $bucket)
                         @php
                             $isSelected = $defaultBucket === $bucket->value;
@@ -313,13 +313,13 @@ new class extends Component {
                         <button
                             type="button"
                             wire:click="$set('defaultBucket', '{{ $bucket->value }}')"
-                            class="rounded-lg border px-3 py-2 text-sm font-medium transition-colors cursor-pointer {{ $colors }}"
+                            class="rounded-lg border px-4 py-2 text-sm font-medium text-center transition-colors cursor-pointer {{ $colors }}"
                         >
                             {{ ucfirst($bucket->value) }}
                         </button>
                     @endforeach
                 </div>
-            </flux:field>
+            </div>
 
             <flux:switch wire:model="isEssential" label="Essential" description="Mark as a non-negotiable expense" />
 
