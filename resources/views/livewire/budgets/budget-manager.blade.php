@@ -173,7 +173,9 @@ new class extends Component {
                     Budgets exceed income &mdash; over by ${{ number_format($totalBudgeted - $totalMonthlyIncome, 2) }}
                 </flux:callout>
             @endif
-            <flux:button wire:click="openCreateModal" variant="primary" icon="plus" class="hidden lg:inline-flex">Add Budget</flux:button>
+            <div class="hidden lg:block">
+                <flux:button wire:click="openCreateModal" variant="primary" icon="plus">Add Budget</flux:button>
+            </div>
         </div>
     </div>
 
