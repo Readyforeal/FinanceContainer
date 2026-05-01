@@ -94,17 +94,19 @@ new class extends Component {};
                 </button>
             </div>
 
-            <button x-show="hasAction" x-cloak
+            <div x-show="hasAction" x-cloak
                 x-transition:enter="transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                 x-transition:enter-start="w-0 opacity-0 scale-x-0"
                 x-transition:enter-end="w-[46px] opacity-100 scale-x-100"
                 x-transition:leave="transition-all duration-200 ease-in"
                 x-transition:leave-start="w-[46px] opacity-100 scale-x-100"
                 x-transition:leave-end="w-0 opacity-0 scale-x-0"
-                @click="Livewire.dispatch('dock-action')"
-                class="shrink-0 w-[46px] flex items-center justify-center rounded-2xl bg-accent/80 text-accent-foreground backdrop-blur-xl shadow-lg overflow-hidden origin-right">
-                <flux:icon.plus variant="mini" />
-            </button>
+                class="shrink-0 w-[46px] flex items-center justify-center overflow-hidden origin-right p-1">
+                <button @click="Livewire.dispatch('dock-action')"
+                    class="aspect-square w-full flex items-center justify-center rounded-2xl bg-accent/80 text-accent-foreground backdrop-blur-xl shadow-lg">
+                    <flux:icon.plus variant="mini" />
+                </button>
+            </div>
         </div>
     </div>
 </div>
