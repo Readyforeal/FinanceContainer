@@ -66,16 +66,16 @@ new class extends Component {};
     </div>
 
     {{-- Bottom dock bar --}}
-    <div class="fixed bottom-0 left-0 right-0 z-40 pb-safe">
-        <div class="flex items-center justify-around bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl border-t border-zinc-200 dark:border-zinc-700 px-2 py-2">
+    <div class="fixed bottom-3 left-3 right-3 z-40">
+        <div class="flex items-center justify-around bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 border border-zinc-200/50 dark:border-zinc-700/50 px-2 py-2.5">
 
             @php
                 $dockItems = [
-                    ['path' => '/dashboard',    'label' => 'Home',      'icon' => 'layout-dashboard'],
-                    ['path' => '/transactions', 'label' => 'Transactions', 'icon' => 'arrow-left-right'],
-                    ['path' => '/budgets',      'label' => 'Budgets',   'icon' => 'wallet'],
-                    ['path' => '/summaries',    'label' => 'Summaries', 'icon' => 'file-text'],
-                    ['path' => '/chat',         'label' => 'Chat',      'icon' => 'message-square'],
+                    ['path' => '/dashboard',    'icon' => 'layout-dashboard'],
+                    ['path' => '/transactions', 'icon' => 'arrow-left-right'],
+                    ['path' => '/budgets',      'icon' => 'wallet'],
+                    ['path' => '/summaries',    'icon' => 'file-text'],
+                    ['path' => '/chat',         'icon' => 'message-square'],
                 ];
             @endphp
 
@@ -84,18 +84,16 @@ new class extends Component {};
                    :class="path === '{{ $item['path'] }}'
                        ? 'text-zinc-900 dark:text-zinc-100'
                        : 'text-zinc-400 dark:text-zinc-500'"
-                   class="flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg transition-colors">
+                   class="flex items-center justify-center p-2.5 rounded-xl transition-colors">
                     <flux:icon :icon="$item['icon']" variant="mini" />
-                    <span class="text-[10px] font-medium">{{ $item['label'] }}</span>
                 </a>
             @endforeach
 
             {{-- More button --}}
             <button @click="expanded = !expanded"
                     :class="expanded ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500'"
-                    class="flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg transition-colors">
+                    class="flex items-center justify-center p-2.5 rounded-xl transition-colors">
                 <flux:icon.grip variant="mini" />
-                <span class="text-[10px] font-medium">More</span>
             </button>
         </div>
     </div>
