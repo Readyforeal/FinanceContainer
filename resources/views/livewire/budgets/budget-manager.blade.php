@@ -95,8 +95,10 @@ new class extends Component {
 
         $overIncome = $totalMonthlyIncome > 0 && $totalBudgeted > $totalMonthlyIncome;
 
+        $spendingBuckets = array_filter(BudgetBucket::cases(), fn ($b) => $b->isSpending());
+
         $bucketTotals = [];
-        foreach (BudgetBucket::cases() as $bucket) {
+        foreach ($spendingBuckets as $bucket) {
             $bucketBudgets = $budgets->where('bucket', $bucket);
             $bucketTotals[$bucket->value] = [
                 'budgeted' => $bucketBudgets->sum('budgeted_amount'),
@@ -117,6 +119,7 @@ new class extends Component {
             'availableCategories',
             'ratios',
             'monthDate',
+            'spendingBuckets',
         );
     }
 };
@@ -148,7 +151,7 @@ new class extends Component {
 
     {{-- Bucket sections --}}
     <div class="space-y-8">
-        @foreach (App\Enums\BudgetBucket::cases() as $bucket)
+        @foreach ($spendingBuckets as $bucket)
             @php
                 $bucketBudgets = $budgets->where('bucket', $bucket);
                 $bucketData = $bucketTotals[$bucket->value];

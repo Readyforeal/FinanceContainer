@@ -61,6 +61,9 @@ class FinancialContextBuilder
         // Budget vs actual (current month)
         $sections[] = $this->buildBudgetVsActualSection();
 
+        // Income tracking (expected vs actual)
+        $sections[] = $this->buildIncomeTrackingSection();
+
         // Flagged transactions
         $sections[] = $this->buildFlaggedTransactionsSection();
 
@@ -279,6 +282,46 @@ TEXT;
                 . " | actual \${$this->fmt($actualFloat)}"
                 . " | remaining \${$this->fmt(abs($remaining))} ({$status})";
         }
+
+        return implode("\n", $lines);
+    }
+
+    private function buildIncomeTrackingSection(): string
+    {
+        $currentMonth = now()->format('Y-m');
+
+        $expectedIncome = IncomeSource::where('is_active', true)->get()
+            ->sum(fn ($s) => $s->monthlyAmount());
+
+        $actualIncome = (float) Transaction::whereYear('date', now()->year)
+            ->whereMonth('date', now()->month)
+            ->where('budget_bucket', 'income')
+            ->where('amount', '>', 0)
+            ->sum('amount');
+
+        $savingsDeposits = (float) abs(Transaction::whereYear('date', now()->year)
+            ->whereMonth('date', now()->month)
+            ->where('budget_bucket', 'savings')
+            ->where('amount', '<', 0)
+            ->sum('amount'));
+
+        $savingsWithdrawals = (float) Transaction::whereYear('date', now()->year)
+            ->whereMonth('date', now()->month)
+            ->where('budget_bucket', 'transfer')
+            ->where('amount', '>', 0)
+            ->sum('amount');
+
+        $netSavings = $savingsDeposits - $savingsWithdrawals;
+
+        $variance = $actualIncome - $expectedIncome;
+        $varianceLabel = $variance >= 0 ? 'ahead' : 'behind';
+
+        $lines = ["INCOME TRACKING (current month {$currentMonth}):"];
+        $lines[] = "  Expected income: \${$this->fmt($expectedIncome)}";
+        $lines[] = "  Actual income: \${$this->fmt($actualIncome)} (\${$this->fmt(abs($variance))} {$varianceLabel})";
+        $lines[] = "  Savings deposits: \${$this->fmt($savingsDeposits)}";
+        $lines[] = "  Savings withdrawals: \${$this->fmt($savingsWithdrawals)}";
+        $lines[] = "  Net savings: \${$this->fmt($netSavings)}";
 
         return implode("\n", $lines);
     }

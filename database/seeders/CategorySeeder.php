@@ -35,8 +35,11 @@ class CategorySeeder extends Seeder
             ['name' => 'Emergency Fund', 'icon' => 'piggy-bank', 'default_bucket' => 'savings', 'is_essential' => false, 'is_system' => true],
             ['name' => 'Car Fund', 'icon' => 'car', 'default_bucket' => 'savings', 'is_essential' => false, 'is_system' => true],
             ['name' => 'Renovation Fund', 'icon' => 'paint-roller', 'default_bucket' => 'savings', 'is_essential' => false, 'is_system' => true],
-            ['name' => 'Tithe', 'icon' => 'church', 'default_bucket' => 'savings', 'is_essential' => false, 'is_system' => true],
-            ['name' => 'Uncategorized', 'icon' => 'help-circle', 'default_bucket' => 'wants', 'is_essential' => false, 'is_system' => true],
+            ['name' => 'Tithe', 'icon' => 'church', 'default_bucket' => 'needs', 'is_essential' => true, 'is_system' => true],
+            ['name' => 'Income', 'icon' => 'banknote', 'default_bucket' => 'income', 'is_essential' => false, 'is_system' => true],
+            ['name' => 'Savings Deposit', 'icon' => 'arrow-down-to-line', 'default_bucket' => 'savings', 'is_essential' => false, 'is_system' => true],
+            ['name' => 'Savings Withdrawal', 'icon' => 'arrow-up-from-line', 'default_bucket' => 'transfer', 'is_essential' => false, 'is_system' => true],
+            ['name' => 'Uncategorized', 'icon' => 'circle-alert', 'default_bucket' => 'wants', 'is_essential' => false, 'is_system' => true],
         ];
 
         foreach ($categories as $category) {
