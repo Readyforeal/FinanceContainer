@@ -86,7 +86,7 @@
 
     <script>
         document.addEventListener('alpine:init', () => {
-            Alpine.store('dockAction', null);
+            Alpine.store('dockAction', { icon: null });
         });
     </script>
     @fluxScripts

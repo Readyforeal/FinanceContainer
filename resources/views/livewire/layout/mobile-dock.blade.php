@@ -101,7 +101,7 @@ new class extends Component {};
                     else { show = false; }
                 });
                 document.addEventListener('livewire:navigated', () => {
-                    show = false; icon = null; $store.dockAction = null;
+                    show = false; icon = null; $store.dockAction = { icon: null };
                 });
              ">
             <button
