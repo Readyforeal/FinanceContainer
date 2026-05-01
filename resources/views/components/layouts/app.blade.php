@@ -71,8 +71,8 @@
         </flux:dropdown>
     </flux:header>
 
-    <flux:main class="pb-24 lg:pb-0 lg:p-3 lg:pl-0">
-        <div class="lg:bg-white lg:dark:bg-zinc-800 lg:rounded-2xl lg:border lg:border-zinc-200 lg:dark:border-zinc-700 lg:min-h-[calc(100vh-1.5rem)] lg:p-8 lg:shadow-sm">
+    <flux:main class="pb-24 lg:pb-0 lg:pt-1.5 lg:pr-1.5 lg:pb-1.5 lg:pl-0">
+        <div class="lg:bg-white lg:dark:bg-zinc-800 lg:rounded-2xl lg:border lg:border-zinc-200 lg:dark:border-zinc-700 lg:h-[calc(100vh-0.75rem)] lg:overflow-y-auto lg:p-8 lg:shadow-sm">
             {{ $slot }}
         </div>
     </flux:main>
