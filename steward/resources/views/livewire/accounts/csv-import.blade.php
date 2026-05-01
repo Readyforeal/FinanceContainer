@@ -49,61 +49,77 @@ new class extends Component {
             return;
         }
 
-        // Read header row
-        $header = fgetcsv($handle);
-        if (! $header) {
-            $this->importErrors[] = 'CSV file is empty.';
+        // Peek at the first row to detect if there are headers
+        $firstRow = fgetcsv($handle);
+        if (! $firstRow || count($firstRow) < 2) {
+            $this->importErrors[] = 'CSV file is empty or has too few columns.';
             $this->importStatus = 'error';
             fclose($handle);
             return;
         }
 
-        // Normalize headers to lowercase
-        $header = array_map(fn ($h) => strtolower(trim($h)), $header);
+        $hasHeaders = $this->detectIfHeaders($firstRow);
+        $rows = [];
 
-        // Detect column mapping
-        $mapping = $this->detectColumns($header);
+        if ($hasHeaders) {
+            // First row is headers — normalize and use them
+            $header = array_map(fn ($h) => strtolower(trim($h)), $firstRow);
+            $mapping = $this->detectColumns($header);
 
-        if (! $mapping['date'] || ! $mapping['amount']) {
-            $this->importErrors[] = 'Could not detect required columns. CSV must have at least a date and amount column.';
-            $this->importErrors[] = 'Detected headers: ' . implode(', ', $header);
+            while (($row = fgetcsv($handle)) !== false) {
+                if (count($row) < 2) continue;
+                $data = array_combine($header, array_pad($row, count($header), ''));
+                $rows[] = [
+                    'date' => $data[$mapping['date']] ?? '',
+                    'amount' => $this->parseAmount($data[$mapping['amount']] ?? '', $data[$mapping['debit']] ?? '', $data[$mapping['credit']] ?? ''),
+                    'description' => trim($data[$mapping['description']] ?? $data[$mapping['memo']] ?? ''),
+                    'merchant' => trim($data[$mapping['merchant']] ?? ''),
+                    'txn_id' => null,
+                ];
+            }
+        } else {
+            // No headers — detect column layout by position
+            // Rewind: process the first row as data
+            rewind($handle);
+
+            $colCount = count($firstRow);
+
+            while (($row = fgetcsv($handle)) !== false) {
+                if (count($row) < 2) continue;
+
+                $parsed = $this->parseHeaderlessRow($row, $colCount);
+                if ($parsed) {
+                    $rows[] = $parsed;
+                }
+            }
+        }
+
+        fclose($handle);
+
+        if (empty($rows)) {
+            $this->importErrors[] = 'No valid transactions found in the file.';
             $this->importStatus = 'error';
-            fclose($handle);
             return;
         }
 
         $newTransactionIds = [];
-        $rowNum = 1;
 
-        while (($row = fgetcsv($handle)) !== false) {
-            $rowNum++;
+        foreach ($rows as $row) {
+            $date = $this->parseDate($row['date']);
+            $amount = $row['amount'];
+            $description = $row['description'] ?: $row['merchant'] ?: 'No description';
+            $merchant = $row['merchant'] ?: null;
 
-            if (count($row) < 2) {
-                continue;
-            }
-
-            $data = array_combine($header, array_pad($row, count($header), ''));
-
-            $date = $this->parseDate($data[$mapping['date']] ?? '');
-            $amount = $this->parseAmount($data[$mapping['amount']] ?? '', $data[$mapping['debit']] ?? '', $data[$mapping['credit']] ?? '');
-            $description = trim($data[$mapping['description']] ?? $data[$mapping['memo']] ?? '');
-            $merchant = trim($data[$mapping['merchant']] ?? '');
-
-            if (! $date || $amount === null) {
+            if (! $date || $amount === null || abs($amount) < 0.01) {
                 $this->skippedCount++;
                 continue;
             }
 
-            // Skip zero-amount transactions
-            if (abs($amount) < 0.01) {
-                $this->skippedCount++;
-                continue;
-            }
+            // Use bank's transaction ID if available, otherwise hash the content
+            $uniqueId = $row['txn_id']
+                ? 'csv_' . $row['txn_id']
+                : 'csv_' . md5($account->id . $date . $amount . $description);
 
-            // Generate a unique ID from the transaction data to prevent duplicates
-            $uniqueId = 'csv_' . md5($account->id . $date . $amount . $description);
-
-            // Skip if already imported
             if (Transaction::where('plaid_transaction_id', $uniqueId)->exists()) {
                 $this->skippedCount++;
                 continue;
@@ -114,8 +130,8 @@ new class extends Component {
                 'plaid_transaction_id' => $uniqueId,
                 'amount' => abs($amount),
                 'date' => $date,
-                'merchant_name' => $merchant ?: null,
-                'description' => $description ?: 'No description',
+                'merchant_name' => $merchant,
+                'description' => $description,
                 'needs_review' => true,
             ]);
 
@@ -123,13 +139,8 @@ new class extends Component {
             $this->importedCount++;
         }
 
-        fclose($handle);
-
-        // Update account balance from latest transactions
-        $totalSpent = Transaction::where('account_id', $account->id)->sum('amount');
         $account->update(['last_synced_at' => now()]);
 
-        // Dispatch categorization for new transactions
         if (! empty($newTransactionIds)) {
             CategorizationJob::dispatch($newTransactionIds);
         }
@@ -138,6 +149,90 @@ new class extends Component {
         $this->csvFile = null;
 
         $this->dispatch('transactions-imported');
+    }
+
+    /**
+     * Detect if the first row looks like headers (contains non-numeric, non-date text)
+     */
+    private function detectIfHeaders(array $row): bool
+    {
+        $textColumns = 0;
+        foreach ($row as $val) {
+            $val = trim($val);
+            // If it looks like a date or number, it's probably data
+            if ($this->parseDate($val) !== null) continue;
+            if (is_numeric(preg_replace('/[^0-9.\-]/', '', $val)) && preg_match('/[\d]/', $val)) continue;
+            // If it's a short text string with no numbers, probably a header
+            if (preg_match('/^[a-zA-Z\s_\-\/]+$/', $val)) {
+                $textColumns++;
+            }
+        }
+
+        return $textColumns >= 2;
+    }
+
+    /**
+     * Parse a row without headers by detecting column positions.
+     * Supports common bank formats:
+     * - 4 columns: date, amount, transaction_id, merchant/description
+     * - 3 columns: date, amount, description
+     * - 5+ columns: date, description, amount, ... (try multiple layouts)
+     */
+    private function parseHeaderlessRow(array $row, int $colCount): ?array
+    {
+        $row = array_map('trim', $row);
+
+        // 4 columns: date, amount (+/-), transaction_id, merchant
+        if ($colCount === 4) {
+            return [
+                'date' => $row[0],
+                'amount' => $this->parseSingleAmount($row[1]),
+                'txn_id' => $row[2],
+                'description' => $row[3],
+                'merchant' => $row[3],
+            ];
+        }
+
+        // 3 columns: date, amount, description
+        if ($colCount === 3) {
+            return [
+                'date' => $row[0],
+                'amount' => $this->parseSingleAmount($row[1]),
+                'txn_id' => null,
+                'description' => $row[2],
+                'merchant' => $row[2],
+            ];
+        }
+
+        // 5+ columns: try to find date in first column, amount in second or third
+        // and description in a later column
+        if ($colCount >= 5) {
+            $date = $row[0];
+            $amount = null;
+            $descriptionParts = [];
+
+            for ($i = 1; $i < $colCount; $i++) {
+                $tryAmount = $this->parseSingleAmount($row[$i]);
+                if ($tryAmount !== null && $amount === null) {
+                    $amount = $tryAmount;
+                } else {
+                    $val = trim($row[$i]);
+                    if ($val !== '' && ! is_numeric(str_replace([',', '$'], '', $val))) {
+                        $descriptionParts[] = $val;
+                    }
+                }
+            }
+
+            return [
+                'date' => $date,
+                'amount' => $amount,
+                'txn_id' => null,
+                'description' => implode(' — ', $descriptionParts) ?: 'No description',
+                'merchant' => $descriptionParts[0] ?? '',
+            ];
+        }
+
+        return null;
     }
 
     private function detectColumns(array $headers): array
@@ -170,12 +265,10 @@ new class extends Component {
             }
         }
 
-        // If no single amount column but we have debit/credit, we'll use those
         if (! $mapping['amount'] && ($mapping['debit'] || $mapping['credit'])) {
             $mapping['amount'] = '__computed__';
         }
 
-        // Fall back: if no description found, try the first text-like column
         if (! $mapping['description']) {
             foreach ($headers as $h) {
                 if ($h !== $mapping['date'] && $h !== $mapping['amount'] && $h !== $mapping['debit'] && $h !== $mapping['credit']) {
@@ -200,15 +293,18 @@ new class extends Component {
         }
     }
 
+    private function parseSingleAmount(string $value): ?float
+    {
+        $cleaned = preg_replace('/[^0-9.\-]/', '', trim($value));
+        return ($cleaned !== '' && is_numeric($cleaned)) ? (float) $cleaned : null;
+    }
+
     private function parseAmount(string $amount, string $debit, string $credit): ?float
     {
-        // If we have a single amount column
         if ($amount && $amount !== '__computed__') {
-            $cleaned = preg_replace('/[^0-9.\-]/', '', $amount);
-            return $cleaned !== '' ? (float) $cleaned : null;
+            return $this->parseSingleAmount($amount);
         }
 
-        // Compute from debit/credit columns
         $debitVal = (float) preg_replace('/[^0-9.]/', '', $debit);
         $creditVal = (float) preg_replace('/[^0-9.]/', '', $credit);
 
@@ -263,8 +359,8 @@ new class extends Component {
         </div>
 
         <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-4">
-            Download a CSV from your bank's website and upload it here. Most banks support CSV export from transaction history.
-            The importer auto-detects column formats from most major banks.
+            Download a CSV from your bank's website and upload it here. Works with or without headers.
+            Supports most bank formats including headerless files (date, amount, ID, merchant).
         </p>
 
         <form wire:submit="import" class="space-y-4">
