@@ -19,10 +19,11 @@ new class extends Component {
         $accounts = Account::orderBy('name')->get();
         $totalBalance = $accounts->sum(fn ($a) => (float) $a->current_balance);
 
-        // Current month spending
+        // Current month spending (negative amounts = money out; abs() gives a positive total)
         $currentMonth = now()->format('Y-m');
-        $currentMonthSpent = Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$currentMonth])
-            ->sum('amount');
+        $currentMonthSpent = abs(Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$currentMonth])
+            ->where('amount', '<', 0)
+            ->sum('amount'));
 
         // Budget ratios from settings
         $budgetRatios = AppSetting::getValue('budget_ratios', [
@@ -31,17 +32,20 @@ new class extends Component {
             'savings' => 20,
         ]);
 
-        // Bucket spending this month
+        // Bucket spending this month (spending only — negative amounts; abs() gives positive totals)
         $bucketSpending = [
-            'needs' => (float) Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$currentMonth])
+            'needs' => (float) abs(Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$currentMonth])
                 ->where('budget_bucket', 'needs')
-                ->sum('amount'),
-            'wants' => (float) Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$currentMonth])
+                ->where('amount', '<', 0)
+                ->sum('amount')),
+            'wants' => (float) abs(Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$currentMonth])
                 ->where('budget_bucket', 'wants')
-                ->sum('amount'),
-            'savings' => (float) Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$currentMonth])
+                ->where('amount', '<', 0)
+                ->sum('amount')),
+            'savings' => (float) abs(Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$currentMonth])
                 ->where('budget_bucket', 'savings')
-                ->sum('amount'),
+                ->where('amount', '<', 0)
+                ->sum('amount')),
         ];
 
         // Goals
@@ -78,7 +82,9 @@ new class extends Component {
         $months = [];
         for ($i = 1; $i <= 3; $i++) {
             $month = now()->subMonths($i)->format('Y-m');
-            $months[] = (float) Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$month])->sum('amount');
+            $months[] = (float) abs(Transaction::whereRaw("to_char(date, 'YYYY-MM') = ?", [$month])
+                ->where('amount', '<', 0)
+                ->sum('amount'));
         }
 
         $nonZero = array_filter($months, fn ($m) => $m > 0);

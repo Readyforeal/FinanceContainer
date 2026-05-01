@@ -15,9 +15,10 @@ new class extends Component {
         $bucketTotals = Transaction::whereYear('date', now()->year)
             ->whereMonth('date', now()->month)
             ->whereNotNull('budget_bucket')
+            ->where('amount', '<', 0)
             ->get()
             ->groupBy(fn ($t) => $t->budget_bucket->value)
-            ->map(fn ($group) => $group->sum('amount'));
+            ->map(fn ($group) => abs($group->sum('amount')));
 
         $needsSpent  = (float) ($bucketTotals['needs']   ?? 0);
         $wantsSpent  = (float) ($bucketTotals['wants']   ?? 0);

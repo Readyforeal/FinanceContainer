@@ -238,9 +238,10 @@ TEXT;
         foreach ($transactions as $txn) {
             $date = $txn->date->format('Y-m-d');
             $merchant = $txn->merchant_name ?? $txn->description ?? 'Unknown';
-            $amount = $this->fmt($txn->amount);
+            $sign = $txn->amount >= 0 ? '+' : '-';
+            $amount = $this->fmt(abs($txn->amount));
             $category = $txn->category?->name ?? 'Uncategorized';
-            $lines[] = "  - {$date} | {$merchant} | \${$amount} | {$category}";
+            $lines[] = "  - {$date} | {$merchant} | {$sign}\${$amount} | {$category}";
         }
 
         return implode("\n", $lines);
@@ -265,9 +266,11 @@ TEXT;
             $categoryName = $budget->category?->name ?? 'Unknown';
 
             // Sum actual spending for this category in current month using PostgreSQL to_char
-            $actual = Transaction::where('category_id', $budget->category_id)
+            // Only count negative amounts (spending); abs() makes the total a positive number
+            $actual = abs(Transaction::where('category_id', $budget->category_id)
                 ->whereRaw("to_char(date, 'YYYY-MM') = ?", [$currentMonth])
-                ->sum('amount');
+                ->where('amount', '<', 0)
+                ->sum('amount'));
 
             $budgeted = (float) $budget->budgeted_amount;
             $actualFloat = (float) $actual;
@@ -299,9 +302,10 @@ TEXT;
         foreach ($flagged as $txn) {
             $date = $txn->date->format('Y-m-d');
             $merchant = $txn->merchant_name ?? $txn->description ?? 'Unknown';
-            $amount = $this->fmt($txn->amount);
+            $sign = $txn->amount >= 0 ? '+' : '-';
+            $amount = $this->fmt(abs($txn->amount));
             $category = $txn->category?->name ?? 'Uncategorized';
-            $lines[] = "  - {$date} | {$merchant} | \${$amount} | {$category}";
+            $lines[] = "  - {$date} | {$merchant} | {$sign}\${$amount} | {$category}";
         }
 
         return implode("\n", $lines);

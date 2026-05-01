@@ -40,7 +40,7 @@ class BudgetManagerTest extends TestCase
 
         Transaction::factory()->create([
             'category_id' => $category->id,
-            'amount' => 150,
+            'amount' => -150,
             'date' => now()->startOfMonth(),
         ]);
 

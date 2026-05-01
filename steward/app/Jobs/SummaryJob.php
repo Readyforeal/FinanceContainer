@@ -39,17 +39,17 @@ class SummaryJob implements ShouldQueue
             $periodEnd->toDateString(),
         ])->get();
 
-        $needsSpent = $transactions
-            ->filter(fn ($t) => $this->bucketValue($t) === 'needs')
-            ->sum(fn ($t) => (float) $t->amount);
+        $needsSpent = abs($transactions
+            ->filter(fn ($t) => $this->bucketValue($t) === 'needs' && (float) $t->amount < 0)
+            ->sum(fn ($t) => (float) $t->amount));
 
-        $wantsSpent = $transactions
-            ->filter(fn ($t) => $this->bucketValue($t) === 'wants')
-            ->sum(fn ($t) => (float) $t->amount);
+        $wantsSpent = abs($transactions
+            ->filter(fn ($t) => $this->bucketValue($t) === 'wants' && (float) $t->amount < 0)
+            ->sum(fn ($t) => (float) $t->amount));
 
-        $savingsSpent = $transactions
-            ->filter(fn ($t) => $this->bucketValue($t) === 'savings')
-            ->sum(fn ($t) => (float) $t->amount);
+        $savingsSpent = abs($transactions
+            ->filter(fn ($t) => $this->bucketValue($t) === 'savings' && (float) $t->amount < 0)
+            ->sum(fn ($t) => (float) $t->amount));
 
         $totalSpent = $needsSpent + $wantsSpent + $savingsSpent;
 
