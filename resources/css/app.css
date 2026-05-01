@@ -3,6 +3,20 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+    --color-accent: var(--color-emerald-600);
+    --color-accent-content: var(--color-emerald-600);
+    --color-accent-foreground: var(--color-white);
+}
+
+@layer theme {
+    .dark {
+        --color-accent: var(--color-emerald-500);
+        --color-accent-content: var(--color-emerald-400);
+        --color-accent-foreground: var(--color-white);
+    }
+}
+
 /* iOS 26-style bezel borders — subtle 1px edge that catches light */
 .bubble-user {
     border: 1px solid rgba(255, 255, 255, 0.15);
