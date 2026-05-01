@@ -38,30 +38,38 @@ class CategorizationJob implements ShouldQueue
             ->get();
 
         foreach ($transactions as $transaction) {
-            $userMessage = $this->buildUserMessage($transaction);
+            try {
+                $userMessage = $this->buildUserMessage($transaction);
 
-            $response = $ollama->chatJson($categorizationPrompt, [
-                ['role' => 'user', 'content' => $userMessage],
-            ]);
+                $response = $ollama->chatJson($categorizationPrompt, [
+                    ['role' => 'user', 'content' => $userMessage],
+                ]);
 
-            $categoryName = $response['category_name'] ?? null;
-            $confidence = isset($response['confidence']) ? (float) $response['confidence'] : 0.0;
-            $budgetBucketValue = $response['budget_bucket'] ?? null;
+                $categoryName = $response['category_name'] ?? null;
+                $confidence = isset($response['confidence']) ? (float) $response['confidence'] : 0.0;
+                $budgetBucketValue = $response['budget_bucket'] ?? null;
 
-            $category = $categoryName
-                ? Category::where('name', $categoryName)->first()
-                : null;
+                $category = $categoryName
+                    ? Category::where('name', $categoryName)->first()
+                    : null;
 
-            $budgetBucket = $budgetBucketValue
-                ? BudgetBucket::tryFrom($budgetBucketValue)
-                : null;
+                $budgetBucket = $budgetBucketValue
+                    ? BudgetBucket::tryFrom($budgetBucketValue)
+                    : null;
 
-            $transaction->update([
-                'category_id' => $category?->id,
-                'categorization_confidence' => $confidence,
-                'needs_review' => $confidence < $threshold,
-                'budget_bucket' => $budgetBucket,
-            ]);
+                $transaction->update([
+                    'category_id' => $category?->id,
+                    'categorization_confidence' => $confidence,
+                    'needs_review' => $confidence < $threshold,
+                    'budget_bucket' => $budgetBucket,
+                ]);
+            } catch (\Throwable $e) {
+                \Illuminate\Support\Facades\Log::warning('Categorization skipped — Ollama unreachable', [
+                    'transaction_id' => $transaction->id,
+                    'error' => $e->getMessage(),
+                ]);
+                // Transaction stays as needs_review — will be categorized when Ollama is available
+            }
         }
     }
 
