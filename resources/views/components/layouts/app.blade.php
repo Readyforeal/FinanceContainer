@@ -65,9 +65,11 @@
         </flux:dropdown>
     </flux:header>
 
-    <flux:main>
+    <flux:main class="pb-24 lg:pb-8">
         {{ $slot }}
     </flux:main>
+
+    <livewire:layout.mobile-dock />
 
     @fluxScripts
 </body>
