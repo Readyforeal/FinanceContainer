@@ -135,14 +135,27 @@ echo "[5/9] Deploying application..."
 sudo mkdir -p $APP_DIR
 sudo chown $USER:$USER $APP_DIR
 
-# Copy project files
-if [ -d "$HOME/FinanceContainer/steward" ]; then
-    cp -r $HOME/FinanceContainer/steward/* $APP_DIR/
-    cp -r $HOME/FinanceContainer/steward/.env.example $APP_DIR/.env.example 2>/dev/null || true
-    cp -r $HOME/FinanceContainer/steward/.gitignore $APP_DIR/.gitignore 2>/dev/null || true
-else
-    echo "ERROR: Could not find ~/FinanceContainer/steward/"
-    echo "Make sure you've extracted the tarball: tar xzf better-with-90.tar.gz"
+# Copy project files (use rsync to handle hidden files properly)
+STEWARD_SRC="$HOME/FinanceContainer/steward"
+if [ ! -d "$STEWARD_SRC" ]; then
+    # Maybe cloned with a different repo name
+    STEWARD_SRC="$HOME/better-with-90/steward"
+fi
+if [ ! -d "$STEWARD_SRC" ]; then
+    echo "ERROR: Could not find the steward/ directory."
+    echo "Looked in ~/FinanceContainer/steward/ and ~/better-with-90/steward/"
+    echo "Make sure you've cloned the repo or extracted the tarball."
+    exit 1
+fi
+
+# Copy everything including hidden files
+cp -a "$STEWARD_SRC/." "$APP_DIR/"
+
+# Verify critical files exist
+if [ ! -f "$APP_DIR/artisan" ]; then
+    echo "ERROR: artisan file not found in $APP_DIR after copy."
+    echo "Contents of $APP_DIR:"
+    ls -la "$APP_DIR/"
     exit 1
 fi
 
