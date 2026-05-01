@@ -48,6 +48,8 @@ new class extends Component {
             xaxis: { categories: @js($chartLabels) },
             colors: ['#3b82f6'],
             plotOptions: { bar: { borderRadius: 4, columnWidth: '60%' } },
+            yaxis: { labels: { formatter: (val) => '$' + val.toFixed(2) } },
+            tooltip: { y: { formatter: (val) => '$' + val.toFixed(2) } },
             grid: { borderColor: document.documentElement.classList.contains('dark') ? '#27272a' : '#e4e4e7' },
             theme: { mode: document.documentElement.classList.contains('dark') ? 'dark' : 'light' },
             dataLabels: { enabled: false },
