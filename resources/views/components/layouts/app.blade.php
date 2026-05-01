@@ -11,7 +11,7 @@
     @fluxAppearance
 </head>
 <body class="min-h-screen bg-gradient-to-br from-white to-zinc-100 dark:from-zinc-800 dark:to-zinc-900">
-    <flux:sidebar sticky collapsible="mobile" class="border-r border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
+    <flux:sidebar sticky collapsible="mobile" class="lg:bg-transparent! lg:border-r-0!">
         <flux:sidebar.header>
             <flux:sidebar.brand name="Better With 90" href="/dashboard" wire:navigate>
                 <x-slot name="logo">
@@ -71,8 +71,10 @@
         </flux:dropdown>
     </flux:header>
 
-    <flux:main class="pb-24 lg:pb-8">
-        {{ $slot }}
+    <flux:main class="pb-24 lg:pb-0 lg:p-3 lg:pl-0">
+        <div class="lg:bg-white lg:dark:bg-zinc-800 lg:rounded-2xl lg:border lg:border-zinc-200 lg:dark:border-zinc-700 lg:min-h-[calc(100vh-1.5rem)] lg:p-8 lg:shadow-sm">
+            {{ $slot }}
+        </div>
     </flux:main>
 
     <livewire:layout.mobile-dock />
