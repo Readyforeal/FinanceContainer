@@ -11,14 +11,13 @@
     @fluxAppearance
 </head>
 <body class="min-h-screen bg-gradient-to-br from-white to-zinc-100 dark:from-zinc-800 dark:to-zinc-900">
-    <flux:sidebar sticky collapsible="mobile" class="lg:bg-transparent! lg:border-r-0!">
+    <flux:sidebar sticky class="max-lg:hidden! bg-transparent! border-r-0!">
         <flux:sidebar.header>
             <flux:sidebar.brand name="Better With 90" href="/dashboard" wire:navigate>
                 <x-slot name="logo">
                     <flux:icon.hand-coins class="size-6" />
                 </x-slot>
             </flux:sidebar.brand>
-            <flux:sidebar.collapse class="lg:hidden" />
         </flux:sidebar.header>
 
         <flux:sidebar.nav>
@@ -59,7 +58,8 @@
     </flux:sidebar>
 
     <flux:header class="lg:hidden">
-        <flux:sidebar.toggle class="lg:hidden" icon="menu" inset="left" />
+        <flux:icon.hand-coins class="size-5" />
+        <flux:heading size="sm">Better With 90</flux:heading>
         <flux:spacer />
         <flux:dropdown x-data align="end">
             <flux:button variant="subtle" square icon="sun" aria-label="Appearance" />
