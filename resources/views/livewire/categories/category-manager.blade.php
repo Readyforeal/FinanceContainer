@@ -114,7 +114,8 @@ new class extends Component {
             'gift', 'briefcase', 'building-2', 'piggy-bank', 'banknote',
             'fuel', 'shield', 'wrench', 'hammer', 'stethoscope', 'baby',
             'film', 'repeat', 'puzzle', 'shirt', 'sparkles', 'paint-roller',
-            'church', 'circle-alert', 'flame', 'droplets',
+            'church', 'circle-alert', 'credit-card', 'flame', 'droplets',
+            'arrow-down-to-line', 'arrow-up-from-line',
         ];
 
         sort($iconOptions);
