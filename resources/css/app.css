@@ -3,19 +3,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Dock drawer animation — fast launch, gentle settle */
-.dock-enter {
-    transition-property: transform, opacity;
-    transition-duration: 450ms;
-    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.dock-leave {
-    transition-property: transform, opacity;
-    transition-duration: 180ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
-}
-
 /* iOS 26-style bezel borders — subtle 1px edge that catches light */
 .bubble-user {
     border: 1px solid rgba(255, 255, 255, 0.15);
