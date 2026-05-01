@@ -150,15 +150,8 @@ fi
 sudo chown -R $USER:www-data $APP_DIR
 sudo chmod -R 775 $APP_DIR/storage $APP_DIR/bootstrap/cache
 
-# Install PHP dependencies
+# Configure .env FIRST (before any artisan or composer commands)
 cd $APP_DIR
-composer install --no-dev --optimize-autoloader --no-interaction
-
-# Install and build frontend
-npm ci
-npm run build
-
-# Configure .env
 cp .env.example .env
 
 # Update .env with actual values
@@ -169,15 +162,33 @@ sed -i "s|DB_HOST=postgres|DB_HOST=127.0.0.1|" .env
 sed -i "s|DB_PASSWORD=steward_secret|DB_PASSWORD=$DB_PASS|" .env
 sed -i "s|REDIS_HOST=redis|REDIS_HOST=127.0.0.1|" .env
 sed -i "s|OLLAMA_HOST=http://ollama:11434|OLLAMA_HOST=http://127.0.0.1:11434|" .env
-sed -i "s|SESSION_DRIVER=redis|SESSION_DRIVER=redis|" .env
-sed -i "s|CACHE_STORE=redis|CACHE_STORE=redis|" .env
-sed -i "s|QUEUE_CONNECTION=redis|QUEUE_CONNECTION=redis|" .env
 
 # Remove the dev OLLAMA_MODEL line if present (will use default from config — the big model)
 sed -i "/OLLAMA_MODEL=llama3.2:3b/d" .env
 
-# Generate app key
+# Generate app key before anything else
 php artisan key:generate --force
+
+# Clear any cached config to ensure .env is read fresh
+php artisan config:clear
+php artisan cache:clear 2>/dev/null || true
+
+# Install PHP dependencies
+composer install --no-dev --optimize-autoloader --no-interaction
+
+# Install and build frontend
+npm ci
+npm run build
+
+# Verify DB connection before migrating
+echo "  Verifying database connection..."
+php artisan db:show --database=pgsql 2>/dev/null || {
+    echo "  WARNING: Could not connect to PostgreSQL. Checking .env..."
+    grep "DB_" .env
+    echo ""
+    echo "  Make sure PostgreSQL is running: sudo systemctl status postgresql"
+    exit 1
+}
 
 # Run migrations and seed
 php artisan migrate --force
