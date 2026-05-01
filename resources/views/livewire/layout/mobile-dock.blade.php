@@ -21,12 +21,12 @@ new class extends Component {};
     </div>
 
     <div x-show="expanded" x-cloak
-         x-transition:enter="transition ease-out duration-200"
-         x-transition:enter-start="translate-y-full opacity-0"
-         x-transition:enter-end="translate-y-0 opacity-100"
-         x-transition:leave="transition ease-in duration-150"
-         x-transition:leave-start="translate-y-0 opacity-100"
-         x-transition:leave-end="translate-y-full opacity-0"
+         x-transition:enter="dock-enter"
+         x-transition:enter-start="translate-y-[120%] opacity-0 scale-95"
+         x-transition:enter-end="translate-y-0 opacity-100 scale-100"
+         x-transition:leave="dock-leave"
+         x-transition:leave-start="translate-y-0 opacity-100 scale-100"
+         x-transition:leave-end="translate-y-[30%] opacity-0 scale-95"
          class="fixed bottom-20 left-3 right-3 z-50 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-xl overflow-hidden">
 
         {{-- Header --}}
