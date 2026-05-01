@@ -96,7 +96,7 @@ new class extends Component {
             wire:loading.attr="disabled"
             class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-medium px-4 py-2 rounded-lg transition-colors"
         >
-            <x-lucide-plus class="w-4 h-4" />
+            <flux:icon.plus class="w-4 h-4" />
             <span wire:loading.remove>Connect Bank Account</span>
             <span wire:loading>Connecting...</span>
         </button>
