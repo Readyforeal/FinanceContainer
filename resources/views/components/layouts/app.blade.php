@@ -61,7 +61,8 @@
         </form>
     </flux:sidebar>
 
-    <flux:header class="lg:hidden bg-gradient-to-b py-3 from-zinc-950/80 to-transparent fixed top-0 w-full">
+    <flux:header
+        class="lg:hidden bg-gradient-to-b py-3 dark:from-zinc-950/80 from-zinc-200/80 to-transparent fixed top-0 w-full">
         <flux:icon.hand-coins class="size-5 mr-2" />
         <flux:heading size="sm ml-2">Better With 90</flux:heading>
         <flux:spacer />
