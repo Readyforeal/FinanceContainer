@@ -12,7 +12,7 @@
     @fluxAppearance
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-zinc-50 to-blue-100 dark:from-zinc-900 dark:to-zinc-950">
+<body class="min-h-screen bg-gradient-to-br from-zinc-50 to-emerald-100 dark:from-zinc-900 dark:to-emerald-950">
     <flux:sidebar sticky class="max-lg:hidden! bg-transparent! border-r-0!">
         <flux:sidebar.header>
             <flux:sidebar.brand name="Better With 90" href="/dashboard" wire:navigate>
@@ -58,7 +58,7 @@
 
     <flux:main class="pb-22 lg:pb-0 lg:pt-1.5 pt-16 lg:pr-1.5 lg:pb-1.5 lg:pl-0">
         <div
-            class="lg:bg-white lg:dark:bg-zinc-800 lg:rounded-2xl lg:border lg:border-zinc-200 lg:dark:border-zinc-700 lg:h-[calc(100vh-0.75rem)] lg:overflow-y-auto lg:p-8 lg:shadow-sm">
+            class="lg:bg-white lg:dark:bg-zinc-800/60 lg:rounded-2xl lg:border lg:border-zinc-200 lg:dark:border-zinc-700 lg:h-[calc(100vh-0.75rem)] lg:overflow-y-auto lg:p-8 lg:shadow-sm">
             {{ $slot }}
         </div>
     </flux:main>
