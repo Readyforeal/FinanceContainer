@@ -1,96 +1,127 @@
 #!/bin/bash
 set -e
 
-echo "=============================="
-echo " StewardAI Production Deploy"
-echo "=============================="
+APP_DIR="/home/jamie/FinanceContainer"
+WEB_USER="www-data"
+WEB_GROUP="www-data"
 
-# Detect app directory (where this script lives)
-APP_DIR="$(cd "$(dirname "$0")" && pwd)"
+echo "=============================="
+echo " StewardAI Full Reset & Deploy"
+echo "=============================="
+echo ""
+echo "App directory: $APP_DIR"
+echo "Web user: $WEB_USER"
+echo ""
+
 cd "$APP_DIR"
 
-echo ""
-echo "[1/8] Fixing storage directory structure..."
+# -----------------------------------------------
+# 1. Nuke all generated/cached files
+# -----------------------------------------------
+echo "[1/9] Wiping generated files..."
+rm -rf storage/framework/cache/data/*
+rm -rf storage/framework/sessions/*
+rm -rf storage/framework/views/*
+rm -rf storage/logs/*
+rm -rf bootstrap/cache/*.php
+rm -rf vendor
+rm -rf node_modules
+rm -rf public/build
+
+# -----------------------------------------------
+# 2. Recreate storage structure
+# -----------------------------------------------
+echo "[2/9] Rebuilding storage directories..."
 mkdir -p storage/framework/{cache/data,sessions,views,testing}
 mkdir -p storage/logs
 mkdir -p bootstrap/cache
+touch storage/logs/laravel.log
 
-echo "[2/8] Setting permissions..."
-# Detect web server user
-WEB_USER="www-data"
-if id "nginx" &>/dev/null; then
-    WEB_USER="nginx"
-elif id "apache" &>/dev/null; then
-    WEB_USER="apache"
-fi
-
+# -----------------------------------------------
+# 3. Set ownership FIRST (before anything writes files)
+# -----------------------------------------------
+echo "[3/9] Setting ownership and permissions..."
+chown -R "$WEB_USER":"$WEB_GROUP" "$APP_DIR"
 chmod -R 775 storage bootstrap/cache
-chown -R "$WEB_USER":"$WEB_USER" storage bootstrap/cache
-echo "    Web user: $WEB_USER"
+chmod +x artisan
 
-echo "[3/8] Configuring environment for Redis..."
-if [ -f .env ]; then
-    # Backup current .env
-    cp .env .env.backup.$(date +%Y%m%d%H%M%S)
-
-    # Set cache, session, and queue to use Redis
-    sed -i 's/^CACHE_STORE=.*/CACHE_STORE=redis/' .env
-    sed -i 's/^SESSION_DRIVER=.*/SESSION_DRIVER=redis/' .env
-    sed -i 's/^QUEUE_CONNECTION=.*/QUEUE_CONNECTION=redis/' .env
-
-    # Add Redis config if not present
-    grep -q "^REDIS_HOST=" .env || echo "REDIS_HOST=127.0.0.1" >> .env
-    grep -q "^REDIS_PORT=" .env || echo "REDIS_PORT=6379" >> .env
-    grep -q "^REDIS_PASSWORD=" .env || echo "REDIS_PASSWORD=null" >> .env
-
-    # Add cache/session/queue lines if they don't exist at all
-    grep -q "^CACHE_STORE=" .env || echo "CACHE_STORE=redis" >> .env
-    grep -q "^SESSION_DRIVER=" .env || echo "SESSION_DRIVER=redis" >> .env
-    grep -q "^QUEUE_CONNECTION=" .env || echo "QUEUE_CONNECTION=redis" >> .env
-
-    echo "    Cache: redis, Session: redis, Queue: redis"
-else
-    echo "    WARNING: No .env file found. Copy .env.example and configure manually."
+# -----------------------------------------------
+# 4. Environment file
+# -----------------------------------------------
+echo "[4/9] Setting up environment..."
+if [ ! -f .env ]; then
+    cp .env.example .env
+    echo "    Copied .env.example -> .env"
+    echo "    *** EDIT .env NOW: set DB_PASSWORD and APP_KEY ***"
 fi
 
-echo "[4/8] Installing dependencies..."
-composer install --no-dev --optimize-autoloader --no-interaction
+# Generate app key if not set
+if grep -q "^APP_KEY=$" .env; then
+    sudo -u "$WEB_USER" php artisan key:generate --force
+    echo "    Generated APP_KEY"
+fi
+
+# -----------------------------------------------
+# 5. Install dependencies AS the web user
+# -----------------------------------------------
+echo "[5/9] Installing PHP dependencies..."
+sudo -u "$WEB_USER" composer install --no-dev --optimize-autoloader --no-interaction
+
+echo "[6/9] Installing Node dependencies..."
 npm ci --production 2>/dev/null || npm install --production
 
-echo "[5/8] Building assets..."
+# -----------------------------------------------
+# 7. Build frontend
+# -----------------------------------------------
+echo "[7/9] Building assets..."
 npm run build
 
-echo "[6/8] Running migrations..."
-php artisan migrate --force
+# -----------------------------------------------
+# 8. Database & caches
+# -----------------------------------------------
+echo "[8/9] Running migrations and seeding..."
+sudo -u "$WEB_USER" php artisan migrate --force
+sudo -u "$WEB_USER" php artisan db:seed --class=CategorySeeder --force
 
-echo "[7/8] Clearing and rebuilding caches..."
-php artisan config:clear
-php artisan route:clear
-php artisan view:clear
-php artisan event:clear
+echo "[9/9] Caching configuration..."
+sudo -u "$WEB_USER" php artisan config:cache
+sudo -u "$WEB_USER" php artisan route:cache
+sudo -u "$WEB_USER" php artisan view:cache
 
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
+# -----------------------------------------------
+# Fix ownership again (npm/build may have created files as root)
+# -----------------------------------------------
+chown -R "$WEB_USER":"$WEB_GROUP" "$APP_DIR"
 
-echo "[8/8] Restarting services..."
-php artisan queue:restart 2>/dev/null || true
+# -----------------------------------------------
+# Restart services
+# -----------------------------------------------
+echo ""
+echo "Restarting services..."
+sudo -u "$WEB_USER" php artisan queue:restart 2>/dev/null || true
 
-# Restart PHP-FPM if available
-if systemctl is-active --quiet php*-fpm 2>/dev/null; then
-    FPM_SERVICE=$(systemctl list-units --type=service --state=running | grep php | grep fpm | awk '{print $1}' | head -1)
-    if [ -n "$FPM_SERVICE" ]; then
-        systemctl restart "$FPM_SERVICE"
-        echo "    Restarted $FPM_SERVICE"
-    fi
+FPM=$(systemctl list-units --type=service --state=running 2>/dev/null | grep -oP 'php[\d.]+-fpm\.service' | head -1)
+if [ -n "$FPM" ]; then
+    systemctl restart "$FPM"
+    echo "    Restarted $FPM"
 fi
 
+systemctl restart nginx
+echo "    Restarted nginx"
+
+# -----------------------------------------------
+# Verify
+# -----------------------------------------------
 echo ""
 echo "=============================="
 echo " Deploy complete!"
 echo "=============================="
 echo ""
-echo "If you still see errors, check:"
-echo "  - Redis is running: redis-cli ping"
-echo "  - Storage writable: ls -la storage/"
-echo "  - Laravel logs: tail -f storage/logs/laravel.log"
+echo "Verify:"
+echo "  redis-cli ping                     # should return PONG"
+echo "  curl -I http://localhost            # should return 200"
+echo "  tail storage/logs/laravel.log       # check for errors"
+echo ""
+echo "If you need to set the DB password:"
+echo "  nano $APP_DIR/.env"
+echo "  sudo -u $WEB_USER php artisan config:cache"
