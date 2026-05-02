@@ -87,47 +87,43 @@ new class extends Component {
             const labels = @js($chartLabels);
             const isDark = document.documentElement.classList.contains('dark');
 
-            // Build annotations for budget thresholds
-            const annotations = budget.map((b, i) => {
-                if (b <= 0) return null;
-                return {
-                    x: labels[i],
-                    y: b,
-                    marker: { size: 0 },
-                    label: {
-                        text: '$' + b.toFixed(0),
-                        borderWidth: 0,
-                        style: {
-                            background: 'transparent',
-                            color: isDark ? '#f87171' : '#dc2626',
-                            fontSize: '10px',
-                            padding: { left: 4, right: 4, top: 1, bottom: 1 },
-                        },
-                        offsetY: -5,
-                    },
-                };
-            }).filter(Boolean);
-
-            // Budget line as a scatter series
-            const budgetMarkers = budget.map(b => b > 0 ? b : null);
+            // Build data with per-bar goal lines
+            const seriesData = spent.map((val, i) => ({
+                x: labels[i],
+                y: val,
+                goals: budget[i] > 0 ? [{
+                    name: 'Budget',
+                    value: budget[i],
+                    strokeHeight: 3,
+                    strokeWidth: '100%',
+                    strokeColor: '#f87171',
+                    strokeDashArray: 0,
+                    strokeLineCap: 'round',
+                }] : [],
+            }));
 
             new ApexCharts($refs.chart, {
                 chart: { type: 'bar', height: 300, toolbar: { show: false }, background: 'transparent' },
-                series: [
-                    { name: 'Spent', type: 'bar', data: spent },
-                    { name: 'Budget', type: 'line', data: budgetMarkers },
-                ],
+                series: [{ name: 'Spent', data: seriesData }],
                 xaxis: {
-                    categories: labels,
                     labels: { style: { fontSize: '10px' }, rotate: -45, rotateAlways: labels.length > 6, trim: true, maxHeight: 80 },
                 },
                 yaxis: { labels: { formatter: (val) => '$' + (val || 0).toFixed(0) } },
-                tooltip: { y: { formatter: (val) => val != null ? '$' + val.toFixed(2) : 'N/A' } },
-                colors: ['#3b82f6', '#f87171'],
+                tooltip: { y: { formatter: (val) => '$' + val.toFixed(2) } },
+                colors: ['#3b82f6'],
                 plotOptions: { bar: { borderRadius: 4, columnWidth: '55%' } },
-                stroke: { width: [0, 2], dashArray: [0, 5] },
-                markers: { size: [0, 4], strokeWidth: 0 },
-                legend: { show: false },
+                legend: {
+                    show: true,
+                    showForSingleSeries: true,
+                    customLegendItems: ['Spent', 'Budget'],
+                    markers: {
+                        fillColors: ['#3b82f6', '#f87171'],
+                        shape: ['square', 'line'],
+                    },
+                    position: 'top',
+                    horizontalAlign: 'right',
+                    fontSize: '11px',
+                },
                 grid: { borderColor: isDark ? '#27272a' : '#e4e4e7', strokeDashArray: 4 },
                 theme: { mode: isDark ? 'dark' : 'light' },
                 dataLabels: { enabled: false },
