@@ -72,7 +72,7 @@ new class extends Component {
                     <flux:select wire:model="minute" label="Minute">
                         @foreach ([0, 15, 30, 45] as $m)
                             <flux:select.option value="{{ $m }}">{{ str_pad($m, 2, '0', STR_PAD_LEFT) }}</flux:select.option>
-                        @endfor
+                        @endforeach
                     </flux:select>
                     @error('minute') <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text> @enderror
                 </div>
