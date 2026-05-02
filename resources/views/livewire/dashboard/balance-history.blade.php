@@ -23,7 +23,7 @@ new class extends Component {
             ->selectRaw('date, SUM(amount) as net')
             ->groupBy('date')
             ->pluck('net', 'date')
-            ->mapWithKeys(fn ($net, $date) => [$date => (float) $net]);
+            ->mapWithKeys(fn ($net, $date) => [\Carbon\Carbon::parse($date)->format('Y-m-d') => (float) $net]);
 
         // Work backwards from current balance to reconstruct history
         $dates = collect(range(0, $this->days - 1))
