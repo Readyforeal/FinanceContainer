@@ -66,19 +66,7 @@ new class extends Component {
 ?>
 
 <flux:card>
-    <div class="flex items-center justify-between mb-1">
-        <flux:heading size="sm">{{ $monthLabel }} Spending vs Budget</flux:heading>
-        <div class="flex items-center gap-3">
-            <div class="flex items-center gap-1.5">
-                <span class="w-2.5 h-2.5 rounded-sm bg-blue-500"></span>
-                <flux:text size="xs">Spent</flux:text>
-            </div>
-            <div class="flex items-center gap-1.5">
-                <span class="w-4 h-0.5 bg-red-400 rounded"></span>
-                <flux:text size="xs">Budget</flux:text>
-            </div>
-        </div>
-    </div>
+    <flux:heading size="sm" class="mb-1">{{ $monthLabel }} Spending vs Budget</flux:heading>
 
     @if (count($chartLabels) > 0)
         <div x-data x-init="
@@ -95,10 +83,8 @@ new class extends Component {
                     name: 'Budget',
                     value: budget[i],
                     strokeHeight: 3,
-                    strokeWidth: '100%',
                     strokeColor: '#f87171',
                     strokeDashArray: 0,
-                    strokeLineCap: 'round',
                 }] : [],
             }));
 
