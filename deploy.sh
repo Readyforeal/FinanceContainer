@@ -65,7 +65,8 @@ fi
 # 5. Install dependencies AS the web user
 # -----------------------------------------------
 echo "[5/9] Installing PHP dependencies..."
-sudo -u "$WEB_USER" composer install --no-dev --optimize-autoloader --no-interaction
+COMPOSER_BIN=$(which composer 2>/dev/null || echo "/usr/local/bin/composer")
+"$COMPOSER_BIN" install --no-dev --optimize-autoloader --no-interaction
 
 echo "[6/9] Installing Node dependencies..."
 npm ci --production 2>/dev/null || npm install --production
