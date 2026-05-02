@@ -52,8 +52,8 @@ new class extends Component {
             ];
         }
 
-        // Sort by spent descending, take top 12
-        $data = collect($data)->sortByDesc('spent')->take(12)->values();
+        // Sort by spent descending
+        $data = collect($data)->sortByDesc('spent')->values();
 
         $chartLabels = $data->pluck('label')->toArray();
         $chartSpent = $data->pluck('spent')->toArray();
