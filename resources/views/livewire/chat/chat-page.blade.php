@@ -155,11 +155,11 @@ new class extends Component {
 ?>
 
 {{-- Chat layout -- fully separate mobile vs desktop --}}
-<div class="fixed inset-0 top-14 lg:top-0 lg:left-[15.75rem] flex flex-col lg:flex-row lg:gap-3 lg:p-3">
+<div class="fixed inset-0 top-16 lg:top-0 lg:left-[15.75rem] flex flex-col lg:flex-row lg:gap-3 lg:p-3">
 
     {{-- ==================== MOBILE TOP BAR ==================== --}}
     <div class="lg:hidden flex-shrink-0 relative z-10">
-        <div class="flex items-center justify-between px-4 py-3">
+        <div class="flex items-center justify-between px-4 py-3 shadow-xl dark:bg-zinc-900 bg-zinc-100">
             <flux:button wire:click="$toggle('showMobileHistory')" variant="ghost" size="sm" icon="menu" />
             <flux:text class="font-medium truncate mx-4">
                 @if ($activeConversationId)
@@ -170,7 +170,6 @@ new class extends Component {
             </flux:text>
             <flux:button wire:click="newConversation" variant="ghost" size="sm" icon="square-pen" />
         </div>
-        <div class="h-4 bg-gradient-to-b from-black dark:from-zinc-900/40 to-transparent pointer-events-none"></div>
     </div>
 
     {{-- ==================== MOBILE HISTORY DRAWER ==================== --}}
@@ -252,7 +251,7 @@ new class extends Component {
     {{-- ==================== CHAT AREA (shared mobile + desktop) ==================== --}}
     <div class="flex-1 flex flex-col relative min-h-0">
         @if ($activeConversationId === null)
-            <div class="flex-1 flex flex-col items-center justify-center gap-4 pb-20 lg:pb-0">
+            <div class="flex-1 flex flex-col items-center justify-center gap-4 pb-24 lg:pb-0">
                 <flux:icon.message-circle class="size-12 text-zinc-300 dark:text-zinc-700" />
                 <div class="text-center">
                     <flux:text class="mb-3">Start a conversation with your financial advisor.</flux:text>
@@ -263,7 +262,7 @@ new class extends Component {
             </div>
         @else
             {{-- Messages --}}
-            <div class="flex-1 overflow-y-auto px-4 lg:px-8 pt-2 lg:pt-4 pb-24 lg:pb-28">
+            <div class="flex-1 overflow-y-auto px-4 lg:px-8 pt-2 lg:pt-4 pb-36 lg:pb-28">
                 <div class="max-w-2xl mx-auto space-y-4">
                     @forelse ($messages as $message)
                         @if ($message->role === 'user')
@@ -307,10 +306,10 @@ new class extends Component {
 
             {{-- Input -- mobile: above dock, desktop: bottom of chat area --}}
             <div
-                class="absolute bottom-16 lg:bottom-0 left-0 right-0 px-3 lg:px-8 pb-2 lg:pb-4 pt-8 pointer-events-none bg-gradient-to-t from-white/80 via-white/50 dark:from-zinc-800/80 dark:via-zinc-800/50 to-transparent lg:from-white/80 lg:dark:from-zinc-800/80">
+                class="absolute bottom-18 lg:bottom-0 left-0 right-0 px-3 lg:px-8 pb-2 lg:pb-4 pt-8 pointer-events-none">
                 <form wire:submit="sendMessage" class="max-w-2xl mx-auto pointer-events-auto">
                     <div
-                        class="flex gap-3 items-center rounded-2xl border border-white/40 dark:border-white/[0.08] bg-white/60 dark:bg-zinc-800/50 backdrop-blur-xl px-4 py-2.5 shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 bubble-assistant">
+                        class="flex gap-3 items-center rounded-3xl border border-white/40 dark:border-white/[0.08] bg-white/60 dark:bg-zinc-800/50 backdrop-blur-xl px-4 py-2.5 shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 bubble-assistant">
                         <input wire:model="messageText" type="text" placeholder="Ask your financial advisor..."
                             class="flex-1 bg-transparent text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm focus:outline-none disabled:opacity-50 border-none focus:ring-0 ring-0 shadow-none p-0"
                             @disabled($isStreaming) />

@@ -33,5 +33,9 @@ class extends Component {
         <div>
             <livewire:settings.email-recipients />
         </div>
+
+        <div>
+            <livewire:settings.appearance />
+        </div>
     </div>
 </div>

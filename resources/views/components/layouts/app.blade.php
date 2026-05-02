@@ -41,18 +41,6 @@
             <flux:sidebar.item icon="settings" href="/settings" wire:navigate>Settings</flux:sidebar.item>
         </flux:sidebar.nav>
 
-        <div class="py-2">
-            <flux:dropdown x-data align="start" position="top">
-                <flux:button variant="subtle" size="sm" class="w-full justify-start" icon="sun">Appearance
-                </flux:button>
-                <flux:menu>
-                    <flux:menu.item icon="sun" x-on:click="$flux.appearance = 'light'">Light</flux:menu.item>
-                    <flux:menu.item icon="moon" x-on:click="$flux.appearance = 'dark'">Dark</flux:menu.item>
-                    <flux:menu.item icon="monitor" x-on:click="$flux.appearance = 'system'">System</flux:menu.item>
-                </flux:menu>
-            </flux:dropdown>
-        </div>
-
         <flux:separator />
 
         <form method="POST" action="{{ route('logout') }}">
@@ -64,19 +52,11 @@
     <flux:header
         class="lg:hidden bg-gradient-to-b py-3 dark:from-zinc-950/80 from-zinc-200/80 to-transparent fixed top-0 w-full">
         <flux:icon.hand-coins class="size-5 mr-2" />
-        <flux:heading size="sm ml-2">Better With 90</flux:heading>
+        <flux:heading size="sm">Better With 90</flux:heading>
         <flux:spacer />
-        <flux:dropdown x-data align="end">
-            <flux:button variant="filled" square icon="sun" aria-label="Appearance" />
-            <flux:menu>
-                <flux:menu.item icon="sun" x-on:click="$flux.appearance = 'light'">Light</flux:menu.item>
-                <flux:menu.item icon="moon" x-on:click="$flux.appearance = 'dark'">Dark</flux:menu.item>
-                <flux:menu.item icon="monitor" x-on:click="$flux.appearance = 'system'">System</flux:menu.item>
-            </flux:menu>
-        </flux:dropdown>
     </flux:header>
 
-    <flux:main class="pb-24 lg:pb-0 lg:pt-1.5 pt-16 lg:pr-1.5 lg:pb-1.5 lg:pl-0">
+    <flux:main class="pb-22 lg:pb-0 lg:pt-1.5 pt-16 lg:pr-1.5 lg:pb-1.5 lg:pl-0">
         <div
             class="lg:bg-white lg:dark:bg-zinc-800 lg:rounded-2xl lg:border lg:border-zinc-200 lg:dark:border-zinc-700 lg:h-[calc(100vh-0.75rem)] lg:overflow-y-auto lg:p-8 lg:shadow-sm">
             {{ $slot }}
