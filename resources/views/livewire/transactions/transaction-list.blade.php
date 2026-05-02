@@ -233,31 +233,45 @@ new class extends Component {
 ?>
 
 <div>
-    {{-- Filters --}}
-    <div class="flex flex-col lg:flex-row lg:items-center gap-3 mb-6">
-        <flux:input wire:model.live.debounce.300ms="search" placeholder="Search transactions..." size="sm" class="w-full lg:max-w-xs" />
+    {{-- Desktop filters (single row) --}}
+    <div class="hidden lg:flex items-center gap-3 mb-6">
+        <flux:input wire:model.live.debounce.300ms="search" placeholder="Search transactions..." size="sm" class="max-w-xs" />
+        <flux:select wire:model.live="accountFilter" size="sm" class="max-w-48">
+            <flux:select.option value="">All Accounts</flux:select.option>
+            @foreach ($accounts as $account)
+                <flux:select.option value="{{ $account->id }}">{{ $account->name }}</flux:select.option>
+            @endforeach
+        </flux:select>
+        <flux:select wire:model.live="categoryFilter" size="sm" class="max-w-48">
+            <flux:select.option value="">All Categories</flux:select.option>
+            @foreach ($categories as $category)
+                <flux:select.option value="{{ $category->id }}">{{ $category->name }}</flux:select.option>
+            @endforeach
+        </flux:select>
+        <flux:checkbox wire:model.live="reviewFilter" label="Needs Review" />
+        <div class="ml-auto">
+            <flux:button wire:click="openCreate" variant="primary" icon="plus" size="sm">Add Transaction</flux:button>
+        </div>
+    </div>
 
-        <div class="flex flex-wrap items-center gap-3">
-            <flux:select wire:model.live="accountFilter" size="sm" class="flex-1 sm:flex-none sm:max-w-48">
+    {{-- Mobile filters (stacked) --}}
+    <div class="lg:hidden space-y-3 mb-6">
+        <flux:input wire:model.live.debounce.300ms="search" placeholder="Search transactions..." size="sm" />
+        <div class="flex gap-3">
+            <flux:select wire:model.live="accountFilter" size="sm" class="flex-1">
                 <flux:select.option value="">All Accounts</flux:select.option>
                 @foreach ($accounts as $account)
                     <flux:select.option value="{{ $account->id }}">{{ $account->name }}</flux:select.option>
                 @endforeach
             </flux:select>
-
-            <flux:select wire:model.live="categoryFilter" size="sm" class="flex-1 sm:flex-none sm:max-w-48">
+            <flux:select wire:model.live="categoryFilter" size="sm" class="flex-1">
                 <flux:select.option value="">All Categories</flux:select.option>
                 @foreach ($categories as $category)
                     <flux:select.option value="{{ $category->id }}">{{ $category->name }}</flux:select.option>
                 @endforeach
             </flux:select>
-
-            <flux:checkbox wire:model.live="reviewFilter" label="Needs Review" />
         </div>
-
-        <div class="hidden lg:block lg:ml-auto">
-            <flux:button wire:click="openCreate" variant="primary" icon="plus" size="sm">Add Transaction</flux:button>
-        </div>
+        <flux:checkbox wire:model.live="reviewFilter" label="Needs Review" />
     </div>
 
     {{-- Bulk action bar (floating on mobile) --}}
