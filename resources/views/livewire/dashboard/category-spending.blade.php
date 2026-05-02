@@ -88,8 +88,10 @@ new class extends Component {
                 }] : [],
             }));
 
+            const minWidth = Math.max(labels.length * 60, 300);
+
             new ApexCharts($refs.chart, {
-                chart: { type: 'bar', height: 300, toolbar: { show: false }, background: 'transparent' },
+                chart: { type: 'bar', height: 300, width: minWidth, toolbar: { show: false }, background: 'transparent' },
                 series: [{ name: 'Spent', data: seriesData }],
                 xaxis: {
                     labels: { style: { fontSize: '10px' }, rotate: -45, rotateAlways: labels.length > 6, trim: true, maxHeight: 80 },
@@ -114,7 +116,7 @@ new class extends Component {
                 theme: { mode: isDark ? 'dark' : 'light' },
                 dataLabels: { enabled: false },
             }).render()
-        " class="mt-2">
+        " class="mt-2 overflow-x-auto">
             <div x-ref="chart"></div>
         </div>
     @else
