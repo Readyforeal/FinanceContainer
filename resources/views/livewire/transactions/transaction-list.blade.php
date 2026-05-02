@@ -289,12 +289,12 @@ new class extends Component {
 
     {{-- Desktop table --}}
     <div class="hidden lg:block">
-        <flux:table>
+        <flux:table class="table-fixed w-full">
             <flux:table.columns>
-                <flux:table.column class="w-8">
+                <flux:table.column class="w-10">
                     <flux:checkbox wire:click="selectAllVisible" />
                 </flux:table.column>
-                <flux:table.column>
+                <flux:table.column class="w-28">
                     <button wire:click="sortBy('date')" class="flex items-center gap-1 hover:text-zinc-800 dark:hover:text-zinc-200">
                         Date
                         @if ($sortField === 'date')
@@ -310,9 +310,9 @@ new class extends Component {
                         @endif
                     </button>
                 </flux:table.column>
-                <flux:table.column>Account</flux:table.column>
-                <flux:table.column>Category</flux:table.column>
-                <flux:table.column class="text-right">
+                <flux:table.column class="w-32">Account</flux:table.column>
+                <flux:table.column class="w-36">Category</flux:table.column>
+                <flux:table.column class="w-28 text-right">
                     <button wire:click="sortBy('amount')" class="flex items-center gap-1 hover:text-zinc-800 dark:hover:text-zinc-200 ml-auto">
                         Amount
                         @if ($sortField === 'amount')
@@ -320,8 +320,8 @@ new class extends Component {
                         @endif
                     </button>
                 </flux:table.column>
-                <flux:table.column class="text-center">Status</flux:table.column>
-                <flux:table.column class="w-16"></flux:table.column>
+                <flux:table.column class="w-24 text-center">Status</flux:table.column>
+                <flux:table.column class="w-20"></flux:table.column>
             </flux:table.columns>
 
             <flux:table.rows>
@@ -333,7 +333,7 @@ new class extends Component {
                         <flux:table.cell class="whitespace-nowrap text-zinc-500 dark:text-zinc-400">
                             {{ $transaction->date->format('M j, Y') }}
                         </flux:table.cell>
-                        <flux:table.cell>
+                        <flux:table.cell class="truncate" :title="$transaction->merchant_name ?? $transaction->description ?? 'Unknown'">
                             {{ $transaction->merchant_name ?? $transaction->description ?? 'Unknown' }}
                         </flux:table.cell>
                         <flux:table.cell class="text-zinc-500 dark:text-zinc-400">
