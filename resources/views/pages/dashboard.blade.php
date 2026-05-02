@@ -19,6 +19,7 @@ class extends Component {
 
     <div class="space-y-6">
         <livewire:dashboard.balance-cards />
+        <livewire:dashboard.balance-history />
         <livewire:dashboard.budget-progress />
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
