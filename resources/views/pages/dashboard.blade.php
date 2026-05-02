@@ -22,6 +22,8 @@ class extends Component {
         <livewire:dashboard.balance-history />
         <livewire:dashboard.budget-progress />
 
+        <livewire:dashboard.category-spending />
+
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <livewire:dashboard.spending-chart />
             <livewire:dashboard.summary-snippet />
