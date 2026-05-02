@@ -301,7 +301,7 @@ new class extends Component {
     </div>
 
     {{-- Budget editor modal --}}
-    <flux:modal name="budget-editor" class="md:w-96">
+    <flux:modal name="budget-editor" class="w-full md:w-2xl">
         <div class="space-y-6">
             <div>
                 <flux:heading size="lg">{{ $editingBudgetId ? 'Edit Budget' : 'Add Budget' }}</flux:heading>

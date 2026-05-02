@@ -430,7 +430,7 @@ new class extends Component {
     @endif
 
     {{-- Transaction editor modal --}}
-    <flux:modal name="transaction-editor" class="md:w-96">
+    <flux:modal name="transaction-editor" class="w-full md:w-2xl">
         <div class="space-y-6">
             <div>
                 <flux:heading size="lg">{{ $editingTransactionId ? 'Edit Transaction' : 'Add Transaction' }}</flux:heading>

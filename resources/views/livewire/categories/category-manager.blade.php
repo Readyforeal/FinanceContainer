@@ -271,7 +271,7 @@ new class extends Component {
     </div>
 
     {{-- Category Editor Modal --}}
-    <flux:modal name="category-editor" class="md:w-96">
+    <flux:modal name="category-editor" class="w-full md:w-2xl">
         <div class="space-y-6">
             <div>
                 <flux:heading size="lg">{{ $editingId ? 'Edit Category' : 'New Category' }}</flux:heading>
