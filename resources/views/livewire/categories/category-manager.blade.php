@@ -330,7 +330,7 @@ new class extends Component {
 
             <flux:switch wire:model="isEssential" label="Essential" description="Mark as a non-negotiable expense" />
 
-            <div class="flex justify-end gap-2">
+            <div class="flex justify-between gap-2">
                 <flux:modal.close>
                     <flux:button variant="ghost">Cancel</flux:button>
                 </flux:modal.close>

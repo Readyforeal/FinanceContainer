@@ -328,7 +328,7 @@ new class extends Component {
                 <flux:text size="xs" class="text-red-500">{{ $message }}</flux:text>
             @enderror
 
-            <div class="flex justify-end gap-2">
+            <div class="flex justify-between gap-2">
                 <flux:modal.close>
                     <flux:button variant="ghost">Cancel</flux:button>
                 </flux:modal.close>

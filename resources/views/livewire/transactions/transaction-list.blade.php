@@ -469,21 +469,18 @@ new class extends Component {
                 @endforeach
             </flux:select>
 
-            <div class="flex justify-between">
-                @if ($editingTransactionId)
-                    <flux:button wire:click="deleteTransaction({{ $editingTransactionId }})" wire:confirm="Delete this transaction?" variant="danger" size="sm">Delete</flux:button>
-                @else
-                    <div></div>
-                @endif
-                <div class="flex gap-2">
-                    <flux:modal.close>
-                        <flux:button variant="ghost">Cancel</flux:button>
-                    </flux:modal.close>
-                    <flux:button wire:click="saveTransaction" variant="primary">
-                        {{ $editingTransactionId ? 'Update' : 'Add' }}
-                    </flux:button>
-                </div>
+            <div class="flex justify-between gap-2">
+                <flux:modal.close>
+                    <flux:button variant="ghost">Cancel</flux:button>
+                </flux:modal.close>
+                <flux:button wire:click="saveTransaction" variant="primary">
+                    {{ $editingTransactionId ? 'Update' : 'Add' }}
+                </flux:button>
             </div>
+
+            @if ($editingTransactionId)
+                <flux:button wire:click="deleteTransaction({{ $editingTransactionId }})" wire:confirm="Delete this transaction?" variant="danger" class="w-full">Delete Transaction</flux:button>
+            @endif
         </div>
     </flux:modal>
 </div>
