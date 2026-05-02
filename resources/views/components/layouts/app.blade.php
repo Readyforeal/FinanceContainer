@@ -12,7 +12,7 @@
     @fluxAppearance
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-white to-zinc-100 dark:from-zinc-900 dark:to-zinc-950">
+<body class="min-h-screen bg-gradient-to-br from-zinc-50 to-blue-100 dark:from-zinc-900 dark:to-zinc-950">
     <flux:sidebar sticky class="max-lg:hidden! bg-transparent! border-r-0!">
         <flux:sidebar.header>
             <flux:sidebar.brand name="Better With 90" href="/dashboard" wire:navigate>
