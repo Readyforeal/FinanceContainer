@@ -289,7 +289,7 @@ new class extends Component {
 
     {{-- Desktop table --}}
     <div class="hidden lg:block">
-        <flux:table class="table-fixed w-full">
+        <flux:table :paginate="$transactions" class="table-fixed w-full">
             <flux:table.columns>
                 <flux:table.column class="w-10">
                     <flux:checkbox wire:click="selectAllVisible" />
@@ -423,11 +423,12 @@ new class extends Component {
         @endforelse
     </div>
 
-    @if ($transactions->hasPages())
-        <div class="mt-4">
+    {{-- Mobile pagination --}}
+    <div class="lg:hidden mt-4">
+        @if ($transactions->hasPages())
             {{ $transactions->links() }}
-        </div>
-    @endif
+        @endif
+    </div>
 
     {{-- Transaction editor modal --}}
     <flux:modal name="transaction-editor" class="w-full md:w-2xl">
