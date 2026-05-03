@@ -22,8 +22,9 @@
 
 /* Mobile modal margins */
 @media (max-width: 767px) {
-    [data-flux-modal] > div > div {
-        margin: 1.5rem;
+    ui-modal > dialog {
+        margin: 1.5rem !important;
+        max-width: calc(100% - 3rem) !important;
     }
 }
 
