@@ -301,7 +301,7 @@ new class extends Component {
     </div>
 
     {{-- Budget editor modal --}}
-    <flux:modal name="budget-editor" class="md:w-96">
+    <flux:modal name="budget-editor" class="w-full md:w-2xl">
         <div class="space-y-6">
             <div>
                 <flux:heading size="lg">{{ $editingBudgetId ? 'Edit Budget' : 'Add Budget' }}</flux:heading>
@@ -328,7 +328,7 @@ new class extends Component {
                 <flux:text size="xs" class="text-red-500">{{ $message }}</flux:text>
             @enderror
 
-            <div class="flex justify-end gap-2">
+            <div class="flex justify-between gap-2">
                 <flux:modal.close>
                     <flux:button variant="ghost">Cancel</flux:button>
                 </flux:modal.close>

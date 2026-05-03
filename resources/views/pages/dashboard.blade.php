@@ -4,16 +4,12 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new
-#[Layout('components.layouts.app')]
-#[Title('Dashboard')]
-class extends Component {
-};
+new #[Layout('components.layouts.app')] #[Title('Dashboard')] class extends Component {};
 ?>
 
 <div>
     <div class="mb-6">
-        <flux:heading size="xl" level="1">Dashboard</flux:heading>
+        <flux:heading size="xl" level="1" class="!text-3xl">Dashboard</flux:heading>
         <flux:text class="mt-1">Your financial overview.</flux:text>
     </div>
 

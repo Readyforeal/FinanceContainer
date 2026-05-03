@@ -99,7 +99,7 @@ new class extends Component {
             },
             yaxis: { labels: { formatter: (val) => '$' + val.toFixed(0) } },
             tooltip: { y: { formatter: (val) => '$' + val.toFixed(2) } },
-            colors: ['#3b82f6'],
+            colors: ['#10b981'],
             fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05, stops: [0, 100] } },
             stroke: { curve: 'smooth', width: 2 },
             grid: { borderColor: document.documentElement.classList.contains('dark') ? '#27272a' : '#e4e4e7', strokeDashArray: 4 },

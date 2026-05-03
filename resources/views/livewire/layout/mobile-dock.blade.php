@@ -20,7 +20,7 @@ new class extends Component {};
         x-transition:enter-start="translate-y-full opacity-80" x-transition:enter-end="translate-y-0 opacity-100"
         x-transition:leave="transition-all duration-200 ease-in" x-transition:leave-start="translate-y-0 opacity-100"
         x-transition:leave-end="translate-y-full opacity-0"
-        class="fixed bottom-20 left-3 right-3 z-50 rounded-3xl bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-700/50 shadow-xl overflow-hidden">
+        class="fixed bottom-30 left-3 right-3 z-50 rounded-3xl bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm border border-zinc-200/50 dark:border-zinc-700/50 shadow-xl overflow-hidden">
 
         {{-- Header --}}
         <div class="px-5 py-3 border-b border-zinc-200 dark:border-zinc-700 flex items-center justify-between">
@@ -52,7 +52,7 @@ new class extends Component {};
                         'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100' :
                         'text-zinc-500 dark:text-zinc-400'"
                     class="flex flex-col items-center gap-1.5 rounded-xl px-2 py-3 text-center transition-colors">
-                    <flux:icon :icon="$item['icon']" variant="mini" />
+                    <flux:icon :icon="$item['icon']" />
                     <span class="text-[10px] font-medium leading-tight">{{ $item['label'] }}</span>
                 </a>
             @endforeach
@@ -68,9 +68,9 @@ new class extends Component {};
 
         {{-- Dock --}}
         <div class="fixed bottom-3 left-3 z-40 transition-[right] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-            :class="hasAction ? 'right-[4.25rem]' : 'right-3'">
+            :class="hasAction ? 'right-[5rem]' : 'right-3'">
             <div
-                class="flex items-center justify-around bg-white/50 dark:bg-zinc-900/80 backdrop-blur-sm rounded-3xl shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 border border-zinc-200/50 dark:border-zinc-700/50 px-2 py-2.5">
+                class="flex p-3 items-center justify-between bg-zinc-100/50 backdrop-brightness-90 dark:bg-zinc-900/80 backdrop-blur-xl rounded-full shadow-lg border border-zinc-200/50 dark:border-zinc-700/50">
                 @php
                     $dockItems = [
                         ['path' => '/dashboard', 'icon' => 'layout-dashboard'],
@@ -84,17 +84,17 @@ new class extends Component {};
                     <a href="{{ $item['path'] }}" wire:navigate
                         :class="path === '{{ $item['path'] }}'
                             ?
-                            'text-zinc-900 dark:text-zinc-100' :
-                            'text-zinc-400 dark:text-zinc-500'"
-                        class="flex items-center justify-center p-2.5 rounded-xl transition-colors">
-                        <flux:icon :icon="$item['icon']" variant="mini" />
+                            'text-zinc-100 bg-emerald-950/80 dark:bg-emerald-500/80 dark:text-zinc-100' :
+                            'text-zinc-500 dark:text-zinc-500'"
+                        class="flex items-center justify-center p-4 rounded-full transition-colors">
+                        <flux:icon :icon="$item['icon']" />
                     </a>
                 @endforeach
 
                 <button @click="expanded = !expanded"
-                    :class="expanded ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500'"
-                    class="flex items-center justify-center p-2.5 rounded-xl transition-colors">
-                    <flux:icon.grip variant="mini" />
+                    :class="expanded ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-500 dark:text-zinc-500'"
+                    class="flex items-center justify-center p-4 rounded-full transition-colors">
+                    <flux:icon.grip />
                 </button>
             </div>
         </div>
@@ -105,8 +105,8 @@ new class extends Component {};
             x-transition:enter-start="scale-0 opacity-0" x-transition:enter-end="scale-100 opacity-100"
             x-transition:leave="transition-all duration-200 ease-in" x-transition:leave-start="scale-100 opacity-100"
             x-transition:leave-end="scale-0 opacity-0" @click="Livewire.dispatch('dock-action')"
-            class="fixed bottom-5 right-3 z-40 size-[46px] flex items-center justify-center rounded-2xl bg-accent/80 text-accent-foreground backdrop-blur-xl shadow-lg">
-            <flux:icon.plus variant="mini" />
+            class="fixed bottom-6.25 right-3 z-40 size-[56px] flex items-center justify-center rounded-full bg-accent/80 text-accent-foreground backdrop-blur-xl shadow-lg">
+            <flux:icon.plus />
         </button>
     </div>
 </div>

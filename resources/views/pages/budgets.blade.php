@@ -12,7 +12,7 @@ class extends Component {
 ?>
 
 <div>
-    <flux:heading size="xl" level="1" class="mb-1">Budgets</flux:heading>
+    <flux:heading size="xl" level="1" class="!text-3xl mb-1">Budgets</flux:heading>
     <flux:text class="mb-6">Plan and track your monthly spending by category.</flux:text>
 
     <livewire:budgets.budget-manager />

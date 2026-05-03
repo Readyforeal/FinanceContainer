@@ -6,17 +6,31 @@
 @theme {
     --font-sans: 'Inter', sans-serif;
 
-    --color-zinc-50: var(--color-gray-50);
-    --color-zinc-100: var(--color-gray-100);
-    --color-zinc-200: var(--color-gray-200);
-    --color-zinc-300: var(--color-gray-300);
-    --color-zinc-400: var(--color-gray-400);
-    --color-zinc-500: var(--color-gray-500);
-    --color-zinc-600: var(--color-gray-600);
-    --color-zinc-700: var(--color-gray-700);
-    --color-zinc-800: var(--color-gray-800);
-    --color-zinc-900: var(--color-gray-900);
-    --color-zinc-950: var(--color-gray-950);
+    /* Mist — a neutral gray with minimal color cast */
+    --color-zinc-50: oklch(0.985 0.002 250);
+    --color-zinc-100: oklch(0.967 0.003 250);
+    --color-zinc-200: oklch(0.928 0.005 250);
+    --color-zinc-300: oklch(0.872 0.008 250);
+    --color-zinc-400: oklch(0.705 0.012 250);
+    --color-zinc-500: oklch(0.553 0.013 250);
+    --color-zinc-600: oklch(0.446 0.012 250);
+    --color-zinc-700: oklch(0.372 0.010 250);
+    --color-zinc-800: oklch(0.279 0.008 250);
+    --color-zinc-900: oklch(0.227 0.007 250);
+    --color-zinc-950: oklch(0.150 0.005 250);
+}
+
+/* Modal constraints */
+ui-modal > dialog {
+    max-height: min(85vh, 640px);
+    overflow-y: auto;
+}
+
+@media (max-width: 767px) {
+    ui-modal > dialog {
+        margin: 1.5rem !important;
+        max-width: calc(100% - 3rem) !important;
+    }
 }
 
 /* iOS 26-style bezel borders — subtle 1px edge that catches light */

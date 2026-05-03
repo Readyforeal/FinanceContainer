@@ -155,11 +155,12 @@ new class extends Component {
 ?>
 
 {{-- Chat layout -- fully separate mobile vs desktop --}}
-<div class="fixed inset-0 top-16 lg:top-0 lg:left-[15.75rem] flex flex-col lg:flex-row lg:gap-3 lg:p-3">
+<div class="fixed inset-0 lg:top-0 lg:left-[15.75rem] flex flex-col lg:flex-row lg:gap-3 lg:p-3">
 
     {{-- ==================== MOBILE TOP BAR ==================== --}}
     <div class="lg:hidden flex-shrink-0 relative z-10">
-        <div class="flex items-center justify-between px-4 py-3 shadow-xl dark:bg-zinc-900 bg-zinc-100">
+        <div
+            class="flex items-center justify-between px-4 py-3 bg-gradient-to-b from-zinc-200/80 dark:from-zinc-950/60 to-transparent">
             <flux:button wire:click="$toggle('showMobileHistory')" variant="ghost" size="sm" icon="menu" />
             <flux:text class="font-medium truncate mx-4">
                 @if ($activeConversationId)
@@ -306,7 +307,7 @@ new class extends Component {
 
             {{-- Input -- mobile: above dock, desktop: bottom of chat area --}}
             <div
-                class="absolute bottom-18 lg:bottom-0 left-0 right-0 px-3 lg:px-8 pb-2 lg:pb-4 pt-8 pointer-events-none">
+                class="absolute bottom-24 lg:bottom-0 left-0 right-0 px-3 lg:px-8 pb-2 lg:pb-4 pt-8 pointer-events-none">
                 <form wire:submit="sendMessage" class="max-w-2xl mx-auto pointer-events-auto">
                     <div
                         class="flex gap-3 items-center rounded-3xl border border-white/40 dark:border-white/[0.08] bg-white/60 dark:bg-zinc-800/50 backdrop-blur-xl px-4 py-2.5 shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 bubble-assistant">
