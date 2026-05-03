@@ -20,7 +20,12 @@
     --color-zinc-950: oklch(0.150 0.005 250);
 }
 
-/* Mobile modal margins */
+/* Modal constraints */
+ui-modal > dialog {
+    max-height: min(85vh, 640px);
+    overflow-y: auto;
+}
+
 @media (max-width: 767px) {
     ui-modal > dialog {
         margin: 1.5rem !important;
