@@ -414,40 +414,39 @@ new class extends Component {
         </flux:table>
     </div>
 
-    {{-- Mobile card list --}}
-    <div class="lg:hidden space-y-2">
-        @forelse ($transactions as $transaction)
-            <div wire:click="openEdit({{ $transaction->id }})"
-                class="flex items-center gap-3 p-3 rounded-xl border cursor-pointer active:bg-zinc-50 dark:active:bg-zinc-800 {{ $transaction->needs_review ? 'border-yellow-300 dark:border-yellow-700 bg-yellow-50 dark:bg-yellow-950/20' : 'border-zinc-200 dark:border-zinc-700' }}">
-                <flux:checkbox wire:click.stop="toggleSelect({{ $transaction->id }})"
-                    :checked="in_array($transaction->id, $selectedIds)" class="shrink-0" />
-                <div class="flex-1 min-w-0">
+    {{-- Mobile list --}}
+    <div class="lg:hidden">
+        <flux:card class="!p-0 overflow-hidden">
+            @forelse ($transactions as $transaction)
+                <div class="p-4 border-b border-zinc-100 dark:border-zinc-800 last:border-b-0 {{ $transaction->needs_review ? 'bg-yellow-50 dark:bg-yellow-950/20' : '' }}">
                     <div class="flex items-center justify-between gap-2">
-                        <flux:text size="sm" class="font-medium truncate">
-                            {{ $transaction->merchant_name ?? ($transaction->description ?? 'Unknown') }}
-                        </flux:text>
-                        <span
-                            class="shrink-0 font-mono text-sm font-semibold {{ $transaction->amount < 0 ? 'text-green-600 dark:text-green-400' : 'text-zinc-900 dark:text-zinc-100' }}">
-                            {{ $transaction->amount < 0 ? '-' : '' }}${{ number_format(abs($transaction->amount), 2) }}
-                        </span>
+                        <div class="flex items-center gap-2 min-w-0">
+                            <flux:checkbox wire:click.stop="toggleSelect({{ $transaction->id }})" :checked="in_array($transaction->id, $selectedIds)" class="shrink-0" />
+                            <span class="font-medium text-zinc-800 dark:text-zinc-200 truncate">
+                                {{ $transaction->merchant_name ?? $transaction->description ?? 'Unknown' }}
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <span class="font-mono text-sm font-semibold {{ $transaction->amount < 0 ? 'text-green-600 dark:text-green-400' : 'text-zinc-900 dark:text-zinc-100' }}">
+                                {{ $transaction->amount < 0 ? '-' : '' }}${{ number_format(abs($transaction->amount), 2) }}
+                            </span>
+                            <flux:button variant="subtle" size="xs" icon="pencil" wire:click="openEdit({{ $transaction->id }})" />
+                        </div>
                     </div>
-                    <div class="flex items-center justify-between gap-2 mt-1">
-                        <flux:text size="xs">
-                            {{ $transaction->date->format('M j') }}
-                            &middot;
-                            {{ $transaction->category?->name ?? 'Uncategorized' }}
-                        </flux:text>
+                    <div class="flex items-center gap-3 mt-1 ml-8">
+                        <flux:text size="xs">{{ $transaction->date->format('M j') }}</flux:text>
+                        <flux:text size="xs">{{ $transaction->category?->name ?? 'Uncategorized' }}</flux:text>
                         @if ($transaction->needs_review)
                             <flux:badge color="yellow" size="sm">Review</flux:badge>
                         @endif
                     </div>
                 </div>
-            </div>
-        @empty
-            <div class="text-center py-12">
-                <flux:text>No transactions found.</flux:text>
-            </div>
-        @endforelse
+            @empty
+                <div class="p-4 text-center">
+                    <flux:text size="sm">No transactions found.</flux:text>
+                </div>
+            @endforelse
+        </flux:card>
     </div>
 
     {{-- Mobile pagination --}}

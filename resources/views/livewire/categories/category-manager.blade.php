@@ -231,26 +231,31 @@ new class extends Component {
         </flux:table>
     </div>
 
-    {{-- Mobile card list --}}
-    <div class="lg:hidden space-y-2">
-        @forelse ($categories as $category)
-            @php
-                $bv = $category->default_bucket->value;
-                $bucketColor = match($bv) {
-                    'needs' => 'blue', 'wants' => 'violet', 'savings' => 'emerald',
-                    'income' => 'sky', 'transfer' => 'zinc', default => 'zinc',
-                };
-            @endphp
-            <div class="flex items-center gap-3 p-3 rounded-xl border border-zinc-200 dark:border-zinc-700"
-                 wire:click="edit({{ $category->id }})"
-                 class="cursor-pointer active:bg-zinc-50 dark:active:bg-zinc-800">
-                <flux:icon :icon="$category->icon ?? 'tag'" variant="mini" class="shrink-0 text-zinc-400 dark:text-zinc-500" />
-                <div class="flex-1 min-w-0">
+    {{-- Mobile list --}}
+    <div class="lg:hidden">
+        <flux:card class="!p-0 overflow-hidden">
+            @forelse ($categories as $category)
+                @php
+                    $bv = $category->default_bucket->value;
+                    $bucketColor = match($bv) {
+                        'needs' => 'blue', 'wants' => 'violet', 'savings' => 'emerald',
+                        'income' => 'sky', 'transfer' => 'zinc', default => 'zinc',
+                    };
+                @endphp
+                <div class="p-4 border-b border-zinc-100 dark:border-zinc-800 last:border-b-0">
                     <div class="flex items-center justify-between gap-2">
-                        <flux:text size="sm" class="font-medium truncate">{{ $category->name }}</flux:text>
-                        <span class="shrink-0 text-sm font-semibold text-zinc-900 dark:text-zinc-100">${{ number_format($category->avg_spend, 2) }}/mo</span>
+                        <div class="flex items-center gap-2 min-w-0">
+                            <flux:icon :icon="$category->icon ?? 'tag'" variant="mini" class="shrink-0 text-zinc-400 dark:text-zinc-500" />
+                            <span class="font-medium text-zinc-800 dark:text-zinc-200">
+                                {{ $category->name }}
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">${{ number_format($category->avg_spend, 2) }}/mo</span>
+                            <flux:button variant="subtle" size="xs" icon="pencil" wire:click="edit({{ $category->id }})" />
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2 mt-1">
+                    <div class="flex items-center gap-2 mt-1 ml-7">
                         <flux:badge :color="$bucketColor" size="sm">{{ $bv }}</flux:badge>
                         @if ($category->is_essential)
                             <flux:badge color="amber" size="sm">essential</flux:badge>
@@ -262,12 +267,12 @@ new class extends Component {
                         @endif
                     </div>
                 </div>
-            </div>
-        @empty
-            <div class="text-center py-8">
-                <flux:text>No categories yet.</flux:text>
-            </div>
-        @endforelse
+            @empty
+                <div class="p-4 text-center">
+                    <flux:text size="sm">No categories yet.</flux:text>
+                </div>
+            @endforelse
+        </flux:card>
     </div>
 
     {{-- Category Editor Modal --}}
