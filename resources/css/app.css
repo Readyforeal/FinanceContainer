@@ -33,6 +33,18 @@ ui-modal > dialog {
     }
 }
 
+/* iOS safe areas for WebView */
+html {
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    background-color: var(--color-zinc-50);
+}
+
+:is(.dark) html {
+    background-color: var(--color-zinc-900);
+}
+
 /* iOS 26-style bezel borders — subtle 1px edge that catches light */
 .bubble-user {
     border: 1px solid rgba(255, 255, 255, 0.15);
