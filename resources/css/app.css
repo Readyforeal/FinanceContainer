@@ -20,6 +20,13 @@
     --color-zinc-950: oklch(0.150 0.005 250);
 }
 
+/* Mobile modal margins */
+@media (max-width: 767px) {
+    [data-flux-modal] > div > div {
+        margin: 1.5rem;
+    }
+}
+
 /* iOS 26-style bezel borders — subtle 1px edge that catches light */
 .bubble-user {
     border: 1px solid rgba(255, 255, 255, 0.15);
