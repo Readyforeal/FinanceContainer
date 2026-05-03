@@ -49,7 +49,7 @@
         </form>
     </flux:sidebar>
 
-    <flux:main class="pb-28 lg:pb-0 lg:pt-1.5 pt-24 lg:pr-1.5 lg:pb-1.5 lg:pl-0">
+    <flux:main class="pb-28 lg:pb-0 lg:pt-1.5 lg:pr-1.5 lg:pb-1.5 lg:pl-0">
         <div
             class="lg:bg-white lg:dark:bg-zinc-800/60 lg:rounded-2xl lg:border lg:border-zinc-200 lg:dark:border-zinc-700 lg:h-[calc(100vh-0.75rem)] lg:overflow-y-auto lg:p-8 lg:shadow-sm">
             {{ $slot }}
