@@ -6,3 +6,9 @@
 .playwright-mcp/
 /storage/*.key
 /storage/framework/views/*.php
+
+# Screenshots
+*.PNG
+*.png
+*.jpg
+*.jpeg
