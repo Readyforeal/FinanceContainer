@@ -18,7 +18,7 @@ new class extends Component {
     public function mount(): void
     {
         $this->viewingMonth = now()->format('Y-m');
-        $this->js("setTimeout(() => window.dispatchEvent(new CustomEvent('set-dock-action', { detail: { icon: 'plus' } })), 100)");
+        $this->js("setTimeout(() => window.dispatchEvent(new CustomEvent('set-dock-action', { detail: { label: 'Add Budget' } })), 100)");
     }
 
     public function previousMonth(): void

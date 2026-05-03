@@ -32,7 +32,7 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->js("setTimeout(() => window.dispatchEvent(new CustomEvent('set-dock-action', { detail: { icon: 'plus' } })), 100)");
+        $this->js("setTimeout(() => window.dispatchEvent(new CustomEvent('set-dock-action', { detail: { label: 'Add Transaction' } })), 100)");
     }
 
     public function updatedSearch(): void
