@@ -79,7 +79,7 @@ new class extends Component {};
     </div>
 
     {{-- Bottom dock bar --}}
-    <div class="fixed bottom-0 left-0 right-0 z-40 px-2 pb-2">
+    <div class="fixed bottom-0 left-0 right-0 z-40 px-4 pb-4">
         <div class="flex items-center justify-around bg-white/50 dark:bg-zinc-900/80 backdrop-blur-xl shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 border border-zinc-200/50 dark:border-zinc-700/50 px-4 py-4" style="border-radius: 2.75rem;">
             @php
                 $dockItems = [
