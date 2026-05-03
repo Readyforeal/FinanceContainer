@@ -13,7 +13,7 @@ class extends Component {
 
 <div>
     <div class="mb-6">
-        <flux:heading size="xl">Transactions</flux:heading>
+        <flux:heading size="xl" level="1" class="!text-3xl">Transactions</flux:heading>
         <flux:text class="mt-1">Review and categorize your spending.</flux:text>
     </div>
 

@@ -136,7 +136,7 @@ new class extends Component {
     {{-- Header --}}
     <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-            <flux:heading size="xl">Categories</flux:heading>
+            <flux:heading size="xl" level="1" class="!text-3xl">Categories</flux:heading>
             <flux:text class="mt-1">Manage spending categories and track average spend.</flux:text>
         </div>
 

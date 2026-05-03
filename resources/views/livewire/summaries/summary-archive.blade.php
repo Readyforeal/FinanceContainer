@@ -29,7 +29,7 @@ new class extends Component {
 <div>
     {{-- Header --}}
     <div class="mb-6">
-        <flux:heading size="xl">Summaries</flux:heading>
+        <flux:heading size="xl" level="1" class="!text-3xl">Summaries</flux:heading>
         <flux:text size="sm" class="mt-1">Your AI-generated financial summaries.</flux:text>
     </div>
 

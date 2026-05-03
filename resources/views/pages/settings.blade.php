@@ -13,7 +13,7 @@ class extends Component {
 
 <div>
     <div class="mb-6">
-        <flux:heading size="xl">Settings</flux:heading>
+        <flux:heading size="xl" level="1" class="!text-3xl">Settings</flux:heading>
         <flux:text class="mt-1">Configure your StewardAI preferences.</flux:text>
     </div>
 
