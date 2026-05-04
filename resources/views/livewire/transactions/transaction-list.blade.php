@@ -235,7 +235,8 @@ new class extends Component {
 <div>
     {{-- Desktop filters (single row) --}}
     <div class="hidden lg:flex items-center gap-3 mb-6">
-        <flux:input wire:model.live.debounce.300ms="search" placeholder="Search transactions..." size="sm" class="max-w-xs" />
+        <flux:input wire:model.live.debounce.300ms="search" placeholder="Search transactions..." size="sm"
+            class="max-w-xs" />
         <flux:select wire:model.live="accountFilter" size="sm" class="max-w-48">
             <flux:select.option value="">All Accounts</flux:select.option>
             @foreach ($accounts as $account)
@@ -250,7 +251,8 @@ new class extends Component {
         </flux:select>
         <flux:checkbox wire:model.live="reviewFilter" label="Needs Review" />
         <div class="ml-auto">
-            <flux:button wire:click="openCreate" variant="primary" icon="plus" size="sm">Add Transaction</flux:button>
+            <flux:button wire:click="openCreate" variant="primary" icon="plus" size="sm">Add Transaction
+            </flux:button>
         </div>
     </div>
 
@@ -382,7 +384,7 @@ new class extends Component {
                         </flux:table.cell>
                         <flux:table.cell class="text-right font-mono">
                             <span
-                                class="{{ $transaction->amount < 0 ? 'text-green-600 dark:text-green-400' : 'text-zinc-900 dark:text-zinc-100' }}">
+                                class="{{ $transaction->amount < 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-zinc-900 dark:text-zinc-100' }}">
                                 {{ $transaction->amount < 0 ? '-' : '' }}${{ number_format(abs($transaction->amount), 2) }}
                             </span>
                         </flux:table.cell>
@@ -390,7 +392,7 @@ new class extends Component {
                             @if ($transaction->needs_review)
                                 <flux:badge color="yellow" size="sm" icon="flag">Review</flux:badge>
                             @else
-                                <flux:badge color="green" size="sm" icon="circle-check">OK</flux:badge>
+                                <flux:badge color="emerald" size="sm" icon="circle-check">OK</flux:badge>
                             @endif
                         </flux:table.cell>
                         <flux:table.cell>
@@ -418,15 +420,18 @@ new class extends Component {
     <div class="lg:hidden">
         <flux:card class="!p-0 overflow-hidden">
             @forelse ($transactions as $transaction)
-                <div wire:click="openEdit({{ $transaction->id }})" class="p-4 border-b border-zinc-100 dark:border-zinc-800 last:border-b-0 cursor-pointer active:bg-zinc-50 dark:active:bg-zinc-800 {{ $transaction->needs_review ? 'bg-yellow-50 dark:bg-yellow-950/20' : '' }}">
+                <div wire:click="openEdit({{ $transaction->id }})"
+                    class="p-4 border-b border-zinc-100 dark:border-zinc-800 last:border-b-0 cursor-pointer active:bg-zinc-50 dark:active:bg-zinc-800 {{ $transaction->needs_review ? 'bg-yellow-50 dark:bg-yellow-950/20' : '' }}">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2 min-w-0">
-                            <flux:checkbox wire:click.stop="toggleSelect({{ $transaction->id }})" :checked="in_array($transaction->id, $selectedIds)" class="shrink-0" />
+                            <flux:checkbox wire:click.stop="toggleSelect({{ $transaction->id }})"
+                                :checked="in_array($transaction->id, $selectedIds)" class="shrink-0" />
                             <span class="font-medium text-zinc-800 dark:text-zinc-200 truncate">
-                                {{ $transaction->merchant_name ?? $transaction->description ?? 'Unknown' }}
+                                {{ $transaction->merchant_name ?? ($transaction->description ?? 'Unknown') }}
                             </span>
                         </div>
-                        <span class="font-mono text-sm font-semibold shrink-0 {{ $transaction->amount < 0 ? 'text-green-600 dark:text-green-400' : 'text-zinc-900 dark:text-zinc-100' }}">
+                        <span
+                            class="font-mono text-sm font-semibold shrink-0 {{ $transaction->amount < 0 ? 'text-green-600 dark:text-green-400' : 'text-zinc-900 dark:text-zinc-100' }}">
                             {{ $transaction->amount < 0 ? '-' : '' }}${{ number_format(abs($transaction->amount), 2) }}
                         </span>
                     </div>

@@ -64,39 +64,22 @@ new class extends Component {
         </flux:text>
 
         <div class="grid grid-cols-3 gap-4 mb-5">
-            <flux:input
-                wire:model.live="needs"
-                type="number"
-                label="Needs (%)"
-                min="0"
-                max="100"
-            />
+            <flux:input wire:model.live="needs" type="number" label="Needs (%)" min="0" max="100" />
 
-            <flux:input
-                wire:model.live="wants"
-                type="number"
-                label="Wants (%)"
-                min="0"
-                max="100"
-            />
+            <flux:input wire:model.live="wants" type="number" label="Wants (%)" min="0" max="100" />
 
-            <flux:input
-                wire:model.live="savings"
-                type="number"
-                label="Savings (%)"
-                min="0"
-                max="100"
-            />
+            <flux:input wire:model.live="savings" type="number" label="Savings (%)" min="0" max="100" />
         </div>
 
         {{-- Live sum display --}}
         <div class="flex items-center gap-2 mb-4">
             <flux:text size="sm">Total:</flux:text>
-            <span class="text-sm font-semibold {{ ($needs + $wants + $savings) === 100 ? 'text-green-500' : 'text-red-500' }}">
+            <span
+                class="text-sm font-semibold {{ $needs + $wants + $savings === 100 ? 'text-emerald-500' : 'text-red-500' }}">
                 {{ $needs + $wants + $savings }}%
             </span>
-            @if (($needs + $wants + $savings) === 100)
-                <flux:icon.circle-check class="size-4 text-green-500" />
+            @if ($needs + $wants + $savings === 100)
+                <flux:icon.circle-check class="size-4 text-emerald-500" />
             @else
                 <flux:icon.circle-alert class="size-4 text-red-500" />
             @endif
@@ -105,18 +88,18 @@ new class extends Component {
         @error('ratios')
             <flux:text size="sm" class="text-red-500 mb-3">{{ $message }}</flux:text>
         @enderror
-
-        <div class="flex items-center gap-3">
-            <flux:button wire:click="save" variant="primary">
-                Save Ratios
-            </flux:button>
-
-            @if ($saved)
-                <span class="flex items-center gap-1.5 text-sm text-green-500">
-                    <flux:icon.check class="size-4" />
-                    Saved
-                </span>
-            @endif
-        </div>
     </flux:card>
+
+    <div class="flex items-center gap-3 mt-6">
+        <flux:button wire:click="save" variant="primary">
+            Save Ratios
+        </flux:button>
+
+        @if ($saved)
+            <span class="flex items-center gap-1.5 text-sm text-green-500">
+                <flux:icon.check class="size-4" />
+                Saved
+            </span>
+        @endif
+    </div>
 </div>

@@ -18,7 +18,7 @@ new class extends Component {};
     <div x-show="expanded" x-cloak x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
         x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0" class="fixed inset-0 z-40 bg-black/30 dark:bg-black/50 backdrop-blur-sm"
+        x-transition:leave-end="opacity-0" class="fixed inset-0 z-40 bg-black/10 dark:bg-black/50 backdrop-blur-lg"
         @click="expanded = false">
     </div>
 
@@ -26,10 +26,10 @@ new class extends Component {};
         x-transition:enter-start="translate-y-full opacity-80" x-transition:enter-end="translate-y-0 opacity-100"
         x-transition:leave="transition-all duration-200 ease-in" x-transition:leave-start="translate-y-0 opacity-100"
         x-transition:leave-end="translate-y-full opacity-0"
-        class="fixed bottom-26 left-4 right-4 z-50 rounded-3xl bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-700/50 shadow-xl overflow-hidden">
+        class="fixed bottom-26 left-4 right-4 z-50 rounded-3xl bg-white/50 dark:bg-zinc-950/60 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-700/50 shadow-xl overflow-hidden">
 
         {{-- Header --}}
-        <div class="px-5 py-3 border-b border-zinc-200 dark:border-zinc-700 flex items-center justify-between">
+        <div class="px-5 py-3 border-b border-zinc-400/50 dark:border-zinc-700 flex items-center justify-between">
             <flux:text class="font-semibold">All Pages</flux:text>
             <flux:button variant="ghost" size="xs" icon="x" @click="expanded = false" />
         </div>
@@ -58,7 +58,7 @@ new class extends Component {};
                         'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100' :
                         'text-zinc-500 dark:text-zinc-400'"
                     class="flex flex-col items-center gap-1.5 rounded-xl px-2 py-3 text-center transition-colors">
-                    <flux:icon :icon="$item['icon']" variant="mini" />
+                    <flux:icon :icon="$item['icon']" />
                     <span class="text-[10px] font-medium leading-tight">{{ $item['label'] }}</span>
                 </a>
             @endforeach

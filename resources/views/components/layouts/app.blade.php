@@ -12,7 +12,7 @@
     @fluxAppearance
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-zinc-50 to-emerald-100 dark:from-zinc-900 dark:to-emerald-950">
+<body class="min-h-screen bg-gradient-to-b from-zinc-50 to-slate-100 dark:from-zinc-900 dark:to-black">
     <flux:sidebar sticky class="max-lg:hidden! bg-transparent! border-r-0!">
         <flux:sidebar.header>
             <flux:sidebar.brand name="Better With 90" href="/dashboard" wire:navigate>
@@ -56,7 +56,9 @@
         </div>
     </flux:main>
 
-    <livewire:layout.mobile-dock />
+    @persist('mobile-dock')
+        <livewire:layout.mobile-dock />
+    @endpersist
 
     <script>
         document.addEventListener('alpine:init', () => {

@@ -13,27 +13,15 @@ new class extends Component {};
         <flux:text size="sm" class="mb-5">Choose your preferred color scheme.</flux:text>
 
         <div class="flex gap-2">
-            <flux:button
-                x-on:click="$flux.appearance = 'light'"
-                icon="sun"
-                size="sm"
-                ::variant="$flux.appearance === 'light' ? 'primary' : 'subtle'"
-                class="flex-1"
-            >Light</flux:button>
-            <flux:button
-                x-on:click="$flux.appearance = 'dark'"
-                icon="moon"
-                size="sm"
-                ::variant="$flux.appearance === 'dark' ? 'primary' : 'subtle'"
-                class="flex-1"
-            >Dark</flux:button>
-            <flux:button
-                x-on:click="$flux.appearance = 'system'"
-                icon="monitor"
-                size="sm"
-                ::variant="$flux.appearance === 'system' ? 'primary' : 'subtle'"
-                class="flex-1"
-            >System</flux:button>
+            <flux:button x-on:click="$flux.appearance = 'light'" icon="sun" size="sm" variant="filled"
+                class="flex-1">Light
+            </flux:button>
+            <flux:button x-on:click="$flux.appearance = 'dark'" icon="moon" size="sm" variant="filled"
+                class="flex-1">Dark
+            </flux:button>
+            <flux:button x-on:click="$flux.appearance = 'system'" icon="monitor" size="sm" variant="primary"
+                class="flex-1">System
+            </flux:button>
         </div>
     </flux:card>
 </div>

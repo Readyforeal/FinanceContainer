@@ -22,10 +22,7 @@ new class extends Component {
         $this->hour = (int) ($schedule['hour'] ?? 2);
         $this->minute = (int) ($schedule['minute'] ?? 0);
 
-        $this->confidenceThreshold = (float) AppSetting::getValue(
-            'categorization_confidence_threshold',
-            0.75
-        );
+        $this->confidenceThreshold = (float) AppSetting::getValue('categorization_confidence_threshold', 0.75);
     }
 
     public function save(): void
@@ -54,16 +51,20 @@ new class extends Component {
         {{-- Time of Day --}}
         <flux:card class="p-5">
             <flux:heading size="sm" class="mb-2">Daily Sync Time</flux:heading>
-            <flux:text size="xs" class="mb-4">Transactions will be automatically synced at this time each day.</flux:text>
+            <flux:text size="xs" class="mb-4">Transactions will be automatically synced at this time each day.
+            </flux:text>
 
             <div class="flex items-center gap-3">
                 <div>
                     <flux:select wire:model="hour" label="Hour">
                         @for ($h = 0; $h < 24; $h++)
-                            <flux:select.option value="{{ $h }}">{{ str_pad($h, 2, '0', STR_PAD_LEFT) }}</flux:select.option>
+                            <flux:select.option value="{{ $h }}">{{ str_pad($h, 2, '0', STR_PAD_LEFT) }}
+                            </flux:select.option>
                         @endfor
                     </flux:select>
-                    @error('hour') <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text> @enderror
+                    @error('hour')
+                        <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text>
+                    @enderror
                 </div>
 
                 <span class="text-zinc-500 dark:text-zinc-400 mt-5">:</span>
@@ -71,10 +72,13 @@ new class extends Component {
                 <div>
                     <flux:select wire:model="minute" label="Minute">
                         @foreach ([0, 15, 30, 45] as $m)
-                            <flux:select.option value="{{ $m }}">{{ str_pad($m, 2, '0', STR_PAD_LEFT) }}</flux:select.option>
+                            <flux:select.option value="{{ $m }}">{{ str_pad($m, 2, '0', STR_PAD_LEFT) }}
+                            </flux:select.option>
                         @endforeach
                     </flux:select>
-                    @error('minute') <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text> @enderror
+                    @error('minute')
+                        <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text>
+                    @enderror
                 </div>
 
                 <flux:text size="sm" class="mt-5">
@@ -93,22 +97,18 @@ new class extends Component {
             <div class="space-y-3">
                 <div class="flex items-center justify-between">
                     <flux:text size="xs">50%</flux:text>
-                    <span class="text-sm font-semibold text-indigo-400">
+                    <span class="text-sm font-semibold text-emerald-500">
                         {{ number_format($confidenceThreshold * 100, 0) }}%
                     </span>
                     <flux:text size="xs">100%</flux:text>
                 </div>
 
-                <input
-                    wire:model.live="confidenceThreshold"
-                    type="range"
-                    min="0.5"
-                    max="1.0"
-                    step="0.05"
-                    class="w-full h-2 bg-zinc-200 dark:bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
-                />
+                <input wire:model.live="confidenceThreshold" type="range" min="0.5" max="1.0" step="0.05"
+                    class="w-full h-2 bg-zinc-200 dark:bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-emerald-500" />
 
-                @error('confidenceThreshold') <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text> @enderror
+                @error('confidenceThreshold')
+                    <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text>
+                @enderror
             </div>
         </flux:card>
 
