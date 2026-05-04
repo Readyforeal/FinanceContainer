@@ -8,15 +8,14 @@ new #[Layout('components.layouts.app')] #[Title('Dashboard')] class extends Comp
 ?>
 
 <div>
-    <div class="mb-6">
-        <flux:heading size="xl" level="1" class="!text-3xl">Dashboard</flux:heading>
-        <flux:text class="mt-1">Your financial overview.</flux:text>
+    <div class="mb-8">
+        <livewire:dashboard.balance-sparkline />
     </div>
 
     <div class="space-y-6">
         <livewire:dashboard.balance-cards />
-        <livewire:dashboard.balance-history />
         <livewire:dashboard.budget-progress />
+        <livewire:dashboard.balance-history />
 
         <livewire:dashboard.category-spending />
 
