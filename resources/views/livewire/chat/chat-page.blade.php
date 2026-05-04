@@ -155,7 +155,7 @@ new class extends Component {
 ?>
 
 {{-- Chat layout -- fully separate mobile vs desktop --}}
-<div class="fixed inset-0 lg:top-0 lg:left-[15.75rem] flex flex-col lg:flex-row lg:gap-3 lg:pt-3 lg:pr-3 lg:pb-3">
+<div class="fixed inset-0 lg:top-0 lg:left-[15.75rem] flex flex-col lg:flex-row lg:gap-3 lg:p-3">
 
     {{-- ==================== MOBILE TOP BAR ==================== --}}
     <div class="lg:hidden flex-shrink-0 relative z-10">
