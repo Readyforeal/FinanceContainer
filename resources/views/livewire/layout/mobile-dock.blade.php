@@ -26,7 +26,7 @@ new class extends Component {};
         x-transition:enter-start="translate-y-full opacity-80" x-transition:enter-end="translate-y-0 opacity-100"
         x-transition:leave="transition-all duration-200 ease-in" x-transition:leave-start="translate-y-0 opacity-100"
         x-transition:leave-end="translate-y-full opacity-0"
-        class="fixed bottom-22 left-3 right-3 z-50 rounded-3xl bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-700/50 shadow-xl overflow-hidden">
+        class="fixed bottom-26 left-4 right-4 z-50 rounded-3xl bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-700/50 shadow-xl overflow-hidden">
 
         {{-- Header --}}
         <div class="px-5 py-3 border-b border-zinc-200 dark:border-zinc-700 flex items-center justify-between">
@@ -80,7 +80,7 @@ new class extends Component {};
     {{-- Bottom dock bar --}}
     <div class="fixed bottom-0 left-0 right-0 z-40 px-4"
         style="padding-bottom: max(1rem, env(safe-area-inset-bottom));">
-        <div class="flex items-center justify-around bg-white/50 dark:bg-zinc-900/80 backdrop-blur-xl shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 border border-zinc-200/50 dark:border-zinc-700/50 px-4 py-4"
+        <div class="flex items-center justify-around bg-white/50 dark:bg-zinc-950/60 backdrop-blur-xl shadow-xl border border-zinc-200/50 dark:border-zinc-700/50 px-4 py-4"
             style="border-radius: 2.75rem;">
             @php
                 $dockItems = [
