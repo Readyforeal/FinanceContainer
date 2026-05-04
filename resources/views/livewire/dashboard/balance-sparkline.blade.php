@@ -11,21 +11,18 @@ new class extends Component {
         $currentBalance = (float) $accounts->sum('current_balance');
 
         $days = 30;
-        $startDate = now()->subDays($days - 1)->startOfDay();
+        $startDate = now()
+            ->subDays($days - 1)
+            ->startOfDay();
 
-        $dailyNets = Transaction::where('date', '>=', $startDate->toDateString())
-            ->selectRaw('date, SUM(amount) as net')
-            ->groupBy('date')
-            ->pluck('net', 'date')
-            ->mapWithKeys(fn ($net, $date) => [\Carbon\Carbon::parse($date)->format('Y-m-d') => (float) $net]);
+        $dailyNets = Transaction::where('date', '>=', $startDate->toDateString())->selectRaw('date, SUM(amount) as net')->groupBy('date')->pluck('net', 'date')->mapWithKeys(fn($net, $date) => [\Carbon\Carbon::parse($date)->format('Y-m-d') => (float) $net]);
 
         $dates = collect(range(0, $days - 1))
-            ->map(fn ($offset) => now()->subDays($offset)->startOfDay())
+            ->map(fn($offset) => now()->subDays($offset)->startOfDay())
             ->reverse()
             ->values();
 
-        $futureDays = collect(range(0, $days - 1))
-            ->map(fn ($offset) => now()->subDays($offset)->format('Y-m-d'));
+        $futureDays = collect(range(0, $days - 1))->map(fn($offset) => now()->subDays($offset)->format('Y-m-d'));
 
         $totalNetSinceStart = 0;
         foreach ($futureDays as $dateStr) {
@@ -53,7 +50,7 @@ new class extends Component {
 <div>
     <div class="flex items-end justify-between mb-1">
         <div>
-            <flux:text size="xs" class="uppercase tracking-wide">Total Balance</flux:text>
+            <flux:text size="xs" class="tracking-wide">Total Balance</flux:text>
             <flux:heading size="xl" class="!text-3xl">${{ number_format($currentBalance, 2) }}</flux:heading>
         </div>
     </div>

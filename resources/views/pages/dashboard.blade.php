@@ -17,7 +17,7 @@ new #[Layout('components.layouts.app')] #[Title('Dashboard')] class extends Comp
         <livewire:dashboard.balance-sparkline />
     </div>
 
-    <div class="space-y-6">
+    <div class="space-y-4">
         <livewire:dashboard.balance-cards />
         <livewire:dashboard.budget-progress />
         <livewire:dashboard.balance-history />

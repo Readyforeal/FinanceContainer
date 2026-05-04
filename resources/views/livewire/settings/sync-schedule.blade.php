@@ -45,15 +45,15 @@ new class extends Component {
 ?>
 
 <div>
-    <flux:heading size="lg" class="mb-4">Sync Schedule</flux:heading>
+    <div class="flex items-center justify-between mb-4">
+        <flux:heading size="lg">Sync Schedule</flux:heading>
+        <flux:icon.clock class="size-5 text-zinc-400 dark:text-zinc-500" />
+    </div>
 
     <form wire:submit="save" class="space-y-6">
         {{-- Time of Day --}}
         <flux:card class="p-5">
-            <div class="flex items-center gap-2 mb-4">
-                <flux:icon.clock class="size-5 text-indigo-400" />
-                <flux:heading size="sm">Daily Sync Time</flux:heading>
-            </div>
+            <flux:heading size="sm" class="mb-2">Daily Sync Time</flux:heading>
             <flux:text size="xs" class="mb-4">Transactions will be automatically synced at this time each day.</flux:text>
 
             <div class="flex items-center gap-3">
@@ -85,10 +85,7 @@ new class extends Component {
 
         {{-- Confidence Threshold --}}
         <flux:card class="p-5">
-            <div class="flex items-center gap-2 mb-4">
-                <flux:icon.sliders-horizontal class="size-5 text-indigo-400" />
-                <flux:heading size="sm">Categorization Confidence Threshold</flux:heading>
-            </div>
+            <flux:heading size="sm" class="mb-2">Categorization Confidence Threshold</flux:heading>
             <flux:text size="xs" class="mb-4">
                 Transactions with confidence below this threshold will be flagged for manual review.
             </flux:text>

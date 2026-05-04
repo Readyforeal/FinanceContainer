@@ -10,10 +10,7 @@ new class extends Component {
     {
         $accounts = Account::all();
 
-        $nextPaySource = IncomeSource::where('is_active', true)
-            ->whereNotNull('next_pay_date')
-            ->orderBy('next_pay_date')
-            ->first();
+        $nextPaySource = IncomeSource::where('is_active', true)->whereNotNull('next_pay_date')->orderBy('next_pay_date')->first();
 
         $nextPayday = $nextPaySource?->next_pay_date;
         $daysUntilPay = $nextPayday ? (int) now()->startOfDay()->diffInDays($nextPayday->startOfDay(), false) : null;
@@ -24,7 +21,7 @@ new class extends Component {
 ?>
 
 <div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
         @forelse ($accounts as $account)
             <flux:card>
                 <div class="flex items-center gap-3 mb-3">
