@@ -418,7 +418,7 @@ new class extends Component {
     <div class="lg:hidden">
         <flux:card class="!p-0 overflow-hidden">
             @forelse ($transactions as $transaction)
-                <div class="p-4 border-b border-zinc-100 dark:border-zinc-800 last:border-b-0 {{ $transaction->needs_review ? 'bg-yellow-50 dark:bg-yellow-950/20' : '' }}">
+                <div wire:click="openEdit({{ $transaction->id }})" class="p-4 border-b border-zinc-100 dark:border-zinc-800 last:border-b-0 cursor-pointer active:bg-zinc-50 dark:active:bg-zinc-800 {{ $transaction->needs_review ? 'bg-yellow-50 dark:bg-yellow-950/20' : '' }}">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2 min-w-0">
                             <flux:checkbox wire:click.stop="toggleSelect({{ $transaction->id }})" :checked="in_array($transaction->id, $selectedIds)" class="shrink-0" />
@@ -426,12 +426,9 @@ new class extends Component {
                                 {{ $transaction->merchant_name ?? $transaction->description ?? 'Unknown' }}
                             </span>
                         </div>
-                        <div class="flex items-center gap-2 shrink-0">
-                            <span class="font-mono text-sm font-semibold {{ $transaction->amount < 0 ? 'text-green-600 dark:text-green-400' : 'text-zinc-900 dark:text-zinc-100' }}">
-                                {{ $transaction->amount < 0 ? '-' : '' }}${{ number_format(abs($transaction->amount), 2) }}
-                            </span>
-                            <flux:button variant="subtle" size="xs" icon="pencil" wire:click="openEdit({{ $transaction->id }})" />
-                        </div>
+                        <span class="font-mono text-sm font-semibold shrink-0 {{ $transaction->amount < 0 ? 'text-green-600 dark:text-green-400' : 'text-zinc-900 dark:text-zinc-100' }}">
+                            {{ $transaction->amount < 0 ? '-' : '' }}${{ number_format(abs($transaction->amount), 2) }}
+                        </span>
                     </div>
                     <div class="flex items-center gap-3 mt-1 ml-8">
                         <flux:text size="xs">{{ $transaction->date->format('M j') }}</flux:text>
