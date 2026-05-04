@@ -65,7 +65,7 @@ new class extends Component {
 };
 ?>
 
-<flux:card class="!p-3">
+<flux:card class="">
     <div class="flex items-center justify-between mb-1">
         <div class="flex items-center gap-2">
             <flux:icon.trending-up-down variant="mini" class="text-zinc-400 dark:text-zinc-500" />
@@ -78,15 +78,18 @@ new class extends Component {
                 </flux:badge>
             @endif
             <div class="flex gap-1">
-                <flux:button wire:click="setDays(7)" size="xs" :variant="$days === 7 ? 'primary' : 'subtle'">7d</flux:button>
-                <flux:button wire:click="setDays(30)" size="xs" :variant="$days === 30 ? 'primary' : 'subtle'">30d</flux:button>
-                <flux:button wire:click="setDays(90)" size="xs" :variant="$days === 90 ? 'primary' : 'subtle'">90d</flux:button>
+                <flux:button wire:click="setDays(7)" size="xs" :variant="$days === 7 ? 'primary' : 'subtle'">7d
+                </flux:button>
+                <flux:button wire:click="setDays(30)" size="xs" :variant="$days === 30 ? 'primary' : 'subtle'">30d
+                </flux:button>
+                <flux:button wire:click="setDays(90)" size="xs" :variant="$days === 90 ? 'primary' : 'subtle'">90d
+                </flux:button>
             </div>
         </div>
     </div>
 
-    <div wire:key="balance-chart-{{ $days }}" x-data x-init="new ApexCharts($refs.chart, {
-        chart: { type: 'area', height: 250, toolbar: { show: false }, background: 'transparent', parentHeightOffset: 0 },
+    <div class="pt-3 pr-3" wire:key="balance-chart-{{ $days }}" x-data x-init="new ApexCharts($refs.chart, {
+        chart: { type: 'area', height: 250, toolbar: { show: false }, background: 'transparent', parentHeightOffset: 2 },
         series: [{ name: 'Balance', data: @js($chartValues) }],
         xaxis: {
             categories: @js($chartLabels),
@@ -98,10 +101,10 @@ new class extends Component {
         colors: ['#10b981'],
         fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05, stops: [0, 100] } },
         stroke: { curve: 'smooth', width: 2 },
-        grid: { borderColor: document.documentElement.classList.contains('dark') ? '#27272a' : '#e4e4e7', strokeDashArray: 4, padding: { left: 0, right: 0, top: -10, bottom: 0 } },
+        grid: { borderColor: document.documentElement.classList.contains('dark') ? '#27272a' : '#e4e4e7', strokeDashArray: 4, padding: { left: 10, right: 10, top: -10, bottom: 0 } },
         theme: { mode: document.documentElement.classList.contains('dark') ? 'dark' : 'light' },
         dataLabels: { enabled: false },
-    }).render()" class="-mx-1 mt-1">
+    }).render()" class="mt-1">
         <div x-ref="chart"></div>
     </div>
 </flux:card>
