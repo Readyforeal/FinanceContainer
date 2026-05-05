@@ -11,6 +11,6 @@ class extends Component {
 };
 ?>
 
-<div>
+<div class="lg:-m-8 lg:h-[calc(100vh-1.5rem)] flex flex-col">
     <livewire:chat.chat-page />
 </div>
