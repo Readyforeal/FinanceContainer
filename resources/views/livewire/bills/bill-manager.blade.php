@@ -4,11 +4,13 @@ use App\Enums\BillFrequency;
 use App\Models\Account;
 use App\Models\Bill;
 use App\Models\Category;
+use App\Models\IncomeSource;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 new class extends Component {
     public string $viewingMonth = '';
+    public string $view = 'list';
 
     public string $formName = '';
     public string $formPayee = '';
@@ -38,6 +40,11 @@ new class extends Component {
     public function nextMonth(): void
     {
         $this->viewingMonth = \Carbon\Carbon::createFromFormat('Y-m', $this->viewingMonth)->addMonth()->format('Y-m');
+    }
+
+    public function setView(string $view): void
+    {
+        $this->view = in_array($view, ['list', 'calendar']) ? $view : 'list';
     }
 
     #[On('dock-action')]
@@ -135,19 +142,80 @@ new class extends Component {
         $billStatuses = [];
         $billPayments = [];
         foreach ($bills as $bill) {
-            $billStatuses[$bill->id] = $bill->statusForMonth($monthDate);
+            $bill->computed_status = $bill->statusForMonth($monthDate);
+            $billStatuses[$bill->id] = $bill->computed_status;
             if ($billStatuses[$bill->id] === 'paid') {
                 $periodStart = $monthDate->copy()->startOfMonth();
                 $periodEnd = $monthDate->copy()->endOfMonth();
-                $billPayments[$bill->id] = $bill->matchingTransaction($periodStart, $periodEnd);
+                $payment = $bill->matchingTransaction($periodStart, $periodEnd);
+                $bill->matched_payment = $payment;
+                $billPayments[$bill->id] = $payment;
             }
         }
+
+        // Calendar grid data
+        $startOfMonth = $monthDate->copy()->startOfMonth();
+        $endOfMonth = $monthDate->copy()->endOfMonth();
+        $startDayOfWeek = $startOfMonth->dayOfWeek; // 0=Sunday
+        $daysInMonth = $endOfMonth->day;
+
+        $calendarDays = [];
+        for ($i = 0; $i < $startDayOfWeek; $i++) {
+            $calendarDays[] = null;
+        }
+        for ($day = 1; $day <= $daysInMonth; $day++) {
+            $date = $startOfMonth->copy()->addDays($day - 1);
+            $dayBills = $bills->filter(fn ($b) => $b->due_day === $day);
+            $calendarDays[] = [
+                'day' => $day,
+                'date' => $date,
+                'bills' => $dayBills,
+                'isToday' => $date->isToday(),
+            ];
+        }
+
+        // Payday indicators
+        $paydays = IncomeSource::where('is_active', true)
+            ->whereNotNull('next_pay_date')
+            ->get()
+            ->flatMap(function ($source) use ($startOfMonth, $endOfMonth) {
+                $dates = [];
+                $date = $source->next_pay_date->copy();
+                while ($date->gt($endOfMonth)) {
+                    $date = match($source->frequency) {
+                        'weekly' => $date->subWeek(),
+                        'biweekly' => $date->subWeeks(2),
+                        'monthly' => $date->subMonth(),
+                        default => $date->subMonth(),
+                    };
+                }
+                while ($date->lt($startOfMonth)) {
+                    $date = match($source->frequency) {
+                        'weekly' => $date->addWeek(),
+                        'biweekly' => $date->addWeeks(2),
+                        'monthly' => $date->addMonth(),
+                        default => $date->addMonth(),
+                    };
+                }
+                while ($date->lte($endOfMonth)) {
+                    if ($date->gte($startOfMonth)) {
+                        $dates[] = $date->day;
+                    }
+                    $date = match($source->frequency) {
+                        'weekly' => $date->addWeek(),
+                        'biweekly' => $date->addWeeks(2),
+                        'monthly' => $date->addMonth(),
+                        default => $date->addMonth(),
+                    };
+                }
+                return $dates;
+            })->unique()->values()->toArray();
 
         $accounts = Account::orderBy('name')->get();
         $categories = Category::orderBy('name')->get();
         $frequencies = BillFrequency::cases();
 
-        return compact('bills', 'billStatuses', 'billPayments', 'accounts', 'categories', 'frequencies', 'monthDate');
+        return compact('bills', 'billStatuses', 'billPayments', 'accounts', 'categories', 'frequencies', 'monthDate', 'calendarDays', 'paydays');
     }
 };
 ?>
@@ -170,7 +238,86 @@ new class extends Component {
         </div>
     </div>
 
+    {{-- View toggle --}}
+    <div class="flex gap-1 mb-4">
+        <flux:button wire:click="setView('list')" size="sm" :variant="$view === 'list' ? 'primary' : 'subtle'">List</flux:button>
+        <flux:button wire:click="setView('calendar')" size="sm" :variant="$view === 'calendar' ? 'primary' : 'subtle'">Calendar</flux:button>
+    </div>
+
+    {{-- Calendar view --}}
+    @if ($view === 'calendar')
+        <flux:card class="!p-3">
+            {{-- Day of week headers --}}
+            <div class="grid grid-cols-7 gap-1 mb-2">
+                @foreach (['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] as $dayName)
+                    <div class="text-center">
+                        <flux:text size="xs" class="font-medium">{{ $dayName }}</flux:text>
+                    </div>
+                @endforeach
+            </div>
+
+            {{-- Calendar grid --}}
+            <div class="grid grid-cols-7 gap-1">
+                @foreach ($calendarDays as $calDay)
+                    @if ($calDay === null)
+                        <div></div>
+                    @else
+                        <div class="min-h-16 lg:min-h-20 p-1.5 rounded-lg border {{ $calDay['isToday'] ? 'border-blue-300 dark:border-blue-700 bg-blue-50 dark:bg-blue-950/20' : 'border-zinc-100 dark:border-zinc-800' }}">
+                            <div class="flex items-center justify-between mb-1">
+                                <flux:text size="xs" class="{{ $calDay['isToday'] ? 'font-bold text-blue-600 dark:text-blue-400' : '' }}">
+                                    {{ $calDay['day'] }}
+                                </flux:text>
+                                @if (in_array($calDay['day'], $paydays))
+                                    <span class="w-2 h-2 rounded-full bg-blue-500" title="Payday"></span>
+                                @endif
+                            </div>
+                            <div class="flex flex-wrap gap-0.5">
+                                @foreach ($calDay['bills'] as $bill)
+                                    @php
+                                        $status = $bill->computed_status ?? 'upcoming';
+                                        $dotColor = match($status) {
+                                            'paid' => 'bg-green-500',
+                                            'overdue' => 'bg-red-500',
+                                            'due_soon' => 'bg-amber-500',
+                                            default => 'bg-zinc-400',
+                                        };
+                                    @endphp
+                                    <span class="w-2 h-2 rounded-full {{ $dotColor }}" title="{{ $bill->name }}: {{ $status }}"></span>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+
+            {{-- Legend --}}
+            <div class="flex flex-wrap gap-4 mt-3 pt-3 border-t border-zinc-100 dark:border-zinc-800">
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    <flux:text size="xs">Paid</flux:text>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                    <flux:text size="xs">Overdue</flux:text>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    <flux:text size="xs">Due Soon</flux:text>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-zinc-400"></span>
+                    <flux:text size="xs">Upcoming</flux:text>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                    <flux:text size="xs">Payday</flux:text>
+                </div>
+            </div>
+        </flux:card>
+    @endif
+
     {{-- Bill list --}}
+    @if ($view === 'list')
     <flux:card class="!p-0 overflow-hidden">
         {{-- Desktop table --}}
         <div class="hidden lg:block">
@@ -314,6 +461,7 @@ new class extends Component {
             @endforelse
         </div>
     </flux:card>
+    @endif
 
     {{-- Bill editor modal --}}
     <flux:modal name="bill-editor" class="w-full md:w-2xl">
