@@ -75,44 +75,41 @@ new class extends Component {
             const labels = @js($chartLabels);
             const isDark = document.documentElement.classList.contains('dark');
 
-            // Build data with per-bar goal lines
+            // Tailwind color palette for bars
+            const barColors = [
+                '#10b981', '#3b82f6', '#8b5cf6', '#f59e0b', '#ec4899',
+                '#06b6d4', '#f97316', '#6366f1', '#14b8a6', '#e11d48',
+                '#84cc16', '#a855f7', '#0ea5e9', '#d946ef', '#22c55e',
+                '#eab308', '#2dd4bf', '#f43f5e', '#818cf8', '#fb923c',
+            ];
+
+            // Build data with per-bar goal lines and colors
             const seriesData = spent.map((val, i) => ({
                 x: labels[i],
                 y: val,
+                fillColor: barColors[i % barColors.length],
                 goals: budget[i] > 0 ? [{
                     name: 'Budget',
                     value: budget[i],
                     strokeHeight: 3,
-                    strokeColor: '#f87171',
-                    strokeDashArray: 0,
+                    strokeColor: isDark ? '#fca5a5' : '#dc2626',
+                    strokeDashArray: 2,
                 }] : [],
             }));
 
             const minWidth = Math.max(labels.length * 60, 300);
 
             new ApexCharts($refs.chart, {
-                chart: { type: 'bar', height: 300, width: minWidth, toolbar: { show: false }, background: 'transparent' },
+                chart: { type: 'bar', height: 300, width: minWidth, toolbar: { show: false }, background: 'transparent', fontFamily: 'Inter, sans-serif' },
                 series: [{ name: 'Spent', data: seriesData }],
                 xaxis: {
-                    labels: { style: { fontSize: '10px' }, rotate: -45, rotateAlways: labels.length > 6, trim: true, maxHeight: 80 },
+                    labels: { style: { fontSize: '10px', colors: isDark ? '#a1a1aa' : '#71717a' }, rotate: -45, rotateAlways: labels.length > 6, trim: true, maxHeight: 80 },
                 },
-                yaxis: { labels: { formatter: (val) => '$' + (val || 0).toFixed(0) } },
+                yaxis: { labels: { style: { colors: isDark ? '#a1a1aa' : '#71717a' }, formatter: (val) => '$' + (val || 0).toFixed(0) } },
                 tooltip: { y: { formatter: (val) => '$' + val.toFixed(2) } },
-                colors: ['#3b82f6'],
-                plotOptions: { bar: { borderRadius: 4, columnWidth: '55%' } },
-                legend: {
-                    show: true,
-                    showForSingleSeries: true,
-                    customLegendItems: ['Spent', 'Budget'],
-                    markers: {
-                        fillColors: ['#3b82f6', '#f87171'],
-                        shape: ['square', 'line'],
-                    },
-                    position: 'top',
-                    horizontalAlign: 'right',
-                    fontSize: '11px',
-                },
-                grid: { borderColor: isDark ? '#27272a' : '#e4e4e7', strokeDashArray: 4 },
+                plotOptions: { bar: { borderRadius: 6, columnWidth: '60%', distributed: true } },
+                legend: { show: false },
+                grid: { borderColor: isDark ? '#27272a' : '#f4f4f5', strokeDashArray: 3 },
                 theme: { mode: isDark ? 'dark' : 'light' },
                 dataLabels: { enabled: false },
             }).render()

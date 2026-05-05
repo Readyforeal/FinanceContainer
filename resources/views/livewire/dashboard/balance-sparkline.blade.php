@@ -58,8 +58,8 @@ new class extends Component {
         chart: { type: 'area', height: 60, sparkline: { enabled: true }, background: 'transparent' },
         series: [{ data: @js($sparkValues) }],
         colors: ['#10b981'],
-        fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.3, opacityTo: 0, stops: [0, 100] } },
-        stroke: { curve: 'smooth', width: 2 },
+        fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.25, opacityTo: 0, stops: [0, 100] } },
+        stroke: { curve: 'smooth', width: 2.5 },
         tooltip: { enabled: false },
     }).render()">
         <div x-ref="spark"></div>

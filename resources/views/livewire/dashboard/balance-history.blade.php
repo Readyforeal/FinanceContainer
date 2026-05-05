@@ -88,23 +88,28 @@ new class extends Component {
         </div>
     </div>
 
-    <div class="pt-3 pr-3" wire:key="balance-chart-{{ $days }}" x-data x-init="new ApexCharts($refs.chart, {
-        chart: { type: 'area', height: 250, toolbar: { show: false }, background: 'transparent', parentHeightOffset: 2 },
-        series: [{ name: 'Balance', data: @js($chartValues) }],
-        xaxis: {
-            categories: @js($chartLabels),
-            labels: { style: { fontSize: '10px' } },
-            tickAmount: Math.min(@js(count($chartLabels)), 8),
-        },
-        yaxis: { labels: { formatter: (val) => '$' + val.toFixed(0) } },
-        tooltip: { y: { formatter: (val) => '$' + val.toFixed(2) } },
-        colors: ['#10b981'],
-        fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05, stops: [0, 100] } },
-        stroke: { curve: 'smooth', width: 2 },
-        grid: { borderColor: document.documentElement.classList.contains('dark') ? '#27272a' : '#e4e4e7', strokeDashArray: 4, padding: { left: 10, right: 10, top: -10, bottom: 0 } },
-        theme: { mode: document.documentElement.classList.contains('dark') ? 'dark' : 'light' },
-        dataLabels: { enabled: false },
-    }).render()" class="mt-1">
+    <div class="pt-3 pr-3" wire:key="balance-chart-{{ $days }}" x-data x-init="
+        const isDark = document.documentElement.classList.contains('dark');
+        new ApexCharts($refs.chart, {
+            chart: { type: 'area', height: 250, toolbar: { show: false }, background: 'transparent', parentHeightOffset: 2, fontFamily: 'Inter, sans-serif' },
+            series: [{ name: 'Balance', data: @js($chartValues) }],
+            xaxis: {
+                categories: @js($chartLabels),
+                labels: { style: { fontSize: '10px', colors: isDark ? '#a1a1aa' : '#71717a' } },
+                tickAmount: Math.min(@js(count($chartLabels)), 8),
+                axisBorder: { show: false },
+                axisTicks: { show: false },
+            },
+            yaxis: { labels: { style: { colors: isDark ? '#a1a1aa' : '#71717a' }, formatter: (val) => '$' + val.toFixed(0) } },
+            tooltip: { y: { formatter: (val) => '$' + val.toFixed(2) } },
+            colors: ['#10b981'],
+            fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.35, opacityTo: 0.02, stops: [0, 100] } },
+            stroke: { curve: 'smooth', width: 2.5 },
+            grid: { borderColor: isDark ? '#27272a' : '#f4f4f5', strokeDashArray: 3, padding: { left: 10, right: 10, top: -10, bottom: 0 } },
+            theme: { mode: isDark ? 'dark' : 'light' },
+            dataLabels: { enabled: false },
+        }).render()
+    " class="mt-1">
         <div x-ref="chart"></div>
     </div>
 </flux:card>
