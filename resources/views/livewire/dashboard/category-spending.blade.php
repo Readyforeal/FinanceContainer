@@ -86,7 +86,6 @@ new class extends Component {
             const seriesData = spent.map((val, i) => ({
                 x: labels[i],
                 y: val,
-                fillColor: barColors[i % barColors.length],
                 goals: budget[i] > 0 ? [{
                     name: 'Budget',
                     value: budget[i],
@@ -96,11 +95,15 @@ new class extends Component {
                 }] : [],
             }));
 
+            // Extend colors array to match data length
+            const chartColors = labels.map((_, i) => barColors[i % barColors.length]);
+
             const minWidth = Math.max(labels.length * 60, 300);
 
             new ApexCharts($refs.chart, {
                 chart: { type: 'bar', height: 300, width: minWidth, toolbar: { show: false }, background: 'transparent', fontFamily: 'Inter, sans-serif' },
                 series: [{ name: 'Spent', data: seriesData }],
+                colors: chartColors,
                 xaxis: {
                     labels: { style: { fontSize: '10px', colors: isDark ? '#71717a' : '#a1a1aa' }, rotate: -45, rotateAlways: labels.length > 6, trim: true, maxHeight: 80 },
                     axisBorder: { show: false },
