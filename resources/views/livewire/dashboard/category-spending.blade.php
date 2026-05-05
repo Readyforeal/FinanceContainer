@@ -112,7 +112,7 @@ new class extends Component {
                 yaxis: { show: false },
                 tooltip: { y: { formatter: (val) => '$' + val.toFixed(2) } },
                 plotOptions: { bar: { borderRadius: 6, columnWidth: '55%', distributed: true } },
-                fill: { opacity: 1 },
+                fill: { type: 'gradient', gradient: { shade: 'dark', type: 'vertical', shadeIntensity: 0.15, opacityFrom: 0.95, opacityTo: 0.7, stops: [0, 100] } },
                 legend: { show: false },
                 grid: { show: false },
                 theme: { mode: isDark ? 'dark' : 'light' },
