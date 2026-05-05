@@ -156,10 +156,10 @@ new class extends Component {
 
 {{-- Chat layout -- fully separate mobile vs desktop --}}
 {{-- Root: fixed container filling available space --}}
-<div class="fixed inset-0 top-14 lg:top-0 lg:left-[15.75rem] flex flex-col lg:flex-row">
+<div class="fixed inset-0 top-14 lg:top-0 lg:left-[15.75rem] flex flex-col lg:flex-row lg:p-3 lg:gap-3">
 
     {{-- ==================== DESKTOP SIDEBAR (fixed, not scrollable) ==================== --}}
-    <div class="hidden lg:flex w-64 flex-shrink-0 flex-col m-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden">
+    <div class="hidden lg:flex w-64 flex-shrink-0 flex-col rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden">
         <div class="p-3 border-b border-zinc-200 dark:border-zinc-800">
             <flux:button wire:click="newConversation" variant="primary" icon="plus" class="w-full">
                 New Conversation
@@ -189,7 +189,7 @@ new class extends Component {
     </div>
 
     {{-- ==================== CHAT AREA ==================== --}}
-    <div class="flex-1 flex flex-col min-h-0 min-w-0">
+    <div class="flex-1 flex flex-col min-h-0 min-w-0 relative">
 
         {{-- Mobile top bar --}}
         <div class="lg:hidden flex-shrink-0 relative z-10">
@@ -253,9 +253,9 @@ new class extends Component {
                 </div>
             </div>
 
-            {{-- Input --}}
-            <div class="flex-shrink-0 px-3 lg:px-8 pb-24 lg:pb-4 pt-2">
-                <form wire:submit="sendMessage" class="max-w-2xl mx-auto">
+            {{-- Input (floating above messages) --}}
+            <div class="absolute bottom-0 left-0 right-0 px-3 lg:px-8 pb-24 lg:pb-4 pt-8 pointer-events-none bg-gradient-to-t from-white/80 via-white/50 dark:from-zinc-800/80 dark:via-zinc-800/50 to-transparent">
+                <form wire:submit="sendMessage" class="max-w-2xl mx-auto pointer-events-auto">
                     <div class="flex gap-3 items-center rounded-3xl border border-white/40 dark:border-white/[0.08] bg-white/60 dark:bg-zinc-800/50 backdrop-blur-xl px-4 py-2.5 shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 bubble-assistant">
                         <input wire:model="messageText" type="text" placeholder="Ask your financial advisor..."
                             class="flex-1 bg-transparent text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 text-sm focus:outline-none disabled:opacity-50 border-none focus:ring-0 ring-0 shadow-none p-0"
