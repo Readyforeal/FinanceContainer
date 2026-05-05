@@ -18,6 +18,7 @@ new #[Layout('components.layouts.app')] #[Title('Dashboard')] class extends Comp
     </div>
 
     <div class="space-y-4">
+        <livewire:dashboard.ai-status />
         <livewire:dashboard.balance-cards />
         <livewire:dashboard.budget-progress />
         <livewire:dashboard.balance-history />
@@ -30,6 +31,7 @@ new #[Layout('components.layouts.app')] #[Title('Dashboard')] class extends Comp
         </div>
 
         <livewire:dashboard.flagged-transactions />
+        <livewire:dashboard.upcoming-bills />
         <livewire:dashboard.goals-summary />
     </div>
 </div>

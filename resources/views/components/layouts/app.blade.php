@@ -32,6 +32,7 @@
             <flux:sidebar.item icon="file-text" href="/summaries" wire:navigate>Summaries</flux:sidebar.item>
             <flux:sidebar.item icon="target" href="/goals" wire:navigate>Goals</flux:sidebar.item>
             <flux:sidebar.item icon="message-square" href="/chat" wire:navigate>Chat</flux:sidebar.item>
+            <flux:sidebar.item icon="calendar-days" href="/bills" wire:navigate>Bills</flux:sidebar.item>
         </flux:sidebar.nav>
 
         <flux:spacer />

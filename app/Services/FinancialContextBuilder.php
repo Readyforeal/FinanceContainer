@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Account;
 use App\Models\AppSetting;
+use App\Models\Bill;
 use App\Models\Budget;
 use App\Models\Category;
 use App\Models\Goal;
@@ -63,6 +64,9 @@ class FinancialContextBuilder
 
         // Income tracking (expected vs actual)
         $sections[] = $this->buildIncomeTrackingSection();
+
+        // Bills tracking
+        $sections[] = $this->buildBillsSection();
 
         // Flagged transactions
         $sections[] = $this->buildFlaggedTransactionsSection();
@@ -382,6 +386,49 @@ TEXT;
             $line .= ')';
             $lines[] = $line;
         }
+
+        return implode("\n", $lines);
+    }
+
+    private function buildBillsSection(): string
+    {
+        $bills = Bill::where('is_active', true)->orderBy('due_day')->get();
+
+        if ($bills->isEmpty()) {
+            return "BILLS (current month):\n  (no bills tracked)";
+        }
+
+        $now = now();
+        $periodStart = $now->copy()->startOfMonth();
+        $periodEnd = $now->copy()->endOfMonth();
+
+        $lines = ['BILLS (current month):'];
+        $totalUnpaid = 0;
+
+        foreach ($bills as $bill) {
+            $status = $bill->statusForMonth($now);
+            $payment = $bill->matchingTransaction($periodStart, $periodEnd);
+
+            $amountStr = $bill->is_fixed
+                ? '$' . number_format((float) $bill->amount, 2)
+                : '~$' . number_format((float) $bill->amount, 2);
+
+            $dueDate = $bill->dueDateForMonth($now);
+            $statusLabel = match($status) {
+                'paid' => 'PAID on ' . $payment->date->format('M j') . ' ($' . number_format(abs((float) $payment->amount), 2) . ')',
+                'overdue' => 'OVERDUE (was due ' . $dueDate->format('M j') . ')',
+                'due_soon' => 'DUE SOON (' . $dueDate->format('M j') . ', ' . now()->diffInDays($dueDate) . ' days)',
+                'upcoming' => 'due ' . $dueDate->format('M j'),
+            };
+
+            if ($status !== 'paid' && $bill->amount) {
+                $totalUnpaid += (float) $bill->amount;
+            }
+
+            $lines[] = "  - {$bill->name}: {$amountStr}, {$statusLabel}" . ($bill->is_autopay ? ' [autopay]' : '');
+        }
+
+        $lines[] = "  Total upcoming unpaid: \$" . number_format($totalUnpaid, 2);
 
         return implode("\n", $lines);
     }
