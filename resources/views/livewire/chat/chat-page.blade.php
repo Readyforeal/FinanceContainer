@@ -252,7 +252,7 @@ new class extends Component {
             </div>
 
             {{-- Input (fixed on mobile, absolute on desktop) --}}
-            <div class="fixed lg:absolute bottom-0 left-0 right-0 z-20 px-3 lg:px-8 pb-24 lg:pb-4 pt-8 pointer-events-none">
+            <div class="fixed lg:absolute bottom-2 left-1 right-1 z-20 px-3 lg:px-8 pb-24 lg:pb-4 pt-8 pointer-events-none">
                 <form wire:submit="sendMessage" class="max-w-2xl mx-auto pointer-events-auto">
                     <div class="flex gap-3 items-center rounded-3xl border border-white/40 dark:border-white/[0.08] bg-white/60 dark:bg-zinc-800/50 backdrop-blur-xl px-4 py-2.5 shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 bubble-assistant">
                         <input wire:model="messageText" type="text" placeholder="Ask your financial advisor..."
@@ -266,7 +266,6 @@ new class extends Component {
             </div>
         @endif
     </div>
-</div>
 
 {{-- Mobile history drawer --}}
 @if ($showMobileHistory)
@@ -322,3 +321,4 @@ new class extends Component {
         </div>
     </div>
 @endif
+</div>
