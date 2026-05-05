@@ -46,13 +46,13 @@ new class extends Component {
         new ApexCharts($refs.chart, {
             chart: { type: 'bar', height: 200, toolbar: { show: false }, background: 'transparent', fontFamily: 'Inter, sans-serif' },
             series: [{ name: 'Spent', data: @js($chartValues) }],
-            xaxis: { categories: @js($chartLabels), labels: { style: { colors: isDark ? '#a1a1aa' : '#71717a', fontSize: '10px' } } },
+            xaxis: { categories: @js($chartLabels), labels: { style: { colors: isDark ? '#71717a' : '#a1a1aa', fontSize: '10px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
             colors: ['#6366f1'],
-            plotOptions: { bar: { borderRadius: 5, columnWidth: '55%' } },
-            fill: { type: 'gradient', gradient: { shade: 'light', type: 'vertical', shadeIntensity: 0.2, opacityFrom: 1, opacityTo: 0.85, stops: [0, 100] } },
-            yaxis: { labels: { style: { colors: isDark ? '#a1a1aa' : '#71717a' }, formatter: (val) => '$' + val.toFixed(0) } },
+            plotOptions: { bar: { borderRadius: 6, columnWidth: '50%' } },
+            fill: { type: 'gradient', gradient: { shade: 'light', type: 'vertical', shadeIntensity: 0.3, opacityFrom: 1, opacityTo: 0.7, stops: [0, 100] } },
+            yaxis: { show: false },
             tooltip: { y: { formatter: (val) => '$' + val.toFixed(2) } },
-            grid: { borderColor: isDark ? '#27272a' : '#f4f4f5', strokeDashArray: 3 },
+            grid: { show: false },
             theme: { mode: isDark ? 'dark' : 'light' },
             dataLabels: { enabled: false },
         }).render()

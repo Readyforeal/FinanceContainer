@@ -91,21 +91,21 @@ new class extends Component {
     <div class="pt-3 pr-3" wire:key="balance-chart-{{ $days }}" x-data x-init="
         const isDark = document.documentElement.classList.contains('dark');
         new ApexCharts($refs.chart, {
-            chart: { type: 'area', height: 250, toolbar: { show: false }, background: 'transparent', parentHeightOffset: 2, fontFamily: 'Inter, sans-serif' },
+            chart: { type: 'area', height: 250, toolbar: { show: false }, background: 'transparent', parentHeightOffset: 0, fontFamily: 'Inter, sans-serif' },
             series: [{ name: 'Balance', data: @js($chartValues) }],
             xaxis: {
                 categories: @js($chartLabels),
-                labels: { style: { fontSize: '10px', colors: isDark ? '#a1a1aa' : '#71717a' } },
-                tickAmount: Math.min(@js(count($chartLabels)), 8),
+                labels: { style: { fontSize: '10px', colors: isDark ? '#71717a' : '#a1a1aa' } },
+                tickAmount: Math.min(@js(count($chartLabels)), 6),
                 axisBorder: { show: false },
                 axisTicks: { show: false },
             },
-            yaxis: { labels: { style: { colors: isDark ? '#a1a1aa' : '#71717a' }, formatter: (val) => '$' + val.toFixed(0) } },
+            yaxis: { labels: { style: { colors: isDark ? '#71717a' : '#a1a1aa' }, formatter: (val) => '$' + val.toFixed(0) } },
             tooltip: { y: { formatter: (val) => '$' + val.toFixed(2) } },
             colors: ['#10b981'],
-            fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.35, opacityTo: 0.02, stops: [0, 100] } },
+            fill: { type: 'gradient', gradient: { shadeIntensity: 0.5, opacityFrom: 0.4, opacityTo: 0, stops: [0, 95] } },
             stroke: { curve: 'smooth', width: 2.5 },
-            grid: { borderColor: isDark ? '#27272a' : '#f4f4f5', strokeDashArray: 3, padding: { left: 10, right: 10, top: -10, bottom: 0 } },
+            grid: { show: false, padding: { left: 10, right: 10, top: -10, bottom: 0 } },
             theme: { mode: isDark ? 'dark' : 'light' },
             dataLabels: { enabled: false },
         }).render()

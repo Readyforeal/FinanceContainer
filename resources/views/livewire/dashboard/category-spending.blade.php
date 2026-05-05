@@ -75,15 +75,14 @@ new class extends Component {
             const labels = @js($chartLabels);
             const isDark = document.documentElement.classList.contains('dark');
 
-            // Tailwind color palette for bars
+            // Tailwind 500 shades
             const barColors = [
                 '#10b981', '#3b82f6', '#8b5cf6', '#f59e0b', '#ec4899',
-                '#06b6d4', '#f97316', '#6366f1', '#14b8a6', '#e11d48',
+                '#06b6d4', '#f97316', '#6366f1', '#14b8a6', '#ef4444',
                 '#84cc16', '#a855f7', '#0ea5e9', '#d946ef', '#22c55e',
                 '#eab308', '#2dd4bf', '#f43f5e', '#818cf8', '#fb923c',
             ];
 
-            // Build data with per-bar goal lines and colors
             const seriesData = spent.map((val, i) => ({
                 x: labels[i],
                 y: val,
@@ -91,9 +90,9 @@ new class extends Component {
                 goals: budget[i] > 0 ? [{
                     name: 'Budget',
                     value: budget[i],
-                    strokeHeight: 3,
-                    strokeColor: isDark ? '#fca5a5' : '#dc2626',
-                    strokeDashArray: 2,
+                    strokeHeight: 2,
+                    strokeColor: isDark ? '#fca5a5' : '#ef4444',
+                    strokeDashArray: 3,
                 }] : [],
             }));
 
@@ -103,13 +102,16 @@ new class extends Component {
                 chart: { type: 'bar', height: 300, width: minWidth, toolbar: { show: false }, background: 'transparent', fontFamily: 'Inter, sans-serif' },
                 series: [{ name: 'Spent', data: seriesData }],
                 xaxis: {
-                    labels: { style: { fontSize: '10px', colors: isDark ? '#a1a1aa' : '#71717a' }, rotate: -45, rotateAlways: labels.length > 6, trim: true, maxHeight: 80 },
+                    labels: { style: { fontSize: '10px', colors: isDark ? '#71717a' : '#a1a1aa' }, rotate: -45, rotateAlways: labels.length > 6, trim: true, maxHeight: 80 },
+                    axisBorder: { show: false },
+                    axisTicks: { show: false },
                 },
-                yaxis: { labels: { style: { colors: isDark ? '#a1a1aa' : '#71717a' }, formatter: (val) => '$' + (val || 0).toFixed(0) } },
+                yaxis: { show: false },
                 tooltip: { y: { formatter: (val) => '$' + val.toFixed(2) } },
-                plotOptions: { bar: { borderRadius: 6, columnWidth: '60%', distributed: true } },
+                plotOptions: { bar: { borderRadius: 6, columnWidth: '55%', distributed: true } },
+                fill: { type: 'gradient', gradient: { shade: 'light', type: 'vertical', shadeIntensity: 0.2, opacityFrom: 1, opacityTo: 0.75, stops: [0, 100] } },
                 legend: { show: false },
-                grid: { borderColor: isDark ? '#27272a' : '#f4f4f5', strokeDashArray: 3 },
+                grid: { show: false },
                 theme: { mode: isDark ? 'dark' : 'light' },
                 dataLabels: { enabled: false },
             }).render()
