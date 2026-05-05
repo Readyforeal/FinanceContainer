@@ -88,7 +88,7 @@ new class extends Component {
 
         return [
             'sources' => $sources,
-            'totalMonthly' => $sources->sum(fn ($s) => $s->monthlyAmount()),
+            'totalMonthly' => $sources->sum(fn($s) => $s->monthlyAmount()),
         ];
     }
 };
@@ -100,7 +100,7 @@ new class extends Component {
         @if ($sources->isNotEmpty())
             <flux:text size="sm">
                 Total Monthly:
-                <span class="text-green-400 font-semibold ml-1">${{ number_format($totalMonthly, 2) }}</span>
+                <span class="text-emerald-500 font-semibold ml-1">${{ number_format($totalMonthly, 2) }}</span>
             </flux:text>
         @endif
     </div>
@@ -109,15 +109,14 @@ new class extends Component {
     @if ($sources->isNotEmpty())
         <div class="space-y-3 mb-6">
             @foreach ($sources as $source)
-                <flux:card class="p-4 flex items-center justify-between">
+                <flux:card class="p-4 flex items-start justify-between">
                     <div>
                         <flux:text class="font-medium">{{ $source->name }}</flux:text>
-                        <div class="flex items-center gap-3 mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-                            <span>${{ number_format($source->amount, 2) }} / {{ $source->frequency }}</span>
-                            <span class="text-zinc-400 dark:text-zinc-600">&bull;</span>
-                            <span class="text-green-400">${{ number_format($source->monthlyAmount(), 2) }}/mo</span>
+                        <div class="inline-block items-center gap-3 mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+                            <flux:text>${{ number_format($source->amount, 2) }} / {{ $source->frequency }}</flux:text>
+                            <flux:text class="text-emerald-500">${{ number_format($source->monthlyAmount(), 2) }}/mo
+                            </flux:text>
                             @if ($source->next_pay_date)
-                                <span class="text-zinc-400 dark:text-zinc-600">&bull;</span>
                                 <span>Next: {{ $source->next_pay_date->format('M j, Y') }}</span>
                             @endif
                         </div>
@@ -133,20 +132,10 @@ new class extends Component {
                                 Cancel
                             </flux:button>
                         @else
-                            <flux:button
-                                wire:click="edit({{ $source->id }})"
-                                variant="subtle"
-                                size="xs"
-                                icon="pencil"
-                                title="Edit"
-                            />
-                            <flux:button
-                                wire:click="confirmDelete({{ $source->id }})"
-                                variant="subtle"
-                                size="xs"
-                                icon="trash-2"
-                                title="Delete"
-                            />
+                            <flux:button wire:click="edit({{ $source->id }})" variant="subtle" size="xs"
+                                icon="pencil" title="Edit" />
+                            <flux:button wire:click="confirmDelete({{ $source->id }})" variant="subtle" size="xs"
+                                icon="trash-2" title="Delete" />
                         @endif
                     </div>
                 </flux:card>
@@ -156,7 +145,8 @@ new class extends Component {
         {{-- Total summary --}}
         <flux:card class="p-4 mb-6 text-center">
             <flux:text size="sm">Total Monthly Income</flux:text>
-            <flux:heading size="xl" class="text-green-400 mt-1">${{ number_format($totalMonthly, 2) }}</flux:heading>
+            <flux:heading size="xl" class="text-emerald-500 mt-1">${{ number_format($totalMonthly, 2) }}
+            </flux:heading>
         </flux:card>
     @else
         <div class="text-center py-8 mb-6">
@@ -174,24 +164,18 @@ new class extends Component {
         <form wire:submit="save" class="space-y-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <flux:input
-                        wire:model="name"
-                        label="Name"
-                        placeholder="e.g. Main Job"
-                    />
-                    @error('name') <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text> @enderror
+                    <flux:input wire:model="name" label="Name" placeholder="e.g. Main Job" />
+                    @error('name')
+                        <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text>
+                    @enderror
                 </div>
 
                 <div>
-                    <flux:input
-                        wire:model="amount"
-                        type="number"
-                        label="Amount"
-                        step="0.01"
-                        min="0"
-                        placeholder="0.00"
-                    />
-                    @error('amount') <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text> @enderror
+                    <flux:input wire:model="amount" type="number" label="Amount" step="0.01" min="0"
+                        placeholder="0.00" />
+                    @error('amount')
+                        <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text>
+                    @enderror
                 </div>
 
                 <div>
@@ -200,16 +184,16 @@ new class extends Component {
                         <flux:select.option value="biweekly">Biweekly</flux:select.option>
                         <flux:select.option value="monthly">Monthly</flux:select.option>
                     </flux:select>
-                    @error('frequency') <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text> @enderror
+                    @error('frequency')
+                        <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text>
+                    @enderror
                 </div>
 
                 <div>
-                    <flux:input
-                        wire:model="nextPayDate"
-                        type="date"
-                        label="Next Pay Date"
-                    />
-                    @error('nextPayDate') <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text> @enderror
+                    <flux:input wire:model="nextPayDate" type="date" label="Next Pay Date" />
+                    @error('nextPayDate')
+                        <flux:text size="sm" class="text-red-500 mt-1">{{ $message }}</flux:text>
+                    @enderror
                 </div>
             </div>
 

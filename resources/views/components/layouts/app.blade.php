@@ -12,7 +12,7 @@
     @fluxAppearance
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-zinc-50 to-emerald-100 dark:from-zinc-900 dark:to-emerald-950">
+<body class="min-h-screen bg-gradient-to-b from-zinc-50 to-slate-100 dark:from-zinc-900 dark:to-black">
     <flux:sidebar sticky class="max-lg:hidden! bg-transparent! border-r-0!">
         <flux:sidebar.header>
             <flux:sidebar.brand name="Better With 90" href="/dashboard" wire:navigate>
@@ -49,14 +49,16 @@
         </form>
     </flux:sidebar>
 
-    <flux:main class="pb-28 lg:pb-0 lg:pt-1.5 lg:pr-1.5 lg:pb-1.5 lg:pl-0">
+    <flux:main class="h-full overflow-y-auto pb-28 lg:pt-3 lg:pr-3 lg:pb-3! lg:pl-0 lg:overflow-hidden">
         <div
-            class="lg:bg-white lg:dark:bg-zinc-800/60 lg:rounded-2xl lg:border lg:border-zinc-200 lg:dark:border-zinc-700 lg:h-[calc(100vh-0.75rem)] lg:overflow-y-auto lg:p-8 lg:shadow-sm">
+            class="lg:bg-white lg:dark:bg-zinc-800/60 lg:rounded-2xl lg:border lg:border-zinc-200 lg:dark:border-zinc-700 lg:h-[calc(100vh-1.5rem)] lg:overflow-y-auto lg:p-8 lg:shadow-sm">
             {{ $slot }}
         </div>
     </flux:main>
 
-    <livewire:layout.mobile-dock />
+    @persist('mobile-dock')
+        <livewire:layout.mobile-dock />
+    @endpersist
 
     <script>
         document.addEventListener('alpine:init', () => {

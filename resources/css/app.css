@@ -33,6 +33,14 @@ ui-modal > dialog {
     }
 }
 
+/* Lock body scroll — content scrolls inside containers */
+html, body {
+    overflow: hidden;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+}
+
 /* iOS safe areas for WebView */
 html {
     padding-top: env(safe-area-inset-top);

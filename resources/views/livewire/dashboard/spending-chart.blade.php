@@ -42,16 +42,18 @@ new class extends Component {
     </div>
 
     <div wire:key="chart-{{ $days }}" x-data x-init="
+        const isDark = document.documentElement.classList.contains('dark');
         new ApexCharts($refs.chart, {
-            chart: { type: 'bar', height: 200, toolbar: { show: false }, background: 'transparent' },
+            chart: { type: 'bar', height: 200, toolbar: { show: false }, background: 'transparent', fontFamily: 'Inter, sans-serif' },
             series: [{ name: 'Spent', data: @js($chartValues) }],
-            xaxis: { categories: @js($chartLabels) },
-            colors: ['#3b82f6'],
-            plotOptions: { bar: { borderRadius: 4, columnWidth: '60%' } },
-            yaxis: { labels: { formatter: (val) => '$' + val.toFixed(2) } },
+            xaxis: { categories: @js($chartLabels), labels: { style: { colors: isDark ? '#71717a' : '#a1a1aa', fontSize: '10px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+            colors: ['#6366f1'],
+            plotOptions: { bar: { borderRadius: 6, columnWidth: '50%' } },
+            fill: { type: 'gradient', gradient: { shade: 'light', type: 'vertical', shadeIntensity: 0.3, opacityFrom: 1, opacityTo: 0.7, stops: [0, 100] } },
+            yaxis: { show: false },
             tooltip: { y: { formatter: (val) => '$' + val.toFixed(2) } },
-            grid: { borderColor: document.documentElement.classList.contains('dark') ? '#27272a' : '#e4e4e7' },
-            theme: { mode: document.documentElement.classList.contains('dark') ? 'dark' : 'light' },
+            grid: { show: false },
+            theme: { mode: isDark ? 'dark' : 'light' },
             dataLabels: { enabled: false },
         }).render()
     " class="mt-4">

@@ -37,10 +37,7 @@ new class extends Component {
                 ->pluck('total', 'day')
                 ->toArray();
 
-            $accountChartData[$account->id] = array_map(
-                fn ($date) => round((float) ($dailyTotals[$date] ?? 0), 2),
-                $dateRange
-            );
+            $accountChartData[$account->id] = array_map(fn($date) => round((float) ($dailyTotals[$date] ?? 0), 2), $dateRange);
         }
 
         return [
@@ -77,9 +74,9 @@ new class extends Component {
                         </div>
                         <div class="p-2 bg-zinc-100 dark:bg-zinc-700 rounded-lg">
                             @if ($account->type->value === 'savings')
-                                <flux:icon.piggy-bank variant="mini" class="size-5 text-indigo-500 dark:text-indigo-400" />
+                                <flux:icon.piggy-bank variant="mini" class="size-5" />
                             @else
-                                <flux:icon.wallet variant="mini" class="size-5 text-blue-500 dark:text-blue-400" />
+                                <flux:icon.wallet variant="mini" class="size-5" />
                             @endif
                         </div>
                     </div>
@@ -92,23 +89,22 @@ new class extends Component {
                         @if ($account->last_synced_at)
                             <div class="flex justify-between">
                                 <span>Last import</span>
-                                <span class="text-zinc-500 dark:text-zinc-400">{{ $account->last_synced_at->diffForHumans() }}</span>
+                                <span
+                                    class="text-zinc-500 dark:text-zinc-400">{{ $account->last_synced_at->diffForHumans() }}</span>
                             </div>
                         @endif
                     </div>
 
                     {{-- Sparkline --}}
                     @if (array_sum($accountChartData[$account->id] ?? []) > 0)
-                        <div wire:key="spark-{{ $account->id }}" x-data x-init="
-                            new ApexCharts($refs['spark{{ $account->id }}'], {
-                                chart: { type: 'area', height: 60, sparkline: { enabled: true } },
-                                series: [{ data: @js($accountChartData[$account->id] ?? []) }],
-                                stroke: { width: 2, curve: 'smooth' },
-                                colors: ['{{ $account->type->value === 'checking' ? '#3b82f6' : '#6366f1' }}'],
-                                fill: { type: 'gradient', gradient: { opacityFrom: 0.3, opacityTo: 0 } },
-                                tooltip: { enabled: false },
-                            }).render()
-                        " class="mt-3">
+                        <div wire:key="spark-{{ $account->id }}" x-data x-init="new ApexCharts($refs['spark{{ $account->id }}'], {
+                            chart: { type: 'area', height: 60, sparkline: { enabled: true } },
+                            series: [{ data: @js($accountChartData[$account->id] ?? []) }],
+                            stroke: { width: 2, curve: 'smooth' },
+                            colors: ['{{ $account->type->value === 'checking' ? '#3b82f6' : '#6366f1' }}'],
+                            fill: { type: 'gradient', gradient: { opacityFrom: 0.3, opacityTo: 0 } },
+                            tooltip: { enabled: false },
+                        }).render()" class="mt-3">
                             <div x-ref="spark{{ $account->id }}"></div>
                         </div>
                     @endif
