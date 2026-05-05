@@ -46,6 +46,7 @@ new class extends Component {};
                     ['path' => '/summaries', 'label' => 'Summaries', 'icon' => 'file-text'],
                     ['path' => '/goals', 'label' => 'Goals', 'icon' => 'target'],
                     ['path' => '/chat', 'label' => 'Chat', 'icon' => 'message-square'],
+                    ['path' => '/bills', 'label' => 'Bills', 'icon' => 'calendar-days'],
                     ['path' => '/profile', 'label' => 'Profile', 'icon' => 'user'],
                     ['path' => '/settings', 'label' => 'Settings', 'icon' => 'settings'],
                 ];

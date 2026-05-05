@@ -12,6 +12,7 @@ Route::middleware(['auth'])->group(function () {
     Route::livewire('/accounts', 'pages::accounts')->name('accounts');
     Route::livewire('/summaries', 'pages::summaries')->name('summaries');
     Route::livewire('/goals', 'pages::goals')->name('goals');
+    Route::livewire('/bills', 'pages::bills')->name('bills');
     Route::livewire('/chat', 'pages::chat')->name('chat');
     Route::livewire('/profile', 'pages::profile')->name('profile');
     Route::livewire('/settings', 'pages::settings')->name('settings');
