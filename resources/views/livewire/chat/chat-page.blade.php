@@ -190,9 +190,9 @@ new class extends Component {
     {{-- Chat area --}}
     <div class="flex-1 flex flex-col min-h-0 min-w-0 relative">
 
-        {{-- Mobile top bar --}}
-        <div class="lg:hidden flex-shrink-0 relative z-10">
-            <div class="flex items-center justify-between px-4 py-3">
+        {{-- Mobile top bar (fixed) --}}
+        <div class="lg:hidden fixed top-0 left-0 right-0 z-20" style="padding-top: env(safe-area-inset-top);">
+            <div class="flex items-center justify-between px-4 py-3 bg-gradient-to-b from-white dark:from-zinc-900 to-transparent">
                 <flux:button wire:click="$toggle('showMobileHistory')" variant="ghost" size="sm" icon="menu" />
                 <flux:text class="font-medium truncate mx-4">
                     @if ($activeConversationId)
@@ -251,8 +251,8 @@ new class extends Component {
                 </div>
             </div>
 
-            {{-- Input (floating) --}}
-            <div class="absolute bottom-0 left-0 right-0 px-3 lg:px-8 pb-24 lg:pb-4 pt-8 pointer-events-none bg-gradient-to-t from-white/80 via-white/50 dark:from-zinc-800/80 dark:via-zinc-800/50 to-transparent">
+            {{-- Input (fixed on mobile, absolute on desktop) --}}
+            <div class="fixed lg:absolute bottom-0 left-0 right-0 z-20 px-3 lg:px-8 pb-24 lg:pb-4 pt-8 pointer-events-none">
                 <form wire:submit="sendMessage" class="max-w-2xl mx-auto pointer-events-auto">
                     <div class="flex gap-3 items-center rounded-3xl border border-white/40 dark:border-white/[0.08] bg-white/60 dark:bg-zinc-800/50 backdrop-blur-xl px-4 py-2.5 shadow-lg shadow-zinc-300/30 dark:shadow-zinc-950/40 bubble-assistant">
                         <input wire:model="messageText" type="text" placeholder="Ask your financial advisor..."
