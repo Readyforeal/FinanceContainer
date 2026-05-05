@@ -154,42 +154,39 @@ new class extends Component {
 };
 ?>
 
-{{-- Chat layout -- fully separate mobile vs desktop --}}
-{{-- Root: fixed container filling available space --}}
-<div class="fixed inset-0 top-14 lg:top-3 lg:right-3 lg:bottom-3 lg:left-[calc(15.75rem+0.75rem)] flex flex-col lg:flex-row lg:gap-3">
-
-    {{-- ==================== DESKTOP SIDEBAR (fixed, not scrollable) ==================== --}}
-    <div class="hidden lg:flex w-64 flex-shrink-0 flex-col rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden">
-        <div class="p-3 border-b border-zinc-200 dark:border-zinc-800">
-            <flux:button wire:click="newConversation" variant="primary" icon="plus" class="w-full">
-                New Conversation
-            </flux:button>
-        </div>
-        <div class="flex-1 overflow-y-auto">
-            @forelse ($conversations as $conversation)
-                <div @class([
-                    'group flex items-center border-b border-zinc-100 dark:border-zinc-800/50 transition-colors',
-                    'bg-zinc-100 dark:bg-zinc-800' => $activeConversationId === $conversation->id,
-                    'hover:bg-zinc-50 dark:hover:bg-zinc-800/50' => $activeConversationId !== $conversation->id,
-                ])>
-                    <button wire:click="selectConversation({{ $conversation->id }})" class="flex-1 text-left px-4 py-3 min-w-0">
-                        <flux:text class="font-medium truncate">{{ $conversation->title }}</flux:text>
-                        <flux:text size="sm" class="mt-0.5">{{ $conversation->updated_at->diffForHumans() }}</flux:text>
-                    </button>
-                    <button wire:click.stop="confirmDelete({{ $conversation->id }})" class="px-3 py-3 text-zinc-300 dark:text-zinc-600 hover:text-red-500 dark:hover:text-red-400 transition-colors flex-shrink-0">
-                        <flux:icon.trash-2 variant="mini" class="size-3.5" />
-                    </button>
-                </div>
-            @empty
-                <div class="px-4 py-8 text-center">
-                    <flux:text size="sm">No conversations yet.</flux:text>
-                </div>
-            @endforelse
-        </div>
+<div>
+{{-- Desktop sidebar (fixed, independent of chat flow) --}}
+<div class="hidden lg:flex fixed top-3 bottom-3 left-[calc(15.75rem+0.75rem)] w-64 flex-col rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden z-10">
+    <div class="p-3 border-b border-zinc-200 dark:border-zinc-800">
+        <flux:button wire:click="newConversation" variant="primary" icon="plus" class="w-full">
+            New Conversation
+        </flux:button>
     </div>
+    <div class="flex-1 overflow-y-auto">
+        @forelse ($conversations as $conversation)
+            <div @class([
+                'group flex items-center border-b border-zinc-100 dark:border-zinc-800/50 transition-colors',
+                'bg-zinc-100 dark:bg-zinc-800' => $activeConversationId === $conversation->id,
+                'hover:bg-zinc-50 dark:hover:bg-zinc-800/50' => $activeConversationId !== $conversation->id,
+            ])>
+                <button wire:click="selectConversation({{ $conversation->id }})" class="flex-1 text-left px-4 py-3 min-w-0">
+                    <flux:text class="font-medium truncate">{{ $conversation->title }}</flux:text>
+                    <flux:text size="sm" class="mt-0.5">{{ $conversation->updated_at->diffForHumans() }}</flux:text>
+                </button>
+                <button wire:click.stop="confirmDelete({{ $conversation->id }})" class="px-3 py-3 text-zinc-300 dark:text-zinc-600 hover:text-red-500 dark:hover:text-red-400 transition-colors flex-shrink-0">
+                    <flux:icon.trash-2 variant="mini" class="size-3.5" />
+                </button>
+            </div>
+        @empty
+            <div class="px-4 py-8 text-center">
+                <flux:text size="sm">No conversations yet.</flux:text>
+            </div>
+        @endforelse
+    </div>
+</div>
 
-    {{-- ==================== CHAT AREA ==================== --}}
-    <div class="flex-1 flex flex-col min-h-0 min-w-0 relative">
+{{-- Chat area (fixed, offset for sidebar on desktop) --}}
+<div class="fixed inset-0 top-14 lg:top-0 lg:left-[calc(15.75rem+0.75rem+16rem+0.75rem)] lg:right-0 flex flex-col relative">
 
         {{-- Mobile top bar --}}
         <div class="lg:hidden flex-shrink-0 relative z-10">
@@ -269,8 +266,10 @@ new class extends Component {
         @endif
     </div>
 
-    {{-- ==================== MOBILE HISTORY DRAWER ==================== --}}
-    @if ($showMobileHistory)
+</div>
+
+{{-- ==================== MOBILE HISTORY DRAWER ==================== --}}
+@if ($showMobileHistory)
         <div class="fixed inset-0 z-50 lg:hidden">
             <div class="absolute inset-0 bg-black/30 dark:bg-black/50 backdrop-blur-sm" wire:click="$toggle('showMobileHistory')"></div>
             <div class="absolute left-0 top-0 bottom-0 w-72 bg-white dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-800 shadow-xl flex flex-col">
@@ -322,5 +321,5 @@ new class extends Component {
                 </div>
             </div>
         </div>
-    @endif
+@endif
 </div>
