@@ -8,7 +8,12 @@ new class extends Component {
     {
         $uncategorized = Transaction::whereNull('category_id')->count();
         $needsReview = Transaction::where('needs_review', true)->count();
-        $pendingJobs = (int) \Illuminate\Support\Facades\Redis::llen('queues:ai');
+
+        try {
+            $pendingJobs = (int) \Illuminate\Support\Facades\Redis::llen('queues:ai');
+        } catch (\Throwable) {
+            $pendingJobs = 0;
+        }
 
         return compact('uncategorized', 'needsReview', 'pendingJobs');
     }
