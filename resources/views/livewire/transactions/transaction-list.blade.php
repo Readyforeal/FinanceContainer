@@ -84,7 +84,8 @@ new class extends Component {
             ->when($this->search, function ($q) {
                 $search = '%' . $this->search . '%';
                 $q->where(function ($q2) use ($search) {
-                    $q2->where('merchant_name', 'ilike', $search)->orWhere('description', 'ilike', $search);
+                    $op = $q2->getConnection()->getDriverName() === 'pgsql' ? 'ilike' : 'like';
+                    $q2->where('merchant_name', $op, $search)->orWhere('description', $op, $search);
                 });
             })
             ->orderBy($this->sortField, $this->sortDirection);
@@ -218,7 +219,8 @@ new class extends Component {
             ->when($this->search, function ($q) {
                 $search = '%' . $this->search . '%';
                 $q->where(function ($q2) use ($search) {
-                    $q2->where('merchant_name', 'ilike', $search)->orWhere('description', 'ilike', $search);
+                    $op = $q2->getConnection()->getDriverName() === 'pgsql' ? 'ilike' : 'like';
+                    $q2->where('merchant_name', $op, $search)->orWhere('description', $op, $search);
                 });
             })
             ->orderBy($this->sortField, $this->sortDirection);

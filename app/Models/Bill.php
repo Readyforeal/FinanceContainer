@@ -47,7 +47,10 @@ class Bill extends Model
 
     public function matchingTransaction(Carbon $periodStart, Carbon $periodEnd): ?Transaction
     {
-        return Transaction::where('merchant_name', 'ilike', '%' . $this->merchant_pattern . '%')
+        $driver = Transaction::query()->getConnection()->getDriverName();
+        $operator = $driver === 'pgsql' ? 'ilike' : 'like';
+
+        return Transaction::where('merchant_name', $operator, '%' . $this->merchant_pattern . '%')
             ->whereBetween('date', [$periodStart->toDateString(), $periodEnd->toDateString()])
             ->where('amount', '<', 0)
             ->orderByDesc('date')
