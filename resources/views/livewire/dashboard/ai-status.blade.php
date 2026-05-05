@@ -8,13 +8,19 @@ new class extends Component {
     {
         $uncategorized = Transaction::whereNull('category_id')->count();
         $needsReview = Transaction::where('needs_review', true)->count();
-        $pendingJobs = (int) \Illuminate\Support\Facades\Redis::llen('queues:ai');
+
+        try {
+            $pendingJobs = (int) \Illuminate\Support\Facades\Redis::llen('queues:ai');
+        } catch (\Throwable) {
+            $pendingJobs = 0;
+        }
 
         return compact('uncategorized', 'needsReview', 'pendingJobs');
     }
 };
 ?>
 
+<div>
 @if ($uncategorized > 0 || $pendingJobs > 0)
     <div wire:poll.5s class="flex items-center gap-3 px-4 py-3 rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/20">
         <div class="flex items-center gap-2">
@@ -35,3 +41,4 @@ new class extends Component {
         </div>
     </div>
 @endif
+</div>
