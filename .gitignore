@@ -13,3 +13,5 @@
 *.jpg
 *.jpeg
 .idea/
+/public/build/
+.DS_Store
