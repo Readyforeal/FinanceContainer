@@ -30,6 +30,7 @@ new #[Layout('components.layouts.app')] #[Title('Dashboard')] class extends Comp
         </div>
 
         <livewire:dashboard.flagged-transactions />
+        <livewire:dashboard.upcoming-bills />
         <livewire:dashboard.goals-summary />
     </div>
 </div>
