@@ -20,6 +20,7 @@ new class extends Component {
 };
 ?>
 
+<div>
 @if ($uncategorized > 0 || $pendingJobs > 0)
     <div wire:poll.5s class="flex items-center gap-3 px-4 py-3 rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/20">
         <div class="flex items-center gap-2">
@@ -40,3 +41,4 @@ new class extends Component {
         </div>
     </div>
 @endif
+</div>
