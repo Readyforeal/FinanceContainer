@@ -156,7 +156,7 @@ new class extends Component {
 
 {{-- Chat layout -- fully separate mobile vs desktop --}}
 {{-- Root: fixed container filling available space --}}
-<div class="fixed inset-0 top-14 lg:top-0 lg:left-[15.75rem] flex flex-col lg:flex-row lg:p-3 lg:gap-3">
+<div class="fixed inset-0 top-14 lg:top-3 lg:right-3 lg:bottom-3 lg:left-[calc(15.75rem+0.75rem)] flex flex-col lg:flex-row lg:gap-3">
 
     {{-- ==================== DESKTOP SIDEBAR (fixed, not scrollable) ==================== --}}
     <div class="hidden lg:flex w-64 flex-shrink-0 flex-col rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden">
