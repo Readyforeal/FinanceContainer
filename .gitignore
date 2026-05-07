@@ -1,15 +1,15 @@
 /vendor/
 /node_modules/
+/public/build/
 .env
 .env.backup
 .superpowers/
 .playwright-mcp/
 /storage/*.key
 /storage/framework/views/*.php
-
-# Screenshots
+.idea/
+.DS_Store
 *.PNG
 *.png
 *.jpg
 *.jpeg
-.idea/
