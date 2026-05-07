@@ -10,35 +10,10 @@ services:
       - app-storage:/app/storage
     networks:
       - homelab
-    depends_on:
-      - postgres
-      - redis
-
-  postgres:
-    image: postgres:17-alpine
-    container_name: homelab-postgres
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: ${DB_USERNAME:-steward}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_DATABASE:-steward}
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    networks:
-      - homelab
-
-  redis:
-    image: redis:7-alpine
-    container_name: homelab-redis
-    restart: unless-stopped
-    networks:
-      - homelab
 
 volumes:
   app-storage:
-  pgdata:
 
 networks:
   homelab:
-    name: homelab
-    driver: bridge
+    external: true
