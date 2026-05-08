@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Enums\AccountType;
-use App\Models\PlaidConnection;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AccountFactory extends Factory
@@ -11,8 +10,6 @@ class AccountFactory extends Factory
     public function definition(): array
     {
         return [
-            'plaid_connection_id' => PlaidConnection::factory(),
-            'plaid_account_id' => 'acc_' . $this->faker->unique()->bothify('####????'),
             'name' => $this->faker->randomElement(['Checking', 'Savings']),
             'type' => $this->faker->randomElement(AccountType::cases()),
             'current_balance' => $this->faker->randomFloat(2, 100, 10000),

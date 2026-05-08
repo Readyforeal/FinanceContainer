@@ -24,8 +24,6 @@ new class extends Component {
         Account::create([
             'name' => $this->name,
             'type' => $this->type,
-            'plaid_account_id' => 'manual_' . uniqid(),
-            'plaid_connection_id' => $this->getOrCreateManualConnection(),
             'current_balance' => (float) $this->balance,
             'available_balance' => (float) $this->balance,
         ]);
@@ -33,22 +31,6 @@ new class extends Component {
         $this->reset(['name', 'type', 'balance', 'showForm']);
         $this->type = 'checking';
         $this->dispatch('account-created');
-    }
-
-    private function getOrCreateManualConnection(): int
-    {
-        $connection = \App\Models\PlaidConnection::where('item_id', 'manual')->first();
-
-        if (! $connection) {
-            $connection = \App\Models\PlaidConnection::create([
-                'access_token' => 'manual',
-                'item_id' => 'manual',
-                'institution_name' => 'Manual Accounts',
-                'status' => 'active',
-            ]);
-        }
-
-        return $connection->id;
     }
 };
 ?>
