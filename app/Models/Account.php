@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Enums\AccountType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Account extends Model
@@ -13,8 +12,6 @@ class Account extends Model
     use HasFactory;
 
     protected $fillable = [
-        'plaid_connection_id',
-        'plaid_account_id',
         'name',
         'type',
         'current_balance',
@@ -30,11 +27,6 @@ class Account extends Model
             'available_balance' => 'decimal:2',
             'last_synced_at' => 'datetime',
         ];
-    }
-
-    public function plaidConnection(): BelongsTo
-    {
-        return $this->belongsTo(PlaidConnection::class);
     }
 
     public function transactions(): HasMany

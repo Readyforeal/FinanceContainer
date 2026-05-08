@@ -2,29 +2,11 @@
 use App\Jobs\BudgetCheckJob;
 use App\Jobs\HealthCheckJob;
 use App\Jobs\PaymentOptimizerJob;
-use App\Jobs\PlaidSyncJob;
 use App\Jobs\SummaryJob;
 use App\Models\AppSetting;
-use App\Models\PlaidConnection;
 use Illuminate\Support\Facades\Schedule;
 
-// Daily sync pipeline
-Schedule::call(function () {
-    $connections = PlaidConnection::where('status', 'active')->get();
-    foreach ($connections as $connection) {
-        PlaidSyncJob::dispatch($connection);
-    }
-})->cron((function () {
-    try {
-        return AppSetting::getValue('sync_schedule', '0 4 * * *');
-    } catch (\Throwable) {
-        return '0 4 * * *';
-    }
-})())
-  ->name('plaid-sync')
-  ->withoutOverlapping();
-
-// AI analysis pipeline (runs 30 minutes after sync)
+// AI analysis pipeline
 Schedule::call(function () {
     BudgetCheckJob::dispatch();
     HealthCheckJob::dispatch();
